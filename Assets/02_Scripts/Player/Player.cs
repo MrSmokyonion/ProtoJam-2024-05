@@ -18,12 +18,32 @@ public class Player : MonoBehaviour
     /// </summary>
     public float currentHp = 100.0f;
 
+    public float CurrentHp
+    {
+        get => currentHp;
+        set
+        {
+            currentHp = value;
+            if(currentHp > maxHp)
+            {
+                currentHp = maxHp;
+            }
+            onHealthChange?.Invoke(currentHp, maxHp);
+
+            if (currentHp <= 0)
+            {
+                currentHp = 0;
+                OnDie();        // 사망
+            }
+        }
+    }
+
     /// <summary>
     /// 초당 체력 재생력
     /// </summary>
     public float regeneration = 0.0f;
 
-    // 공방 관련 =======
+    // 공방 관련 =====================
     /// <summary>
     /// 공격력
     /// </summary>
@@ -59,6 +79,30 @@ public class Player : MonoBehaviour
     /// 플레이어 레벨
     /// </summary>
     public int level = 1;
+
+    /// <summary>
+    /// 현재 경험치
+    /// </summary>
+    public int currentEx = 0;
+
+    public int CurrentEx
+    {
+        get => currentEx;
+        set
+        {
+            currentEx = value;
+            if(currentEx >= maxEx)
+            {
+                // 레벨업, current 초기화, max 증가
+            }
+            onExChange?.Invoke(currentEx, maxEx);
+        }
+    }
+
+    /// <summary>
+    /// 최대 경험치
+    /// </summary>
+    public int maxEx = 5;   
 
     /// <summary>
     /// 경험치 증가량(기본 1.0)
@@ -105,12 +149,12 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 체력 값 바뀔때마다 불리는 델리게이트
     /// </summary>
-    public System.Action<float> onHealthChange;
+    public System.Action<float, float> onHealthChange;
 
     /// <summary>
     /// 경험치 값 바뀔때마다 불리는 델리게이트
     /// </summary>
-    public System.Action<float> onExChange;
+    public System.Action<int, int> onExChange;
 
     /// <summary>
     /// 레벨 값 바뀔때마다 불리는 델리게이트
@@ -144,6 +188,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        CurrentEx = 0;
+
         StartCoroutine(AutoAttack());
     }
 
@@ -176,12 +222,20 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 범위 안에 있는 적을 공격하기
+    /// 공격 범위 안에 있는 적을 공격하기(사실 공격 투사체를 소환하는 방식)
     /// </summary>
     void Attack()
     {
         Debug.Log($"플레이어 자동 공격");
         Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
+    }
+
+    /// <summary>
+    /// 사망시 실행하는 코드
+    /// </summary>
+    void OnDie()
+    {
+
     }
     
 }
