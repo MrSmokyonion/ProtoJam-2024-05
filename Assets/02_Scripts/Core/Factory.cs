@@ -5,10 +5,11 @@ using UnityEngine;
 
 public enum PoolObjectType : int
 {
-    PlayerAttack,
-    Poop,
-    Duck,
-    PoopDuck,
+    PlayerAttack,       // ÇÃ·¹ÀÌ¾î ±âº» °ø°Ý
+    PlungerAttack,      // ¶Õ¾î»½ °ø°Ý
+    Poop,               // ¶Ë
+    Duck,               // ¿À¸®
+    PoopDuck,           // ¶Ë¿À¸®
 }
 
 
@@ -20,6 +21,7 @@ public class Factory : Singleton<Factory>
     //ObjectPool<PooledObject>[] pools;
 
     PlayerAttackPool playerAttackPool;
+    PlungerPool plungerPool;
     
 
     protected override void OnPreInitalize()
@@ -27,7 +29,10 @@ public class Factory : Singleton<Factory>
         base.OnPreInitalize();
 
         playerAttackPool = GetComponentInChildren<PlayerAttackPool>();
+        plungerPool = GetComponentInChildren<PlungerPool>();
+
         playerAttackPool.Initialize();
+        plungerPool.Initialize();
 
         //pools = new ObjectPool<PooledObject>[transform.childCount];
 
@@ -57,6 +62,9 @@ public class Factory : Singleton<Factory>
         {
             case PoolObjectType.PlayerAttack:
                 result = playerAttackPool.GetObject().gameObject;
+                break;
+            case PoolObjectType.PlungerAttack:
+                result = plungerPool.GetObject().gameObject;
                 break;
             case PoolObjectType.Poop:
                 break;

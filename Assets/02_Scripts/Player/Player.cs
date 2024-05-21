@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
     public float regeneration = 0.0f;
 
     // 공방 관련 =====================
+    [Space(10.0f)]
     /// <summary>
     /// 공격력
     /// </summary>
@@ -75,6 +77,7 @@ public class Player : MonoBehaviour
     public float HealingSpeed = 1.0f;
 
     // 경험치 관련 -----------------------------
+    [Space(10.0f)]
     /// <summary>
     /// 플레이어 레벨
     /// </summary>
@@ -110,6 +113,7 @@ public class Player : MonoBehaviour
     public float exIncreaseRate = 1.0f;
 
     // 이동 관련 --------------------------------
+    [Space(10.0f)]
 
     /// <summary>
     /// 플레이어의 이동 속도
@@ -121,12 +125,24 @@ public class Player : MonoBehaviour
     /// </summary>
     Vector2 dir;
 
+    /// <summary>
+    /// 플레이어가 향하고 있는 방향(8방향, zero일 경우는 없다)
+    /// </summary>
+    Vector2 headDir = Vector2.right;
+
     Vector2 Dir
     {
         get => dir;
         set
         {
             dir = value;
+
+            if(dir != Vector2.zero) 
+            { 
+                headDir = dir;
+                Debug.Log($"현재 방향 : {headDir}");
+            }
+
             if(dir.x != 0)
             {
                 if(dir.x > 0)
@@ -173,9 +189,22 @@ public class Player : MonoBehaviour
     /// </summary>
     Transform attackArea;
 
+    // ++ 자동 공격 스킬 관련 코루틴들 ----------------------
+
+    IEnumerator plungerAttack;
+    IEnumerator manHoleAttack;
+    IEnumerator shellAttack;
+    IEnumerator wrenchAttack;
+    IEnumerator coffeeCanAttack;
+    IEnumerator trafficConeAttack;
+
+    PlungerAttackSkill plungerAttackSkill;
+
     // +++ 컴포넌트 관련 +++ -------------------------------------
     Rigidbody2D rb;
     PlayerController playerController;
+
+    
 
     private void Awake()
     {
@@ -190,7 +219,7 @@ public class Player : MonoBehaviour
     {
         CurrentEx = 0;
 
-        StartCoroutine(AutoAttack());
+        // StartCoroutine(AutoAttack());
     }
 
     private void OnEnable()
@@ -222,13 +251,40 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 공격 범위 안에 있는 적을 공격하기(사실 공격 투사체를 소환하는 방식)
+    /// 기본 공격하기(사실 공격 투사체를 소환하는 방식)
     /// </summary>
     void Attack()
     {
         Debug.Log($"플레이어 자동 공격");
         Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
     }
+
+    public void StartPlungerAttack()
+    {
+        plungerAttackSkill = new();
+        StartCoroutine(PlungerAttack());
+    }
+
+    IEnumerator PlungerAttack()
+    {
+        while (CurrentHp > 0)
+        {
+            // 바라보는 방향으로 각도 계산
+            float fireAngle = Vector3.SignedAngle(transform.right, headDir, transform.forward);
+
+            for (int i = 0; i < plungerAttackSkill.FireCount; i++)
+            {
+                Vector3 randomPos = Random.insideUnitCircle * 0.5f;     // 좀더 무작위 위치에서 날라가는 연출을 위한 랜덤 위치
+                GameObject temp = Factory.Ins.GetObject(PoolObjectType.PlungerAttack, transform.position + randomPos, fireAngle);
+
+                temp.GetComponent<Projectile>().damage = plungerAttackSkill.damage;
+
+                yield return new WaitForSeconds(plungerAttackSkill.FireRate);
+            }
+            yield return new WaitForSeconds(plungerAttackSkill.FireDelay);
+        }
+    }
+
 
     /// <summary>
     /// 사망시 실행하는 코드
