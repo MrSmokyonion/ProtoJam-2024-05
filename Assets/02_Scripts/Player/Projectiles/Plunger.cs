@@ -6,6 +6,6 @@ public class Plunger : Projectile
 {
     protected override void OnMoveUpdate(float time)
     {
-        transform.Translate(currentSpeed * time * dir);
+        transform.Translate(currentSpeed * time * dir, Space.World);
     }
 }

@@ -103,8 +103,18 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
             T comp = obj.GetComponent<T>();                                     // T는 PooledObject를 가질수 밖에 없음(초기 설정 where)
             comp.onDisable += () => readyQueue.Enqueue(comp);                   // 비활성화 되면 Queue로 들어가기
 
+            OnGenerateObjects(comp);
+
             arr[i] = comp;
             obj.SetActive(false);           // onDisable 함수 호출되어 바로 readyQueue로 들어감(그런데 처음부터 비활성화 되면 호출 안됨)
         }
+    }
+
+    /// <summary>
+    /// 각 T타입 별로 필요한 추가 작업을 처리하는 함수
+    /// </summary>
+    /// <param name="comp">T타입 컴포넌트</param>
+    protected virtual void OnGenerateObjects(T comp)
+    {
     }
 }

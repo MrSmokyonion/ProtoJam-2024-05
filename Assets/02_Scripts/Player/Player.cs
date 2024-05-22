@@ -347,7 +347,8 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public float GetFireAngle()
     {
-        return Vector3.SignedAngle(transform.right, headDir, transform.forward);
+        float result = Vector3.SignedAngle(transform.right, headDir, transform.forward);
+        return result;
     }
 
     /// <summary>

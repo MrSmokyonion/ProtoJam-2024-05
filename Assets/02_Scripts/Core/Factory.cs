@@ -28,7 +28,7 @@ public class Factory : Singleton<Factory>
 
     PlayerAttackPool playerAttackPool;
     PlungerPool plungerPool;
-    
+    ManHolePool manHolePool;
 
     protected override void OnPreInitalize()
     {
@@ -36,9 +36,11 @@ public class Factory : Singleton<Factory>
 
         playerAttackPool = GetComponentInChildren<PlayerAttackPool>();
         plungerPool = GetComponentInChildren<PlungerPool>();
+        manHolePool = GetComponentInChildren<ManHolePool>();
 
         playerAttackPool.Initialize();
         plungerPool.Initialize();
+        manHolePool.Initialize();
 
         //pools = new ObjectPool<PooledObject>[transform.childCount];
 
@@ -69,14 +71,19 @@ public class Factory : Singleton<Factory>
             case PoolObjectType.PlayerAttack:
                 result = playerAttackPool.GetObject().gameObject;
                 break;
-            case PoolObjectType.PlungerAttack:
-                result = plungerPool.GetObject().gameObject;
-                break;
+            
             case PoolObjectType.Poop:
                 break;
             case PoolObjectType.Duck:
                 break;
             case PoolObjectType.PoopDuck:
+                break;
+
+            case PoolObjectType.PlungerAttack:
+                result = plungerPool.GetObject().gameObject;
+                break;
+            case PoolObjectType.ManHoleAttack:
+                result = manHolePool.GetObject().gameObject;
                 break;
             default:
                 break;
