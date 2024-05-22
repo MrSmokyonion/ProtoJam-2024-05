@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c048a8fd8d86ce44eb45d02196182a3b, type: 3}
+  m_Name: 04_CoffeeCan
+  m_EditorClassIdentifier: 
+  type: 3
+  itemName: "\uCEE4\uD53C\uCE94"
+  description: "\uCEE4\uD53C\uCE94 \uC124\uBA85\uB780"
+  maxUpgradeLevel: 4
+  currentUpgradeLevel: 0
+  upgradeCost: 28000000320000003c000000500000005a000000
