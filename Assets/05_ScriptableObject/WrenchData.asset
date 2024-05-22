@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e24656a8ecff5243b3850cc1767b805, type: 3}
-  m_Name: PlungerData
+  m_Name: WrenchData
   m_EditorClassIdentifier: 
   parent: 0
-  skillType: 0
+  skillType: 3
   damage: 100
-  speed: 10
-  fireRate: 0.1
-  fireDelay: 2
+  speed: 8
+  fireRate: 0.5
+  fireDelay: 5
   lifeTime: 5

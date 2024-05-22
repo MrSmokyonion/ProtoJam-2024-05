@@ -94,8 +94,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3674329979130857956}
-  - component: {fileID: 103344148250540564}
   - component: {fileID: 5947580100930898379}
+  - component: {fileID: 103344148250540564}
   - component: {fileID: 7893637091730789539}
   m_Layer: 6
   m_Name: Plunger
@@ -120,6 +120,22 @@ Transform:
   - {fileID: 3036129116019991987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5947580100930898379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632263506964464183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fc630863d85614a9151ad2975ff170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  penetration: 0
+  speed: 10
+  currentSpeed: 5
 --- !u!50 &103344148250540564
 Rigidbody2D:
   serializedVersion: 4
@@ -147,22 +163,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5947580100930898379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6632263506964464183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97fc630863d85614a9151ad2975ff170, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  penetration: 0
-  speed: 10
-  currentSpeed: 5
 --- !u!70 &7893637091730789539
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

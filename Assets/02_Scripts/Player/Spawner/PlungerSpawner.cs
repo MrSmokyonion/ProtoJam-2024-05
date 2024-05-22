@@ -6,6 +6,8 @@ public class PlungerSpawner : SkillSpawner
 {
     protected override IEnumerator StartAttack()
     {
+        spawnCount = 3;     // 뚫어뻥은 기본 3개부터 시작
+
         while(player.CurrentHp > 0)
         {
             UpdateAttackPower();

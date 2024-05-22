@@ -34,6 +34,12 @@ public class AttackSkillData : ScriptableObject
     public float Damage => damage;
 
     /// <summary>
+    /// 투사체 속도
+    /// </summary>
+    [SerializeField] protected float speed = 5.0f;
+    public float Speed => speed;
+
+    /// <summary>
     /// 연속 발사 주기
     /// </summary>
     [SerializeField] protected float fireRate = 0.1f;

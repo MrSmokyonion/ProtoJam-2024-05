@@ -12,7 +12,7 @@ public class Projectile : PooledObject
     /// <summary>
     /// 적에게 주는 최종 데미지
     /// </summary>
-    public float damage;
+    private float damage;
 
     /// <summary>
     /// 투사체 사라지는 시간
@@ -22,14 +22,13 @@ public class Projectile : PooledObject
     /// <summary>
     /// 관통횟수(0이면 관통 안함)
     /// </summary>
-    public int penetration = 0;
+    private int penetration = 0;
     int currentPenetration = 0;
     
     /// <summary>
-    /// 투사체의 기본 속도
+    /// 투사체의 현재 속도
     /// </summary>
-    public float speed = 5.0f;
-    public float currentSpeed = 5.0f;
+    protected float currentSpeed = 5.0f;
 
     /// <summary>
     /// 투사체의 이동방향(기본 방향 객체 기준 오른쪽)
@@ -49,7 +48,7 @@ public class Projectile : PooledObject
     {
         dir = transform.right;
         currentPenetration = penetration;
-        this.currentSpeed = speed;
+        this.currentSpeed = data.Speed;
         this.damage = damage;
         StartCoroutine(LifeOver(lifeTime));
     }
@@ -65,7 +64,7 @@ public class Projectile : PooledObject
     /// <param name="time">fixedTime</param>
     protected virtual void OnMoveUpdate(float time)    {    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(TryGetComponent<EnemyBase>(out EnemyBase enemy))
         {

@@ -9,6 +9,8 @@ public abstract class SkillSpawner : MonoBehaviour
 {
     [SerializeField] protected AttackSkillData skillData;
 
+    public AttackSkillData.SkillType skillType;
+
     /// <summary>
     /// 스폰 스킬의 레벨
     /// </summary>
@@ -83,6 +85,7 @@ public abstract class SkillSpawner : MonoBehaviour
         }
         lifeTime = skillData.LifeTime;
         decreaseSpawnSpeed = 0;
+        skillType = skillData.skillType;
     }
 
     public virtual void SpawnSkill()
