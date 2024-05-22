@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: PlungerData
   m_EditorClassIdentifier: 
   parent: 0
-  skillType: 1
+  skillType: 0
   damage: 100
+  fireRate: 0.1
+  fireDelay: 2
+  lifeTime: 5

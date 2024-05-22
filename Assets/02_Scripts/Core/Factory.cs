@@ -6,15 +6,16 @@ using UnityEngine;
 public enum PoolObjectType : int
 {
     PlayerAttack,       // ÇÃ·¹ÀÌ¾î ±âº» °ø°Ý
-    PlungerAttack,      // ¶Õ¾î»½ °ø°Ý
-    ManHoleAttack,      
+    Poop,               // ¶Ë
+    Duck,               // ¿À¸®
+    PoopDuck,           // ¶Ë¿À¸®
+
+    PlungerAttack = 100,// ¶Õ¾î»½ °ø°Ý
+    ManHoleAttack,
     ShellAttack,
     WrenchAttack,
     CoffeeCanAttack,
     TrafficConeAttack,
-    Poop,               // ¶Ë
-    Duck,               // ¿À¸®
-    PoopDuck,           // ¶Ë¿À¸®
 }
 
 

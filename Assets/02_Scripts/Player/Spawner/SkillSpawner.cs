@@ -12,7 +12,7 @@ public abstract class SkillSpawner : MonoBehaviour
     /// <summary>
     /// 스폰 스킬의 레벨
     /// </summary>
-    int spawnerLevel;
+    int spawnerLevel = 0;
     public int SpawnerLevel
     {
         get => spawnerLevel;
@@ -25,29 +25,39 @@ public abstract class SkillSpawner : MonoBehaviour
 
 
     /// <summary>
-    /// 기본 데미지
+    /// 스킬 기본 데미지
     /// </summary>
-    int damage;
+    float skillDamage;
 
     /// <summary>
-    /// 스폰될 무기의 데미지(Player 레벨에 따라 증가)
+    /// 강화에 의해 추가될 스킬 데미지
     /// </summary>
-    protected int finalDamage;
+    protected float plusSkillDamage;
 
     /// <summary>
-    /// 기본 무기 스폰 속도
+    /// 최종 무기의 데미지(기본 데미지 + 플레이어 패시브 데미지 증가 + 추가 공격력)
     /// </summary>
-    float attackSpeed;
+    protected float finalDamage;
 
     /// <summary>
-    /// 스폰 속도(Player 레벨에 따라 증가)
+    /// 스킬 스폰 횟수
     /// </summary>
-    protected float finalAttackSpeed;
+    protected int spawnCount = 1;
 
     /// <summary>
-    /// 투사체 생존시간
+    /// 최종 스폰 속도(Player 레벨과 스폰 레벨에 따라 증가)
     /// </summary>
-    float lifeTime;
+    protected float finalSpawnSpeed;
+
+    /// <summary>
+    /// 스폰속도 감소량
+    /// </summary>
+    protected float decreaseSpawnSpeed;
+
+    /// <summary>
+    /// 최종 투사체 생존시간(플레이어쪽에서 영향받는거 없고 스포너 레벨에 따라 달라짐)
+    /// </summary>
+    protected float lifeTime;
 
     /// <summary>
     /// 투사체 크기(공격범위 조절용)
@@ -71,15 +81,14 @@ public abstract class SkillSpawner : MonoBehaviour
         {
             player = GameManager.Ins.Player;
         }
-
-        damage = skillData.damage;
-        attackSpeed = skillData.FireRate;
-        lifeTime = skillData.lifeTime;
+        lifeTime = skillData.LifeTime;
+        decreaseSpawnSpeed = 0;
     }
 
     public virtual void SpawnSkill()
     {
-        Factory.Ins.GetObject(skillData.skillType, player.transform.position, player.GetFireAngle());
+        GameObject temp = Factory.Ins.GetObject(skillData.GetPoolType(), player.transform.position, player.GetFireAngle());
+        temp.GetComponent<Projectile>().OnInitialize(skillData, finalDamage, lifeTime);
     }
 
     /// <summary>
@@ -87,20 +96,43 @@ public abstract class SkillSpawner : MonoBehaviour
     /// </summary>
     public virtual void SetSpwanerLevel()
     {
+        Debug.Log($"{gameObject.name} 레벨 업 : {SpawnerLevel}");
         switch (SpawnerLevel)
         {
             case 2:
-                IncreaseAttackDamage(5);
+                // 1. 공격력 10추가
+                IncreaseAttackDamage(10);
+                Debug.Log("공격력 10 증가");
                 break;
             case 3:
-                IncreaseAttackDamage(5);
-                IncreaseAdditionalScale(10.0f);
+                // 2. 투사체 개수 증가
+                IncreaseSpawnCount();
+                Debug.Log("투사체 개수 증가");
                 break;
             case 4:
-                DecreaseAttackSpeed(10.0f);
+                // 3. 투사체 시간 증가
+                IncreaseLifeTime(5);
+                Debug.Log("투사체 시간 증가");
                 break;
             case 5:
+                // 4. 쿨타임 감소
+                DecreaseAttackSpeed(50);
+                Debug.Log("쿨타임 감소");
+                break;
+            case 6:
+                // 5. 공격력 10 추가
                 IncreaseAttackDamage(10);
+                Debug.Log("공격력 10 증가");
+                break;
+            case 7:
+                // 6. 투사체 증가
+                IncreaseSpawnCount();
+                Debug.Log("투사체 증가");
+                break;
+            case 8:
+                // 7. 공격력 20 추가
+                IncreaseAttackDamage(20);
+                Debug.Log("공격력 20 추가");
                 break;
             default:
                 break;
@@ -111,6 +143,7 @@ public abstract class SkillSpawner : MonoBehaviour
 
     public void StartSkillAttack()
     {
+        SpawnerLevel = 1;
         StartCoroutine(StartAttack());
     }
     protected abstract IEnumerator StartAttack();
@@ -126,6 +159,24 @@ public abstract class SkillSpawner : MonoBehaviour
     }
 
     /// <summary>
+    /// 투사체 유지 시간 증가
+    /// </summary>
+    /// <param name="time">증가량</param>
+    public void IncreaseLifeTime(float time)
+    {
+        lifeTime += time;
+    }
+
+    /// <summary>
+    /// 스폰 횟수 증가 함수
+    /// </summary>
+    /// <param name="count">증가량(기본 1)</param>
+    public void IncreaseSpawnCount(int count = 1)
+    {
+        spawnCount += count;
+    }
+
+    /// <summary>
     /// 공격 범위 증가 함수
     /// </summary>
     /// <param name="value">증가량(%입력)</param>
@@ -138,9 +189,9 @@ public abstract class SkillSpawner : MonoBehaviour
     /// 공격력 증가 함수
     /// </summary>
     /// <param name="value">%으로 증가</param>
-    public void IncreaseAttackDamage(int value)
+    public void IncreaseAttackDamage(float value)
     {
-        damage += value;
+        plusSkillDamage += value;
     }
 
     /// <summary>
@@ -149,7 +200,7 @@ public abstract class SkillSpawner : MonoBehaviour
     /// <param name="value">%으로 감소</param>
     public void DecreaseAttackSpeed(float value)
     {
-        attackSpeed -= attackSpeed * value / 100f;
+        decreaseSpawnSpeed += skillData.FireDelay * value * 0.01f;
     }
 
     /// <summary>
@@ -157,7 +208,8 @@ public abstract class SkillSpawner : MonoBehaviour
     /// </summary>
     public void UpdateAttackSpeed()
     {
-        finalAttackSpeed = attackSpeed * GameManager.Ins.Player.attackSpeed;
+        finalSpawnSpeed = skillData.FireDelay - ((skillData.FireDelay * player.SkillCoolTimeRate) + decreaseSpawnSpeed);
+        
     }
 
     /// <summary>
@@ -165,7 +217,7 @@ public abstract class SkillSpawner : MonoBehaviour
     /// </summary>
     public void UpdateAttackPower()
     {
-        finalDamage = (int) (damage * GameManager.Ins.Player.attackDamage * 0.01f);
+        finalDamage = skillData.Damage + (skillData.Damage * player.AttackDamage) + plusSkillDamage;
     }
 
 

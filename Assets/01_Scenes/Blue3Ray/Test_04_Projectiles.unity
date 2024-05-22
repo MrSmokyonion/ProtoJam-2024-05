@@ -940,6 +940,11 @@ PrefabInstance:
       propertyPath: attackSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6473262341625761966, guid: a804e0994944387459033a1b2246a00d,
+        type: 3}
+      propertyPath: attackDamage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -12,26 +12,20 @@ public class PlungerSpawner : SkillSpawner
             UpdateAttackSpeed();
 
             SpawnSkill();
-            if(SpawnerLevel > 0)
+            for(int i = 1; i < spawnCount; i++)
             {
                 yield return new WaitForSeconds(skillData.FireRate);
                 SpawnSkill();
             }
-
-            if (SpawnerLevel > 1)
-            {
-                yield return new WaitForSeconds(skillData.FireRate);
-                SpawnSkill();
-            }
-
-            yield return new WaitForSeconds(finalAttackSpeed);
+            yield return new WaitForSeconds(finalSpawnSpeed);
         }
     }
     public override void SpawnSkill()
     {
         Vector3 randomPos = Random.insideUnitCircle * 0.5f;
 
-        Factory.Ins.GetObject(skillData.skillType, player.transform.position + randomPos, player.GetFireAngle());
+        GameObject temp = Factory.Ins.GetObject(skillData.GetPoolType(), player.transform.position + randomPos, player.GetFireAngle());
+        temp.GetComponent<Projectile>().OnInitialize(skillData, finalDamage, lifeTime);
     }
 
 }

@@ -6,13 +6,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // +++ 스텟 관련 +++ --------------------------------
-    [Header("스텟 관련")]
+    [Header("체력 스텟")]
 
-    // 체력 관련 =========
+    // 체력 관련 ======================================
     /// <summary>
     /// 최대 체력
     /// </summary>
-    public float maxHp = 20.0f;
+    [SerializeField] private float maxHp = 20.0f;
 
     public float MaxHp
     {
@@ -20,10 +20,16 @@ public class Player : MonoBehaviour
         set => maxHp = value;
     }
 
+    [Tooltip("최대로 증가할 수있는 최대 체력량")]
+    /// <summary>
+    /// 최대로 증가할 수있는 최대 체력량
+    /// </summary>
+    [SerializeField] private float plusMaxHp = 40.0f;
+
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float currentHp = 20.0f;
+    [SerializeField] private float currentHp = 20.0f;
 
     /// <summary>
     /// 현재 체력 관련 프로퍼티
@@ -47,47 +53,127 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
 
-    /// <summary>
-    /// 초당 체력 재생력
-    /// </summary>
-    public float regeneration = 0.0f;
+    // 방어력 관련 ==================================================================
 
-    // 공방 관련 =====================
-    [Space(10.0f)]
-    /// <summary>
-    /// 공격력(Player의 기본 공격력 강화시 %단위로 증가)
-    /// </summary>
-    public int attackDamage = 100;
-
+    [Header("방어력 스텟")]
     /// <summary>
     /// 방어력(받는 피해 %으로 감소)
     /// </summary>
-    public int defence = 0;
+    [SerializeField] private int defence = 0;
+
+    [Tooltip("최대로 증가할 수 있는 최대 방어력")]
+    /// <summary>
+    /// 최대로 증가할 수 있는 최대 방어력
+    /// </summary>
+    [SerializeField] private int plusMaxDefence = 30;
+
+
+    // 공격력 관련 ============================================================
+
+    [Header("공격력 스텟")]
+    /// <summary>
+    /// 공격력 증가량
+    /// </summary>
+    [SerializeField] private int attackDamage = 0;
+    /// <summary>
+    /// 공격력 증가량 프로퍼티(스킬 스포너에서 공격력 계산할 때 접근한다)
+    /// </summary>
+    public int AttackDamage => attackDamage;
+
+    [Tooltip("최대 증가할 수 있는 공격력 증가량(%계산)")]
+    /// <summary>
+    /// 최대 증가할 수 있는 공격력 증가량(%계산)
+    /// </summary>
+    [SerializeField] private int plusAttackMaxDamage = 100;
+
+    // 체력 재생력 관련 ==================================================================
+
+    [Header("체력 재생력 스텟")]
+    /// <summary>
+    /// 초당 체력 재생력
+    /// </summary>
+    [SerializeField] private float regeneration = 0.0f;
 
     /// <summary>
-    /// 자동공격 시간(작을수록 빨라짐)
+    /// 최대 증가할 수 있는 체력 재생력
     /// </summary>
-    public float attackSpeed = 1.0f;
+    [SerializeField] private float plusMaxRegeneration = 4;
 
+    // 이동 관련 ==================================================================
+    [Header("이동 스텟")]
+    /// <summary>
+    /// 플레이어의 기본 이동 속도(변하지 않는 값 및 기본 속도 조절용변수)
+    /// </summary>
+    public float moveStaticSpeed = 10.0f;
+
+    /// <summary>
+    /// 플레이어의 이동 속도
+    /// </summary>
+    public float moveSpeed = 1.0f;
+
+    /// <summary>
+    /// 최대 증가할수 있는 이동속도 증가량
+    /// </summary>
+    [SerializeField] private float plusMaxMoveSpeed = 2.0f;
+
+    // 쿨타임 관련 ==================================================================
+    [Header("쿨타임 스텟")]
+    
+    /// <summary>
+    /// 스킬 쿨타임 감소량(%으로 계산한다)
+    /// </summary>
+    [SerializeField] private int skillCoolTime = 0;
+    public float SkillCoolTimeRate => skillCoolTime;
+
+    /// <summary>
+    /// 최대 쿨타임 감소할수 있는 증가량
+    /// </summary>
+    [SerializeField] private int plusMaxSkillCoolTime = 30;
+
+    // 회피 관련 ==================================================================
+    [Header("회피 스텟")]
     /// <summary>
     /// 회피율
     /// </summary>
-    public int dodgeRate = 0;
-
+    [SerializeField] private int dodgeRate = 0;
     /// <summary>
-    /// 디버프 감소율
+    /// 최대 증가할수 있는 회피율 증가량
     /// </summary>
-    public float debuffGuard = 0.0f;
+    [SerializeField] private int plusMaxDodgeRate = 20;
 
+    // 공격 속도 관련 ==================================================================
+    [Header("공격 속도 스텟")]
+    /// <summary>
+    /// 같은 대상에게 대미지를 입히는 최소 시간(작을수록 빨라짐)
+    /// </summary>
+    public float attackSpeed = 1.0f;
+
+    // 월급 관련(경험치) ==================================================================
+    [Header("월급 스텟")]
+    /// <summary>
+    /// 추가 월급률
+    /// </summary>
+    public int extraPaymentRate = 0;
+    /// <summary>
+    /// 추가 월급률의 최대 증가량
+    /// </summary>
+    [SerializeField] private int plusMaxExtraPlaymentRate = 30;
+
+    // 숙련도 관련 ==================================================================
+    [Header("숙련도 스텟")]
     /// <summary>
     /// 배관 고치는 시간
     /// </summary>
-    public float HealingSpeed = 1.0f;
+    public float FixingTime = 10.0f;
 
-    // 경험치 관련 -----------------------------
-    [Space(10.0f)]
+    /// <summary>
+    /// 배관 고치는 시간이 최소로 줄어드는 양
+    /// </summary>
+    [SerializeField] private int plusMaxFixingTime = 5;
+
+    // 경험치 관련 ==================================================================
+    [Header("경험치 관련")]
     /// <summary>
     /// 플레이어 레벨
     /// </summary>
@@ -115,20 +201,9 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 최대 경험치
     /// </summary>
-    public int maxEx = 5;   
+    public int maxEx = 5;
 
-    /// <summary>
-    /// 경험치 증가량(기본 1.0)
-    /// </summary>
-    public float exIncreaseRate = 1.0f;
-
-    // 이동 관련 --------------------------------
-    [Space(10.0f)]
-
-    /// <summary>
-    /// 플레이어의 이동 속도
-    /// </summary>
-    public float moveSpeed = 10.0f;
+    // 이동방향 관련 ==================================================================
 
     /// <summary>
     /// 플레이어의 이동 방향
@@ -167,8 +242,9 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
 
+    // +++스킬 관리 관련 +++ -----------------------------------
+    Dictionary<AttackSkillData.SkillType, int> skillInventory;
 
 
     // +++델리게이트 관련+++ ----------------------------------
@@ -217,14 +293,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        CurrentEx = 0;
-
+        OnInitialized();
         // StartCoroutine(AutoAttack());
     }
 
     private void OnEnable()
     {
         playerController.onMove = OnMove;
+    }
+
+    private void OnInitialized()
+    {
+        CurrentEx = 0;
+        skillInventory = new();
     }
 
     private void OnMove(Vector2 input)
@@ -237,28 +318,33 @@ public class Player : MonoBehaviour
         rb.MovePosition(moveSpeed * Time.fixedDeltaTime * Dir + rb.position);
     }
 
+    // 기본공격 구현부분이였으나 사용 안함
+    ///// <summary>
+    ///// 일정시간 간격으로 자동공격하는 코루틴
+    ///// </summary>
+    ///// <returns></returns>
+    //IEnumerator AutoAttack()
+    //{
+    //    while(currentHp > 0)
+    //    {
+    //        yield return new WaitForSeconds(attackSpeedLegacy);
+    //        Attack();
+    //    }
+    //}
+
+    ///// <summary>
+    ///// 기본 공격하기(사실 공격 투사체를 소환하는 방식)
+    ///// </summary>
+    //void Attack()
+    //{
+    //    Debug.Log($"플레이어 자동 공격");
+    //    Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
+    //}
+
     /// <summary>
-    /// 일정시간 간격으로 자동공격하는 코루틴
+    /// 플레이어의 바라보는 방향에 대한 각도를 구하는 함수
     /// </summary>
     /// <returns></returns>
-    IEnumerator AutoAttack()
-    {
-        while(currentHp > 0)
-        {
-            yield return new WaitForSeconds(attackSpeed);
-            Attack();
-        }
-    }
-
-    /// <summary>
-    /// 기본 공격하기(사실 공격 투사체를 소환하는 방식)
-    /// </summary>
-    void Attack()
-    {
-        Debug.Log($"플레이어 자동 공격");
-        Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
-    }
-
     public float GetFireAngle()
     {
         return Vector3.SignedAngle(transform.right, headDir, transform.forward);

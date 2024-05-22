@@ -12,7 +12,7 @@ public class Projectile : PooledObject
     /// <summary>
     /// 적에게 주는 최종 데미지
     /// </summary>
-    public int damage;
+    public float damage;
 
     /// <summary>
     /// 투사체 사라지는 시간
@@ -26,9 +26,10 @@ public class Projectile : PooledObject
     int currentPenetration = 0;
     
     /// <summary>
-    /// 투사체의 속도
+    /// 투사체의 기본 속도
     /// </summary>
     public float speed = 5.0f;
+    public float currentSpeed = 5.0f;
 
     /// <summary>
     /// 투사체의 이동방향(기본 방향 객체 기준 오른쪽)
@@ -39,33 +40,18 @@ public class Projectile : PooledObject
     protected override void OnEnable()
     {
         base.OnEnable();
-
-        OnInitialize();
-
-        StartCoroutine(LifeOver(5.0f));     // (투사체들은 5초이상 넘기지 않는다) or 맵 밖 킬존에 죽는다
     }
 
     /// <summary>
     /// 스폰 될때마다 실행될 초기화 함수
     /// </summary>
-    protected virtual void OnInitialize()
+    public virtual void OnInitialize(AttackSkillData data, float damage, float lifeTime)
     {
         dir = transform.right;
         currentPenetration = penetration;
-        lifeTime = 5.0f;
-    }
-
-    /// <summary>
-    /// 데이터를 세팅하는 함수(스폰하고 바로 시킨다)
-    /// </summary>
-    /// <param name="data">스킬 데이터</param>
-    /// <param name="damage">공격력</param>
-    /// <param name="lifeTime">생존시간</param>
-    public void SetSkillData(AttackSkillData data, int damage, float lifeTime)
-    {
-        this.skillData = data;  
-        this.lifeTime = lifeTime;
+        this.currentSpeed = speed;
         this.damage = damage;
+        StartCoroutine(LifeOver(lifeTime));
     }
 
     void FixedUpdate()
