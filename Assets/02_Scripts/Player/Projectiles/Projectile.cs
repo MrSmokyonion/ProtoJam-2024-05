@@ -7,8 +7,17 @@ using UnityEngine;
 /// </summary>
 public class Projectile : PooledObject
 {
+    AttackSkillData skillData;
 
-    public float damage = 10.0f;
+    /// <summary>
+    /// 적에게 주는 최종 데미지
+    /// </summary>
+    public int damage;
+
+    /// <summary>
+    /// 투사체 사라지는 시간
+    /// </summary>
+    protected float lifeTime;
 
     /// <summary>
     /// 관통횟수(0이면 관통 안함)
@@ -32,6 +41,8 @@ public class Projectile : PooledObject
         base.OnEnable();
 
         OnInitialize();
+
+        StartCoroutine(LifeOver(5.0f));     // (투사체들은 5초이상 넘기지 않는다) or 맵 밖 킬존에 죽는다
     }
 
     /// <summary>
@@ -41,8 +52,20 @@ public class Projectile : PooledObject
     {
         dir = transform.right;
         currentPenetration = penetration;
+        lifeTime = 5.0f;
+    }
 
-        StartCoroutine(LifeOver(5.0f));     // (투사체들은 5초이상 넘기지 않는다) or 맵 밖 킬존에 죽는다
+    /// <summary>
+    /// 데이터를 세팅하는 함수(스폰하고 바로 시킨다)
+    /// </summary>
+    /// <param name="data">스킬 데이터</param>
+    /// <param name="damage">공격력</param>
+    /// <param name="lifeTime">생존시간</param>
+    public void SetSkillData(AttackSkillData data, int damage, float lifeTime)
+    {
+        this.skillData = data;  
+        this.lifeTime = lifeTime;
+        this.damage = damage;
     }
 
     void FixedUpdate()
@@ -54,10 +77,7 @@ public class Projectile : PooledObject
     /// 프레임마다 움직임을 제어하는 Update구문을 자식들이 편집할수 있게 추상화 시킨 함수
     /// </summary>
     /// <param name="time">fixedTime</param>
-    protected virtual void OnMoveUpdate(float time)
-    {
-        transform.Translate(speed * time * dir);
-    }
+    protected virtual void OnMoveUpdate(float time)    {    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -70,7 +90,16 @@ public class Projectile : PooledObject
                 StartCoroutine(LifeOver());
             }
         }
-        
+    }
+
+    protected int RandomDamage(int damage)
+    {
+        int min = (int)(damage * 0.8f);
+        int max = (int)(damage * 1.2f);
+
+        damage = Random.Range(min, max + 1);
+
+        return damage;
     }
 
 }

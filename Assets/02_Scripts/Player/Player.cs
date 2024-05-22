@@ -12,13 +12,22 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 최대 체력
     /// </summary>
-    public float maxHp = 100.0f;
+    public float maxHp = 20.0f;
+
+    public float MaxHp
+    {
+        get => maxHp;
+        set => maxHp = value;
+    }
 
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float currentHp = 100.0f;
+    public float currentHp = 20.0f;
 
+    /// <summary>
+    /// 현재 체력 관련 프로퍼티
+    /// </summary>
     public float CurrentHp
     {
         get => currentHp;
@@ -38,6 +47,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
 
     /// <summary>
     /// 초당 체력 재생력
@@ -47,24 +57,24 @@ public class Player : MonoBehaviour
     // 공방 관련 =====================
     [Space(10.0f)]
     /// <summary>
-    /// 공격력
+    /// 공격력(Player의 기본 공격력 강화시 %단위로 증가)
     /// </summary>
-    public float attackDamage = 10.0f;
+    public int attackDamage = 100;
 
     /// <summary>
-    /// 방어력
+    /// 방어력(받는 피해 %으로 감소)
     /// </summary>
-    public float defence = 0.0f;
+    public int defence = 0;
 
     /// <summary>
     /// 자동공격 시간(작을수록 빨라짐)
     /// </summary>
-    public float attackDelayTime = 1.0f;
+    public float attackSpeed = 1.0f;
 
     /// <summary>
     /// 회피율
     /// </summary>
-    public float dodgeRate = 0.0f;
+    public int dodgeRate = 0;
 
     /// <summary>
     /// 디버프 감소율
@@ -127,8 +137,9 @@ public class Player : MonoBehaviour
 
     /// <summary>
     /// 플레이어가 향하고 있는 방향(8방향, zero일 경우는 없다)
+    /// 투사체 생성할때 주로 참조함
     /// </summary>
-    Vector2 headDir = Vector2.right;
+    public Vector2 headDir = Vector2.right;
 
     Vector2 Dir
     {
@@ -189,17 +200,6 @@ public class Player : MonoBehaviour
     /// </summary>
     Transform attackArea;
 
-    // ++ 자동 공격 스킬 관련 코루틴들 ----------------------
-
-    IEnumerator plungerAttack;
-    IEnumerator manHoleAttack;
-    IEnumerator shellAttack;
-    IEnumerator wrenchAttack;
-    IEnumerator coffeeCanAttack;
-    IEnumerator trafficConeAttack;
-
-    PlungerAttackSkill plungerAttackSkill;
-
     // +++ 컴포넌트 관련 +++ -------------------------------------
     Rigidbody2D rb;
     PlayerController playerController;
@@ -245,7 +245,7 @@ public class Player : MonoBehaviour
     {
         while(currentHp > 0)
         {
-            yield return new WaitForSeconds(attackDelayTime);
+            yield return new WaitForSeconds(attackSpeed);
             Attack();
         }
     }
@@ -259,32 +259,10 @@ public class Player : MonoBehaviour
         Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
     }
 
-    public void StartPlungerAttack()
+    public float GetFireAngle()
     {
-        plungerAttackSkill = new();
-        StartCoroutine(PlungerAttack());
+        return Vector3.SignedAngle(transform.right, headDir, transform.forward);
     }
-
-    IEnumerator PlungerAttack()
-    {
-        while (CurrentHp > 0)
-        {
-            // 바라보는 방향으로 각도 계산
-            float fireAngle = Vector3.SignedAngle(transform.right, headDir, transform.forward);
-
-            for (int i = 0; i < plungerAttackSkill.FireCount; i++)
-            {
-                Vector3 randomPos = Random.insideUnitCircle * 0.5f;     // 좀더 무작위 위치에서 날라가는 연출을 위한 랜덤 위치
-                GameObject temp = Factory.Ins.GetObject(PoolObjectType.PlungerAttack, transform.position + randomPos, fireAngle);
-
-                temp.GetComponent<Projectile>().damage = plungerAttackSkill.damage;
-
-                yield return new WaitForSeconds(plungerAttackSkill.FireRate);
-            }
-            yield return new WaitForSeconds(plungerAttackSkill.FireDelay);
-        }
-    }
-
 
     /// <summary>
     /// 사망시 실행하는 코드

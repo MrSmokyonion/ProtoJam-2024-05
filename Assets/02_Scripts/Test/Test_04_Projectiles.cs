@@ -5,14 +5,20 @@ using UnityEngine.InputSystem;
 
 public class Test_04_Projectiles : TestBase
 {
+    PlungerSpawner plungerSpawner;
+
+    private void Start()
+    {
+        plungerSpawner = FindAnyObjectByType<PlungerSpawner>(); 
+    }
 
     protected override void Test1(InputAction.CallbackContext context)
     {
-        Factory.Ins.GetObject(PoolObjectType.PlungerAttack);
+        plungerSpawner.StartSkillAttack();
     }
 
     protected override void Test2(InputAction.CallbackContext context)
     {
-        FindAnyObjectByType<Player>().StartPlungerAttack();
+        plungerSpawner.IncreaseLevel();
     }
 }
