@@ -79,3 +79,6 @@ crashlytics-build.properties
 /.vscode/extensions.json
 /.vscode/launch.json
 /.vscode/settings.json
+
+# OS Generated
+.DS_Store
