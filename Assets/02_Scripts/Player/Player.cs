@@ -237,24 +237,27 @@ public class Player : MonoBehaviour
         {
             dir = value;
 
+            animator.SetBool(Hash_IsWalk, dir != Vector2.zero);
+
             if(dir != Vector2.zero) 
             { 
                 headDir = dir;
-                Debug.Log($"현재 방향 : {headDir}");
             }
 
             if(dir.x != 0)
             {
-                // 방향에 따라 스프라이트 방향을 바꾸기
+                // 방향에 따라 캐릭터 방향을 바꾸기
                 if(dir.x > 0)
                 {
-                    sprite.flipX = false;
+                    
+                    animator.transform.localScale = new Vector3(-1,1,1);
                     attackAxie.rotation = Quaternion.Euler(0, 0, -90.0f);
                     
                 }
                 else
                 {
-                    sprite.flipX = true;
+                    
+                    animator.transform.localScale = new Vector3(1, 1, 1);
                     attackAxie.rotation = Quaternion.Euler(0, 0, 90.0f);
                 }
             }
@@ -284,6 +287,13 @@ public class Player : MonoBehaviour
     /// </summary>
     public System.Action<int> onLevelChange;
 
+
+    // +++애니메이션 해싱 자료+++ --------------------------------
+
+    readonly int Hash_IsDead = Animator.StringToHash("IsDead");
+    readonly int Hash_IsWalk = Animator.StringToHash("IsWalk");
+    readonly int Hash_IsAttack = Animator.StringToHash("IsAttack");
+
     // +++기타 자료+++ --------------------------------
 
     /// <summary>
@@ -299,7 +309,7 @@ public class Player : MonoBehaviour
     // +++ 컴포넌트 관련 +++ -------------------------------------
     Rigidbody2D rb;
     PlayerController playerController;
-    SpriteRenderer sprite;
+    Animator animator;
 
     
 
@@ -307,7 +317,7 @@ public class Player : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
 
         attackAxie = transform.GetChild(0);
         attackArea = attackAxie.GetChild(0);
@@ -387,7 +397,8 @@ public class Player : MonoBehaviour
     /// </summary>
     void OnDie()
     {
-
+        playerController.onMove = null;
+        animator.SetTrigger(Hash_IsDead);
     }
 
 
