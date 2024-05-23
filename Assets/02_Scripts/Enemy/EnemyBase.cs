@@ -46,6 +46,7 @@ public class EnemyBase : PooledObject
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         animator = GetComponentInChildren<Animator>();
+        animator.writeDefaultValuesOnDisable = true;
     }
 
 
@@ -53,6 +54,7 @@ public class EnemyBase : PooledObject
     {
         base.OnEnable();
         OnInitalized();
+        
     }
 
 
@@ -87,12 +89,15 @@ public class EnemyBase : PooledObject
 
     public void OnHitted(float damage)
     {
-        Debug.Log($"{name} : 플레이어에게 {damage}를 받았다!");
+        // Debug.Log($"{name} : 플레이어에게 {damage}를 받았다!");
         CurrentHp -= damage;
-
-        
     }
 
+    /// <summary>
+    /// 넉백 공격이 포함된 공격
+    /// </summary>
+    /// <param name="damage">공격력</param>
+    /// <param name="knockback">넉백 방향</param>
     public void OnHitted(float damage, Vector3 knockback)
     {
         OnHitted(damage);
