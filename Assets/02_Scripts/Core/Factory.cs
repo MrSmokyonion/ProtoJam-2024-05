@@ -8,7 +8,9 @@ public enum PoolObjectType : int
     PlayerAttack,       // ÇÃ·¹ÀÌ¾î ±âº» °ø°Ý
     Poop,               // ¶Ë
     Duck,               // ¿À¸®
-    PoopDuck,           // ¶Ë¿À¸®
+    Crocodile,          // ¾Ç¾î
+    EnemyBullet,        // ¾Ç¾î ÃÑ¾Ë
+
 
     PlungerAttack = 100,// ¶Õ¾î»½ °ø°Ý
     ManHoleAttack,
@@ -31,6 +33,11 @@ public class Factory : Singleton<Factory>
     ManHolePool manHolePool;
     WrenchPool wrenchPool;
 
+    EnemyPoopPool enemyPoopPool;
+    EnemyDuckPool enemyDuckPool;
+    EnemyCrocodilePool enemyCrocodilePool;
+    EnemyBulletPool enemyBulletPool;
+
     protected override void OnPreInitalize()
     {
         base.OnPreInitalize();
@@ -39,11 +46,19 @@ public class Factory : Singleton<Factory>
         plungerPool = GetComponentInChildren<PlungerPool>();
         manHolePool = GetComponentInChildren<ManHolePool>();
         wrenchPool = GetComponentInChildren<WrenchPool>();
+        enemyPoopPool = GetComponentInChildren<EnemyPoopPool>();
+        enemyDuckPool = GetComponentInChildren<EnemyDuckPool>();
+        enemyCrocodilePool = GetComponentInChildren<EnemyCrocodilePool>();
+        enemyBulletPool = GetComponentInChildren<EnemyBulletPool>();
 
         playerAttackPool.Initialize();
         plungerPool.Initialize();
         manHolePool.Initialize();
         wrenchPool.Initialize();
+        enemyPoopPool.Initialize();
+        enemyDuckPool.Initialize();
+        enemyCrocodilePool.Initialize();
+        enemyBulletPool.Initialize();
 
         //pools = new ObjectPool<PooledObject>[transform.childCount];
 
@@ -76,10 +91,16 @@ public class Factory : Singleton<Factory>
                 break;
             
             case PoolObjectType.Poop:
+                result = enemyPoopPool.GetObject().gameObject;
                 break;
             case PoolObjectType.Duck:
+                result = enemyDuckPool.GetObject().gameObject;
                 break;
-            case PoolObjectType.PoopDuck:
+            case PoolObjectType.Crocodile:
+                result = enemyCrocodilePool.GetObject().gameObject;
+                break;
+            case PoolObjectType.EnemyBullet:
+                result = enemyBulletPool.GetObject().gameObject;
                 break;
 
             case PoolObjectType.PlungerAttack:

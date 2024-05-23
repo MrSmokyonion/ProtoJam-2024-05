@@ -7,8 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Projectile : PooledObject
 {
-    AttackSkillData skillData;
-
     /// <summary>
     /// 적에게 주는 최종 데미지
     /// </summary>
@@ -66,10 +64,10 @@ public class Projectile : PooledObject
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(TryGetComponent<EnemyBase>(out EnemyBase enemy))
+        if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
         {
             // enemy에게 데미지 주기
-
+            enemy.OnHitted(damage);
             if (--currentPenetration < 0)
             {
                 StartCoroutine(LifeOver());

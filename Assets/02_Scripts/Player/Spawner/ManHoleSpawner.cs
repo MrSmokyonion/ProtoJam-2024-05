@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ManHoleSpawner : SkillSpawner
 {
+    public float distance = 2.0f;
+
     bool projectileDone = false;
 
     protected override IEnumerator StartAttack()
@@ -58,7 +60,7 @@ public class ManHoleSpawner : SkillSpawner
                     break;
             }
 
-            GameObject temp = Factory.Ins.GetObject(skillData.GetPoolType(), player.transform.position + spawnPosition * 1.3f, 0);
+            GameObject temp = Factory.Ins.GetObject(skillData.GetPoolType(), player.transform.position + spawnPosition * distance, 0);
             ManHole manHole = temp.GetComponent<ManHole>();
             manHole.OnInitialize(skillData, finalDamage, lifeTime);
             manHole.transform.SetParent(transform);
