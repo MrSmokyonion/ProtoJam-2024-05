@@ -40,11 +40,8 @@ public class Player : MonoBehaviour
         get => currentHp;
         set
         {
-            currentHp = value;
-            if(currentHp > maxHp)
-            {
-                currentHp = maxHp;
-            }
+            currentHp = Mathf.Min(value, MaxHp);        // 최대 체력 이상으로는 안간다.
+
             onHealthChange?.Invoke(currentHp, maxHp);
 
             if (currentHp <= 0)
@@ -189,6 +186,11 @@ public class Player : MonoBehaviour
     public int level = 1;
 
     /// <summary>
+    /// 최대 레벨(변하지 않음)
+    /// </summary>
+    public const int maxLevel = 15;
+
+    /// <summary>
     /// 현재 경험치
     /// </summary>
     public int currentEx = 0;
@@ -212,10 +214,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public int maxEx = 5;
 
-    /// <summary>
-    /// 최대 레벨(변하지 않음)
-    /// </summary>
-    public const int maxLevel = 15;
+
 
     // 이동방향 관련 ==================================================================
 
@@ -347,7 +346,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(moveSpeed * Time.fixedDeltaTime * Dir + rb.position);
+        rb.MovePosition(moveSpeed * moveStaticSpeed * Time.fixedDeltaTime * Dir + rb.position);
     }
 
     public void AddSkill(AttackSkillData.SkillType skillType)
@@ -363,7 +362,6 @@ public class Player : MonoBehaviour
                 spawner = GetComponentInChildren<ManHoleSpawner>();
                 break;
             case AttackSkillData.SkillType.Wrench:
-                // 수정 요망
                 spawner = GetComponentInChildren<WrenchSpawner>();
                 break;
         }
@@ -379,6 +377,11 @@ public class Player : MonoBehaviour
             skillInventory.Add(spawner.skillType, 1);
             spawner.StartSkillAttack();
         }
+    }
+
+    public void OnHitted(float damage)
+    {
+
     }
 
 

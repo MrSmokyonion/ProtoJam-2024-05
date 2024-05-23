@@ -80,13 +80,24 @@ public class EnemyBase : PooledObject
             Dir = (player.transform.position - transform.position).normalized;
         }
 
-        rb.MovePosition(rb.position + speed * time * Dir);
+
+        transform.Translate(speed * time * Dir);
+        // rb.MovePosition(rb.position + speed * time * Dir);
     }
 
     public void OnHitted(float damage)
     {
         Debug.Log($"{name} : 플레이어에게 {damage}를 받았다!");
         CurrentHp -= damage;
+
+        
+    }
+
+    public void OnHitted(float damage, Vector3 knockback)
+    {
+        OnHitted(damage);
+
+        rb.AddForce(knockback * 100, ForceMode2D.Impulse);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

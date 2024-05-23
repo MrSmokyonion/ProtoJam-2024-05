@@ -8,9 +8,19 @@ public class Wrench : Projectile
 
     public float rotationSpeed = 200.0f;
 
+    CircleCollider2D knockbackCol;
+
     private void Awake()
     {
         containEnemy = new();
+        knockbackCol = GetComponent<CircleCollider2D>();
+    }
+
+    public override void OnInitialize(AttackSkillData data, float damage, float lifeTime)
+    {
+        base.OnInitialize(data, damage, lifeTime);
+        knockbackCol.enabled = false;
+
     }
 
     protected override void OnMoveUpdate(float time)
@@ -28,14 +38,18 @@ public class Wrench : Projectile
     {
         Debug.Log(collision.gameObject.name);
 
-        foreach (var enemy in containEnemy)
-        {
-            // 적들에게 대미지 주기
-        }
+        knockbackCol.enabled = true;
 
-        containEnemy.Clear();
+        //foreach (var enemy in containEnemy)
+        //{
+        //    // 적들에게 대미지 주기
+        //    enemy.OnHitted(damage, dir);
+        //}
 
-        StartCoroutine(LifeOver());
+        //containEnemy.Clear();
+
+        StartCoroutine(LifeOver(0.1f));
+
     }
 
 
@@ -45,17 +59,22 @@ public class Wrench : Projectile
     /// <param name="collision"></param>
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (TryGetComponent<EnemyBase>(out EnemyBase enemy))
+        if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
         {
-            containEnemy.Add(enemy);
+            enemy.OnHitted(damage, dir);
         }
+
+        //if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
+        //{
+        //    containEnemy.Add(enemy);
+        //}
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (TryGetComponent<EnemyBase>(out EnemyBase enemy))
-        {
-            containEnemy.Remove(enemy);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
+    //    {
+    //        containEnemy.Remove(enemy);
+    //    }
+    //}
 }

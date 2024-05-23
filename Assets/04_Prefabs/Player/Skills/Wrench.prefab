@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 4164264634071034794}
   - component: {fileID: 7104649175099268603}
   - component: {fileID: 3833847643885446889}
-  - component: {fileID: 4375497391115738712}
   - component: {fileID: 8124447571873092373}
   m_Layer: 6
   m_Name: Wrench
@@ -227,43 +226,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.3}
-  m_Direction: 1
---- !u!58 &4375497391115738712
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5141909087765940525}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.6, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!58 &8124447571873092373
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -298,4 +262,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2.5

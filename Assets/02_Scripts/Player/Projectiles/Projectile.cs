@@ -10,7 +10,7 @@ public class Projectile : PooledObject
     /// <summary>
     /// 적에게 주는 최종 데미지
     /// </summary>
-    private float damage;
+    protected float damage;
 
     /// <summary>
     /// 투사체 사라지는 시간

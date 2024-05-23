@@ -113,29 +113,19 @@ public abstract class SkillSpawner : MonoBehaviour
                 Debug.Log("투사체 개수 증가");
                 break;
             case 4:
-                // 3. 투사체 시간 증가
-                IncreaseLifeTime(5);
-                Debug.Log("투사체 시간 증가");
-                break;
-            case 5:
-                // 4. 쿨타임 감소
+                // 3. 쿨타임 감소
                 DecreaseAttackSpeed(50);
                 Debug.Log("쿨타임 감소");
                 break;
-            case 6:
-                // 5. 공격력 10 추가
+            case 5:
+                // 4. 공격력 증가
                 IncreaseAttackDamage(10);
-                Debug.Log("공격력 10 증가");
+                Debug.Log("공격력 증가");
                 break;
-            case 7:
-                // 6. 투사체 증가
+            case 6:
+                // 5. 투사체 증가
                 IncreaseSpawnCount();
                 Debug.Log("투사체 증가");
-                break;
-            case 8:
-                // 7. 공격력 20 추가
-                IncreaseAttackDamage(20);
-                Debug.Log("공격력 20 추가");
                 break;
             default:
                 break;
