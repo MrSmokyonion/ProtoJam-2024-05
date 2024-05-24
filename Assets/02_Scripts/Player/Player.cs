@@ -87,10 +87,12 @@ public class Player : MonoBehaviour
     // 월급 관련(경험치) ==================================================================
 
     [Header("월급 스텟")]
+
     /// <summary>
     /// 추가 월급률
     /// </summary>
     public int extraPaymentRate = 0;
+
     /// <summary>
     /// 추가 월급률의 최대 증가량
     /// </summary>
@@ -108,6 +110,11 @@ public class Player : MonoBehaviour
     /// 최대 증가할 수 있는 체력 재생력
     /// </summary>
     [SerializeField] private float plusMaxRegeneration = 4;
+
+    /// <summary>
+    /// 체력 회복 주기
+    /// </summary>
+    public float regenerationCoolTime = 5.0f;
 
     // 이동 관련 ==================================================================
 
@@ -192,17 +199,24 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 현재 경험치
     /// </summary>
-    public int currentEx = 0;
+    public float currentEx = 0;
 
-    public int CurrentEx
+    public float CurrentEx
     {
         get => currentEx;
         set
         {
-            currentEx = value;
+
+            float ex = value - currentEx;       // ex는 추가되는 경험치
+
+            currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // 경험치 추가 증가량
+
+
             if(currentEx >= maxEx)
             {
                 // 레벨업, current 초기화, max 증가
+
+                onLevelChange?.Invoke(level);
             }
             onExChange?.Invoke(currentEx, maxEx);
         }
@@ -211,7 +225,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 최대 경험치(레벨에 따라 요구 수치 달라짐)
     /// </summary>
-    public int maxEx = 5;
+    public float maxEx = 5.0f;
 
 
 
@@ -226,7 +240,7 @@ public class Player : MonoBehaviour
     /// 플레이어가 향하고 있는 방향(8방향, zero일 경우는 없다)
     /// 투사체 생성할때 주로 참조함
     /// </summary>
-    public Vector2 headDir = Vector2.right;
+    Vector2 headDir = Vector2.right;
 
     Vector2 Dir
     {
@@ -278,7 +292,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 경험치 값 바뀔때마다 불리는 델리게이트
     /// </summary>
-    public System.Action<int, int> onExChange;
+    public System.Action<float, float> onExChange;
 
     /// <summary>
     /// 레벨 값 바뀔때마다 불리는 델리게이트
@@ -334,9 +348,17 @@ public class Player : MonoBehaviour
 
     private void OnInitialized()
     {
-        CurrentEx = 0;
+        onLevelChange += LevelUp;
+
         skillInventory = new();
+
         PlayerStateSetting();
+
+        CurrentHp = MaxHp;
+
+        CurrentEx = 0;
+
+        StartCoroutine(RegenerationHpCoroutine());
     }
 
     private void OnMove(Vector2 input)
@@ -379,11 +401,75 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
+    IEnumerator RegenerationHpCoroutine()
+    {
+        while(CurrentHp > 0)
+        {
+            yield return new WaitForSeconds(regenerationCoolTime);
+            RegenerationHp();
+        }
+    }
+
+    void RegenerationHp()
+    {
+        CurrentHp += regeneration;
+    }
+
     public void OnHitted(float damage)
     {
 
     }
 
+    void LevelUp(int level)
+    {
+        if (level >= maxLevel)
+        {
+            Debug.Log("이미 최대 레벨입니다.");
+            return;
+        }
+        
+        this.level++;
+
+        switch (level)
+        {
+            case 1:
+                maxEx = 10.0f;
+                break;
+            case 2:
+                maxEx = 13.0f;
+                break;
+            case 3:
+                maxEx = 17.0f;
+                break;
+            case 4:
+                maxEx = 25.0f;
+                break;
+            case 5:
+                maxEx = 35.0f;
+                break;
+            case 6:
+                maxEx = 47.0f;
+                break;
+            case 7:
+                maxEx = 50.0f;
+                break;
+            case 8:
+                maxEx = 60.0f;
+                break;
+            case 9:
+                maxEx = 75.0f;
+                break;
+            case 10:
+                maxEx = 90.0f;
+                break;
+            default:
+                break;
+        }
+
+        CurrentEx = 0;
+    }
 
     /// <summary>
     /// 플레이어의 바라보는 방향에 대한 각도를 구하는 함수

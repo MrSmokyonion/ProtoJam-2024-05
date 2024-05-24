@@ -24,4 +24,9 @@ public class Test_07_PlayerData : TestBase
     {
         player.PlayerStateSetting();
     }
+
+    protected override void Test5(InputAction.CallbackContext context)
+    {
+        player.CurrentEx += 9;
+    }
 }

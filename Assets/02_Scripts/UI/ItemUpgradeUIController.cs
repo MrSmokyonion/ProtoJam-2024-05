@@ -16,8 +16,8 @@ public class ItemUpgradeUIController : MonoBehaviour
 
     public void InitStoreUI()
     {
-        ui_CurrentMoneyText.text = ItemManager.Instance.Money.ToString();
-        InitItemSlotActive(ItemManager.Instance.ItemInfoDatas);
+        ui_CurrentMoneyText.text = ItemManager.Ins.Money.ToString();
+        InitItemSlotActive(ItemManager.Ins.ItemInfoDatas);
     }
 
     public void InitItemSlotActive(ItemInfo[] _itemInfos)
@@ -34,7 +34,7 @@ public class ItemUpgradeUIController : MonoBehaviour
 
     public void PrintItemInfo(ItemType _type)
     {
-        ItemInfo itemInfo = ItemManager.Instance.GetItemData(_type);
+        ItemInfo itemInfo = ItemManager.Ins.GetItemData(_type);
         itemDescriptionUI.PrintItemInfo(itemInfo);
     }
 }

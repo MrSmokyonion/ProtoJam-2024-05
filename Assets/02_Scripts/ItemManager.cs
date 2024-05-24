@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //아이템 데이터를 가지는 싱글톤 매니저
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
+    /*
     #region Singleton
     public static ItemManager Instance;
     private void Awake()
@@ -18,6 +19,7 @@ public class ItemManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     #endregion
+    */
 
     [SerializeField]
     private ItemInfo[] itemInfoData;

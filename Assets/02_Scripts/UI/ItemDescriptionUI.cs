@@ -26,7 +26,7 @@ public class ItemDescriptionUI : MonoBehaviour
     public void OnUpgradeButtonClicked()
     {
         ItemInfo _info = null;
-        bool result = ItemManager.Instance.UpgradeItem(targetItemType, out _info);
+        bool result = ItemManager.Ins.UpgradeItem(targetItemType, out _info);
         if(result)
         {
             PrintItemInfo(_info);
