@@ -405,6 +405,11 @@ public class Player : MonoBehaviour
     }
 
 
+    void PlayerStateSetting()
+    {
+        // PlayerPrefs
+    }
+
     // 기본공격 구현부분이였으나 사용 안함
     ///// <summary>
     ///// 일정시간 간격으로 자동공격하는 코루틴

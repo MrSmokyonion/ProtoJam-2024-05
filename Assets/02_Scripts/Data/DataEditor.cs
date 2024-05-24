@@ -11,6 +11,14 @@ public static class DataEditor
     private const string key_item_CoffeeCan = "CoffeeCan";
     private const string key_item_TurtleShell = "TurtleShell";
     private const string key_item_TrafficCone = "TrafficCone";
+    private const string key_item_Health = "Health";
+    private const string key_item_Damage = "Damage";
+    private const string key_item_ExperienceRate = "ExperienceRate";
+    private const string key_item_Regeneration = "Regeneration";
+    private const string key_item_Movement = "Movement";
+    private const string key_item_CoolTime = "CoolTime";
+
+
     private const string key_CurrentUpgrade = "CurrentUpgrade";
     private const string key_Money = "Money";
 
@@ -61,18 +69,28 @@ public static class DataEditor
                 itemName = key_item_Wrench;
                 break;
             case ItemType.CoffeeCan:
-                itemName = key_item_CoffeeCan;
                 break;
             case ItemType.TurtleShell:
-                itemName = key_item_TurtleShell;
                 break;
             case ItemType.TrafficCone:
-                itemName = key_item_TrafficCone;
+                break;
+            case ItemType.Health:
+                break;
+            case ItemType.Damage:
+                break;
+            case ItemType.ExperienceRate:
+                break;
+            case ItemType.Regeneration:
+                break;
+            case ItemType.Movement:
+                break;
+            case ItemType.CoolTime:
                 break;
             default:
                 Debug.LogWarning("DataEditor : Unavailbable ItemType.");
                 return null;
         }
+
         return itemName;
     }
 

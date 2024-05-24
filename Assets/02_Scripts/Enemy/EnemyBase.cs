@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyBase : PooledObject
 {
+    [Header("적 스텟")]
     [SerializeField] protected float maxHp = 10.0f;
     [SerializeField] protected float currentHp;
     protected float CurrentHp
@@ -21,7 +22,7 @@ public class EnemyBase : PooledObject
     }
 
     [SerializeField] protected float speed;
-    public float experience;
+    public int experience;
 
     protected Vector2 dir;
     protected virtual Vector2 Dir
@@ -32,6 +33,11 @@ public class EnemyBase : PooledObject
             dir = value;
         }
     }
+
+    /// <summary>
+    /// Enemy가 사망할때 불리는 델리게이트
+    /// </summary>
+    public System.Action onDie;
 
     readonly int Hash_IsDead = Animator.StringToHash("IsDead");
 
@@ -54,7 +60,6 @@ public class EnemyBase : PooledObject
     {
         base.OnEnable();
         OnInitalized();
-        
     }
 
 
@@ -64,10 +69,10 @@ public class EnemyBase : PooledObject
         {
             player = GameManager.Ins.Player;
         }
+
         currentHp = maxHp;
         gameObject.layer = 7;
         col.enabled = true;
-        
     }
 
     private void FixedUpdate()
@@ -126,6 +131,8 @@ public class EnemyBase : PooledObject
         animator.SetTrigger(Hash_IsDead);
         Dir = Vector2.zero;
         col.enabled = false;
+        player.CurrentEx += experience;
+
         StartCoroutine(LifeOver());
     }
 

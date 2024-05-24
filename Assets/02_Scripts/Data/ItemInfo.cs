@@ -48,10 +48,19 @@ public class ItemInfo : ScriptableObject
 
 public enum ItemType
 {
+    // 여기서 부터 스킬
     Plunger = 0,
     Manhole,
     Wrench,
     CoffeeCan,
     TurtleShell,
-    TrafficCone
+    TrafficCone,
+    // 여기서부터 스텟
+    Health,
+    Damage,
+    Experience,
+    Regeneration,
+    Movement,
+    CoolTime
+
 }

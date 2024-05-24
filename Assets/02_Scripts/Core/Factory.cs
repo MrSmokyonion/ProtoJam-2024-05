@@ -6,9 +6,10 @@ using UnityEngine;
 public enum PoolObjectType : int
 {
     PlayerAttack,       // ÇÃ·¹ÀÌ¾î ±âº» °ø°Ý
-    Poop,               // ¶Ë
-    Duck,               // ¿À¸®
-    Crocodile,          // ¾Ç¾î
+
+    EnemyPoop,               // ¶Ë
+    EnemyDuck,               // ¿À¸®
+    EnemyCrocodile,          // ¾Ç¾î
     EnemyBullet,        // ¾Ç¾î ÃÑ¾Ë
 
 
@@ -90,13 +91,13 @@ public class Factory : Singleton<Factory>
                 result = playerAttackPool.GetObject().gameObject;
                 break;
             
-            case PoolObjectType.Poop:
+            case PoolObjectType.EnemyPoop:
                 result = enemyPoopPool.GetObject().gameObject;
                 break;
-            case PoolObjectType.Duck:
+            case PoolObjectType.EnemyDuck:
                 result = enemyDuckPool.GetObject().gameObject;
                 break;
-            case PoolObjectType.Crocodile:
+            case PoolObjectType.EnemyCrocodile:
                 result = enemyCrocodilePool.GetObject().gameObject;
                 break;
             case PoolObjectType.EnemyBullet:

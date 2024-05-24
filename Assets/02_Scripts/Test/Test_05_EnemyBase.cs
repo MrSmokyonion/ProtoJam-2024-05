@@ -23,7 +23,8 @@ public class Test_05_EnemyBase : TestBase
 
     protected override void Test2(InputAction.CallbackContext context)
     {
-        Factory.Ins.GetObject(enemyType, transform.position);
+        Factory.Ins.GetObject(enemyType, transform.position);           // 위치 지정해서 소환
+        Factory.Ins.GetObject(enemyType);       // 그냥 소환
     }
 
     protected override void Test4(InputAction.CallbackContext context)

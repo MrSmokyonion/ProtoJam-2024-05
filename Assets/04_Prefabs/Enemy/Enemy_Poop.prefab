@@ -41,9 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8953233317028605605}
+  - component: {fileID: 2550003046598066958}
   - component: {fileID: 6423973744395832645}
   - component: {fileID: 5128041401979253690}
-  - component: {fileID: 2550003046598066958}
   m_Layer: 7
   m_Name: Enemy_Poop
   m_TagString: Untagged
@@ -67,6 +67,22 @@ Transform:
   - {fileID: 858535478278537016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2550003046598066958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709795664169725016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44beea789423ceb4eb0d7f282f789a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1
+  currentHp: 0
+  speed: 1
+  experience: 1
 --- !u!58 &6423973744395832645
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -129,22 +145,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2550003046598066958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4709795664169725016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44beea789423ceb4eb0d7f282f789a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 1
-  currentHp: 0
-  speed: 1
-  experience: 3
 --- !u!1001 &1870467877327594306
 PrefabInstance:
   m_ObjectHideFlags: 0

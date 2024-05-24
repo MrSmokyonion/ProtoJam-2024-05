@@ -50,7 +50,7 @@ MonoBehaviour:
   maxHp: 10
   currentHp: 0
   speed: 2
-  experience: 5
+  experience: 3
   attackRange: 8
   fireCoolTime: 2
   currentCoolTime: 0
