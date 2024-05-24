@@ -48,22 +48,22 @@ public class ItemManager : MonoBehaviour
 
         switch (_type)
         {
-            case ItemType.Plunger:
+            case ItemType.Health:
                 _itemInfo = ItemInfoDatas[0];
                 break;
-            case ItemType.Manhole:
+            case ItemType.Damage:
                 _itemInfo = ItemInfoDatas[1];
                 break;
-            case ItemType.Wrench:
+            case ItemType.ExperienceRate:
                 _itemInfo = ItemInfoDatas[2];
                 break;
-            case ItemType.CoffeeCan:
+            case ItemType.Regeneration:
                 _itemInfo = ItemInfoDatas[3];
                 break;
-            case ItemType.TurtleShell:
+            case ItemType.Movement:
                 _itemInfo = ItemInfoDatas[4];
                 break;
-            case ItemType.TrafficCone:
+            case ItemType.CoolTime:
                 _itemInfo = ItemInfoDatas[5];
                 break;
             default:

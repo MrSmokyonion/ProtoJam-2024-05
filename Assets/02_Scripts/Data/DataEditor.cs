@@ -59,32 +59,23 @@ public static class DataEditor
 
         switch (_type)
         {
-            case ItemType.Plunger:
-                itemName = key_item_Plunger;
-                break;
-            case ItemType.Manhole:
-                itemName = key_item_Manhole;
-                break;
-            case ItemType.Wrench:
-                itemName = key_item_Wrench;
-                break;
-            case ItemType.CoffeeCan:
-                break;
-            case ItemType.TurtleShell:
-                break;
-            case ItemType.TrafficCone:
-                break;
             case ItemType.Health:
+                itemName = key_item_Health;
                 break;
             case ItemType.Damage:
+                itemName = key_item_Damage;
                 break;
             case ItemType.ExperienceRate:
+                itemName = key_item_ExperienceRate;
                 break;
             case ItemType.Regeneration:
+                itemName = key_item_Regeneration;
                 break;
             case ItemType.Movement:
+                itemName = key_item_Movement;
                 break;
             case ItemType.CoolTime:
+                itemName = key_item_CoolTime;
                 break;
             default:
                 Debug.LogWarning("DataEditor : Unavailbable ItemType.");

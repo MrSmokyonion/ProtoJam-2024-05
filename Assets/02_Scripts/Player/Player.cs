@@ -1,8 +1,6 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class Player : MonoBehaviour
 {
@@ -74,6 +72,7 @@ public class Player : MonoBehaviour
     /// 공격력 증가량
     /// </summary>
     [SerializeField] private int attackDamage = 0;
+
     /// <summary>
     /// 공격력 증가량 프로퍼티(스킬 스포너에서 공격력 계산할 때 접근한다)
     /// </summary>
@@ -337,6 +336,7 @@ public class Player : MonoBehaviour
     {
         CurrentEx = 0;
         skillInventory = new();
+        PlayerStateSetting();
     }
 
     private void OnMove(Vector2 input)
@@ -404,11 +404,58 @@ public class Player : MonoBehaviour
         animator.SetTrigger(Hash_IsDead);
     }
 
-
-    void PlayerStateSetting()
+    /// <summary>
+    /// PlayerPrefs에서 데이터를 불러온다.
+    /// </summary>
+    public void PlayerStateSetting()
     {
-        // PlayerPrefs
+        int count = System.Enum.GetValues(typeof(ItemType)).Length;
+        for (int i = 0;  i < count; i++) 
+        {
+            ItemType type = (ItemType)i;
+            int currentUpgrade = DataEditor.LoadItemCurrentUpgrade(type);
+
+            for(int j = 0; j < currentUpgrade; j++)
+            {
+                UpgradeState(type);
+            }
+        }
+        Debug.Log($"플레이어 데이터 불러오기 완료");
     }
+
+    /// <summary>
+    /// 플레이어의 스텟을 업그레이드하는 함수
+    /// </summary>
+    /// <param name="type">업그레이드할 타입</param>
+    public void UpgradeState(ItemType type)
+    {
+        switch (type)
+        {
+            case ItemType.Health:
+                MaxHp += plusMaxHp * 0.1f;
+                CurrentHp += plusMaxHp * 0.1f;
+                break;
+            case ItemType.Damage:
+                attackDamage += (int)(plusAttackMaxDamage * 0.1f);
+                break;
+            case ItemType.ExperienceRate:
+                extraPaymentRate += (int)(plusMaxExtraPlaymentRate * 0.1f);
+                break;
+            case ItemType.Regeneration:
+                regeneration += plusMaxRegeneration * 0.1f;
+                break;
+            case ItemType.Movement:
+                moveSpeed += plusMaxMoveSpeed * 0.1f;
+                break;
+            case ItemType.CoolTime:
+                skillCoolTime += (int)(plusMaxSkillCoolTime * 0.1f);
+                break;
+            default:
+                break;
+        }
+    }
+
+    
 
     // 기본공격 구현부분이였으나 사용 안함
     ///// <summary>
