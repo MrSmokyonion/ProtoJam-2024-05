@@ -38,17 +38,22 @@ public class Player : MonoBehaviour
         get => currentHp;
         set
         {
-            currentHp = Mathf.Min(value, MaxHp);        // 최대 체력 이상으로는 안간다.
-
-            onHealthChange?.Invoke(currentHp, maxHp);
-
-            if (currentHp <= 0)
+            if (IsAlive)
             {
-                currentHp = 0;
-                OnDie();        // 사망
+                currentHp = Mathf.Min(value, MaxHp);        // 최대 체력 이상으로는 안간다.
+
+                if (currentHp <= 0)
+                {
+                    currentHp = 0;
+                    OnDie();        // 사망
+                }
+
+                onHealthChange?.Invoke(currentHp, maxHp);
             }
         }
     }
+
+    public bool IsAlive => currentHp > 0;
 
     // 방어력 관련 ==================================================================
 
@@ -206,19 +211,21 @@ public class Player : MonoBehaviour
         get => currentEx;
         set
         {
-
-            float ex = value - currentEx;       // ex는 추가되는 경험치
-
-            currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // 경험치 추가 증가량
-
-
-            if(currentEx >= maxEx)
+            if (IsAlive)
             {
-                // 레벨업, current 초기화, max 증가
+                float ex = value - currentEx;       // ex는 추가되는 경험치
 
-                onLevelChange?.Invoke(level);
+                currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // 경험치 추가 증가량
+
+
+                if (currentEx >= maxEx)
+                {
+                    // 레벨업, current 초기화, max 증가
+
+                    onLevelChange?.Invoke(level);
+                }
+                onExChange?.Invoke(currentEx, maxEx);
             }
-            onExChange?.Invoke(currentEx, maxEx);
         }
     }
 
@@ -419,7 +426,7 @@ public class Player : MonoBehaviour
 
     public void OnHitted(float damage)
     {
-
+        CurrentHp -= damage;
     }
 
     void LevelUp(int level)

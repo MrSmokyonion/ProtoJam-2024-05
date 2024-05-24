@@ -53,7 +53,6 @@ MonoBehaviour:
   experience: 3
   attackRange: 8
   fireCoolTime: 2
-  currentCoolTime: 0
 --- !u!58 &9160948750959879340
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,11 +187,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5099725882750302832}
     m_Modifications:
-    - target: {fileID: 4863487552005955302, guid: 02553492506ec4290b804078314789e9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4863487552005955302, guid: 02553492506ec4290b804078314789e9,
         type: 3}
       propertyPath: m_LocalPosition.x

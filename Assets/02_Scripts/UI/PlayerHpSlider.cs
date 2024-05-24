@@ -33,6 +33,9 @@ public class PlayerHpSlider : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+        if (target != null)
+        {
+            transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+        }
     }
 }

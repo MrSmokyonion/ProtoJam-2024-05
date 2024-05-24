@@ -23,8 +23,7 @@ public class EnemyCrocodile : EnemyBase
 
     [Header("»ç°Ý ½ºÅÝ")]
     public float attackRange = 4.0f;
-    public float fireCoolTime = 2.0f;
-    private float currentCoolTime = 0.0f;
+    public float fireCoolTime = 2.0f;    private float currentCoolTime = 0.0f;
 
     Transform firePosition;
 
@@ -39,7 +38,7 @@ public class EnemyCrocodile : EnemyBase
 
     protected override void OnMoveUpdate(float time)
     {
-        if (player != null && CurrentHp > 0 && currentCoolTime < 0)
+        if (player != null && player.IsAlive && CurrentHp > 0 && currentCoolTime < 0)
         {
             Vector2 vec = player.transform.position - transform.position;
             Dir = vec.normalized;

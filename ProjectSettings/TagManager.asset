@@ -15,7 +15,7 @@ TagManager:
   - Enemy
   - Player
   - 
-  - 
+  - DistorsionEffect
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: AttackEffect
     uniqueID: 919060583
+    locked: 0
+  - name: HighestLayer
+    uniqueID: 1740677979
     locked: 0

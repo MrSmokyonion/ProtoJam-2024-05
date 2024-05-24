@@ -8,6 +8,7 @@ public class EnemyBase : PooledObject
     [Header("적 스텟")]
     [SerializeField] protected float maxHp = 10.0f;
     [SerializeField] protected float currentHp;
+    [SerializeField] protected float damage = 1;
     protected float CurrentHp
     {
         get => currentHp;
@@ -70,9 +71,18 @@ public class EnemyBase : PooledObject
             player = GameManager.Ins.Player;
         }
 
-        currentHp = maxHp;
+        CurrentHp = maxHp;
         gameObject.layer = 7;
         col.enabled = true;
+    }
+
+    /// <summary>
+    /// 체력 스텟을 결정하는 함수(기본값 1이며 배수로 증가함 ex) 1.2입력시 1.2배 체력 증가)
+    /// </summary>
+    /// <param name="hp"></param>
+    public void SettingState(float hpRate)
+    {
+        CurrentHp = maxHp * hpRate;
     }
 
     private void FixedUpdate()
@@ -82,13 +92,11 @@ public class EnemyBase : PooledObject
 
     protected virtual void OnMoveUpdate(float time)
     {
-        if(player != null && CurrentHp > 0)
+        if(player != null && player.IsAlive && CurrentHp > 0)
         {
             Dir = (player.transform.position - transform.position).normalized;
+            transform.Translate(speed * time * Dir);
         }
-
-
-        transform.Translate(speed * time * Dir);
         // rb.MovePosition(rb.position + speed * time * Dir);
     }
 
@@ -121,6 +129,7 @@ public class EnemyBase : PooledObject
     protected virtual void Attack(Player player)
     {
         // 플레이어에게 데미지 주기
+        player.OnHitted(damage * 0.1f);
     }
 
     /// <summary>

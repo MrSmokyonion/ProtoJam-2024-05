@@ -10,8 +10,8 @@ public class Test_05_EnemyBase : TestBase
     public AttackSkillData.SkillType type;
     public PoolObjectType enemyType;
 
-    public EnemyBase enemy;
-
+    public Material material;
+    public float brightCount = 0;
     private void Start()
     {
         player = GameManager.Ins.Player;
@@ -23,14 +23,15 @@ public class Test_05_EnemyBase : TestBase
 
     protected override void Test2(InputAction.CallbackContext context)
     {
-        Factory.Ins.GetObject(enemyType, transform.position);           // 위치 지정해서 소환
+        GameObject temp = Factory.Ins.GetObject(enemyType, transform.position);           // 위치 지정해서 소환
         
     }
 
-    protected override void Test4(InputAction.CallbackContext context)
+    protected override void Test3(InputAction.CallbackContext context)
     {
-        enemy.OnHitted(0, Vector3.right);
+        material.SetFloat("_Float", brightCount);
     }
+
 
     protected override void Test5(InputAction.CallbackContext context)
     {
