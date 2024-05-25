@@ -17,22 +17,22 @@ public class PipeSpawner : MonoBehaviour
 
     [Header("Variable")]
     [SerializeField]
-    [Tooltip("ÆÄÀÌÇÁ°¡ ½ºÆùµÇ´Â ½Ã°£")]
+    [Tooltip("íŒŒì´í”„ê°€ ìŠ¤í°ë˜ëŠ” ì‹œê°„")]
     private float spawnTime;
     [SerializeField]
-    [Tooltip("ÆÄÀÌÇÁ°¡ ¼ö¸®µÇ±â À§ÇÑ ½Ã°£Àº ¾î´ÀÁ¤µµ?")]
+    [Tooltip("íŒŒì´í”„ê°€ ìˆ˜ë¦¬ë˜ê¸° ìœ„í•œ ì‹œê°„ì€ ì–´ëŠì •ë„?")]
     private float pipeRepairTime;
     [SerializeField]
-    [Tooltip("ÆÄÀÌÇÁ¸¦ ¼ö¸®ÇÒ ¼ö ÀÖ´Â °Å¸®´Â ¾ó¸¶³ª?")]
+    [Tooltip("íŒŒì´í”„ë¥¼ ìˆ˜ë¦¬í•  ìˆ˜ ìˆëŠ” ê±°ë¦¬ëŠ” ì–¼ë§ˆë‚˜?")]
     private float pipeRepairRange;
     [SerializeField]
-    [Tooltip("ÆÄÀÌÇÁ ½ºÆùÇÒ ¶§ ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸® ¿ÀÇÁ¼Â")]
+    [Tooltip("íŒŒì´í”„ ìŠ¤í°í•  ë•Œ í”Œë ˆì´ì–´ì™€ì˜ ê±°ë¦¬ ì˜¤í”„ì…‹")]
     private float pipeDistanceOffset;
     [SerializeField]
-    [Tooltip("ÇÑ¹ø¿¡ Á¸ÀçÇÒ ¼ö ÀÖ´Â ÆÄÀÌÇÁ °³¼ö")]
+    [Tooltip("í•œë²ˆì— ì¡´ì¬í•  ìˆ˜ ìˆëŠ” íŒŒì´í”„ ê°œìˆ˜")]
     private int maxPipeCountAtSameTime;
     [SerializeField]
-    [Tooltip("¸ñÇ¥ ÆÄÀÌÇÁ ½ºÆù °³¼ö")]
+    [Tooltip("ëª©í‘œ íŒŒì´í”„ ìŠ¤í° ê°œìˆ˜")]
     private int targetPipeCount;
 
 
