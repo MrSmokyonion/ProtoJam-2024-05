@@ -16,7 +16,7 @@ public class EnemyBullet : PooledObject
     {
         if (collision.TryGetComponent(out Player player))
         {
-            // Player¿¡°Ô µ¥¹ÌÁö ÁÖ±â
+            // Playerì—ê²Œ ë°ë¯¸ì§€ ì£¼ê¸°
             player.OnHitted(damage);
             StartCoroutine(LifeOver());
         }

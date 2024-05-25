@@ -6,22 +6,22 @@ using UnityEngine;
 public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 {
     /// <summary>
-    /// Pool¿¡ ´ã¾Æ ³õÀ» ¿ÀºêÁ§Æ®ÀÇ ÇÁ¸®Æé
+    /// Poolì— ë‹´ì•„ ë†“ì„ ì˜¤ë¸Œì íŠ¸ì˜ í”„ë¦¬í©
     /// </summary>
     public GameObject origianlPrefab;
 
     /// <summary>
-    /// PoolÀÇ Å©±â, Ã³À½¿¡ »ı¼ºÇÏ´Â ¿ÀºêÁ§Æ® °³¼ö´Â 2^nÀ¸·Î Àâ´Â °ÍÀÌ ÁÁÀ½
+    /// Poolì˜ í¬ê¸°, ì²˜ìŒì— ìƒì„±í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ ê°œìˆ˜ëŠ” 2^nìœ¼ë¡œ ì¡ëŠ” ê²ƒì´ ì¢‹ìŒ
     /// </summary>
     public int poolSize = 64;
 
     /// <summary>
-    /// PoolÀÌ »ı¼ºÇÑ ¿ÀºêÁ§Æ®°¡ µé¾îÀÖ´Â ¹è¿­
+    /// Poolì´ ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ê°€ ë“¤ì–´ìˆëŠ” ë°°ì—´
     /// </summary>
     T[] pool;
 
     /// <summary>
-    /// »ç¿ë°¡´ÉÇÑ(ºñÈ°¼ºÈ­ µÇ¾î ÀÖ´Â) ¿ÀºêÁ§Æ®°¡ µé¾îÀÖ´Â Queue
+    /// ì‚¬ìš©ê°€ëŠ¥í•œ(ë¹„í™œì„±í™” ë˜ì–´ ìˆëŠ”) ì˜¤ë¸Œì íŠ¸ê°€ ë“¤ì–´ìˆëŠ” Queue
     /// </summary>
     Queue<T> readyQueue;
 
@@ -30,18 +30,18 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
         
         if(pool == null)
         {
-            // PoolÀÌ ¾øÀ» ¶§
+            // Poolì´ ì—†ì„ ë•Œ
             pool = new T[poolSize];
             readyQueue = new Queue<T>(poolSize);
 
-            //readyQueue.Count;         // ½ÇÁ¦ ÀÖ´Â °³¼ö
-            //readyQueue.Capatity;      // ÇöÀç ¹Ì¸® ÁØºñÇØ ³õÀº °¹¼ö
+            //readyQueue.Count;         // ì‹¤ì œ ìˆëŠ” ê°œìˆ˜
+            //readyQueue.Capatity;      // í˜„ì¬ ë¯¸ë¦¬ ì¤€ë¹„í•´ ë†“ì€ ê°¯ìˆ˜
 
             GenerateObject(0, poolSize, pool);
         }
         else       
         {
-            // PoolÀÌ ÀÌ¹Ì ÀÖÀ» ¶§
+            // Poolì´ ì´ë¯¸ ìˆì„ ë•Œ
             foreach(T obj in pool) 
             { 
                 obj.gameObject.SetActive(false);
@@ -52,29 +52,29 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 
     public T GetObject()
     {
-        if (readyQueue.Count > 0)  // Queue¿¡ ³²¾ÆÀÖ´Â°Ô ÀÖÀ» ¶§
+        if (readyQueue.Count > 0)  // Queueì— ë‚¨ì•„ìˆëŠ”ê²Œ ìˆì„ ë•Œ
         {
             T comp = readyQueue.Dequeue();
             comp.gameObject.SetActive(true);
             return comp;
         }
-        else      // Queue¿¡ ³²¾ÆÀÖ´Â°Ô ¾øÀ» ¶§
+        else      // Queueì— ë‚¨ì•„ìˆëŠ”ê²Œ ì—†ì„ ë•Œ
         {
-            ExpandPool();           // Pool È®Àå
-            return GetObject();     // È®Àå ½ÃÅ² Queue¿¡¼­ °¡Á®¿È
+            ExpandPool();           // Pool í™•ì¥
+            return GetObject();     // í™•ì¥ ì‹œí‚¨ Queueì—ì„œ ê°€ì ¸ì˜´
         }
     }
 
     /// <summary>
-    /// Ç®À» µÎ¹è·Î È®Àå½ÃÅ°´Â ¸Ş¼­µå
+    /// í’€ì„ ë‘ë°°ë¡œ í™•ì¥ì‹œí‚¤ëŠ” ë©”ì„œë“œ
     /// </summary>
     void ExpandPool()
     {
-        Debug.LogWarning($"{gameObject.name} Ç® »çÀÌÁî Áõ°¡.({poolSize} -> {poolSize * 2})");
+        Debug.LogWarning($"{gameObject.name} í’€ ì‚¬ì´ì¦ˆ ì¦ê°€.({poolSize} -> {poolSize * 2})");
 
         int newSize = poolSize * 2;
         T[] newPool = new T[newSize];
-        //Queue´Â ¾Ë¾Æ¼­ Àß Å­
+        //QueueëŠ” ì•Œì•„ì„œ ì˜ í¼
 
         for(int i = 0; i < poolSize; i++)
         {
@@ -88,32 +88,32 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
     }
 
     /// <summary>
-    /// Pool¿¡ ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÏ´Â ÄÚµå
+    /// Poolì— ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•˜ëŠ” ì½”ë“œ
     /// </summary>
-    /// <param name="startIndex">½ÃÀÛ ÀÎµ¦½º</param>
-    /// <param name="endIndex">³¡ ÀÎµ¦½º - 1</param>
-    /// <param name="arr">»ı¼ºÇÒ ¹è¿­</param>
+    /// <param name="startIndex">ì‹œì‘ ì¸ë±ìŠ¤</param>
+    /// <param name="endIndex">ë ì¸ë±ìŠ¤ - 1</param>
+    /// <param name="arr">ìƒì„±í•  ë°°ì—´</param>
     protected virtual void GenerateObject(int startIndex, int endIndex, T[] arr)
     {
         for (int i = startIndex; i < endIndex; i++)
         {
-            GameObject obj = Instantiate(origianlPrefab, transform);            // ÇöÀç ¿ÀºêÁ§Æ®ÀÇ ÀÚ½ÄÀ¸·Î »ı¼º
+            GameObject obj = Instantiate(origianlPrefab, transform);            // í˜„ì¬ ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ìœ¼ë¡œ ìƒì„±
             obj.name = $"{origianlPrefab.name}_{i}";
 
-            T comp = obj.GetComponent<T>();                                     // T´Â PooledObject¸¦ °¡Áú¼ö ¹Û¿¡ ¾øÀ½(ÃÊ±â ¼³Á¤ where)
-            comp.onDisable += () => readyQueue.Enqueue(comp);                   // ºñÈ°¼ºÈ­ µÇ¸é Queue·Î µé¾î°¡±â
+            T comp = obj.GetComponent<T>();                                     // TëŠ” PooledObjectë¥¼ ê°€ì§ˆìˆ˜ ë°–ì— ì—†ìŒ(ì´ˆê¸° ì„¤ì • where)
+            comp.onDisable += () => readyQueue.Enqueue(comp);                   // ë¹„í™œì„±í™” ë˜ë©´ Queueë¡œ ë“¤ì–´ê°€ê¸°
 
             OnGenerateObjects(comp);
 
             arr[i] = comp;
-            obj.SetActive(false);           // onDisable ÇÔ¼ö È£ÃâµÇ¾î ¹Ù·Î readyQueue·Î µé¾î°¨(±×·±µ¥ Ã³À½ºÎÅÍ ºñÈ°¼ºÈ­ µÇ¸é È£Ãâ ¾ÈµÊ)
+            obj.SetActive(false);           // onDisable í•¨ìˆ˜ í˜¸ì¶œë˜ì–´ ë°”ë¡œ readyQueueë¡œ ë“¤ì–´ê°(ê·¸ëŸ°ë° ì²˜ìŒë¶€í„° ë¹„í™œì„±í™” ë˜ë©´ í˜¸ì¶œ ì•ˆë¨)
         }
     }
 
     /// <summary>
-    /// °¢ TÅ¸ÀÔ º°·Î ÇÊ¿äÇÑ Ãß°¡ ÀÛ¾÷À» Ã³¸®ÇÏ´Â ÇÔ¼ö
+    /// ê° Tíƒ€ì… ë³„ë¡œ í•„ìš”í•œ ì¶”ê°€ ì‘ì—…ì„ ì²˜ë¦¬í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="comp">TÅ¸ÀÔ ÄÄÆ÷³ÍÆ®</param>
+    /// <param name="comp">Tíƒ€ì… ì»´í¬ë„ŒíŠ¸</param>
     protected virtual void OnGenerateObjects(T comp)
     {
     }

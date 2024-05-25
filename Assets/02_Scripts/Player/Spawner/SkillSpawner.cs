@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ½ºÅ³À» ½ºÆùÇÏ´Â Ãß»óÅ¬·¡½º(ÃÖÁ¾ÀûÀ¸·Î ¼öÄ¡ °è»êÀº ¿©±â¼­ ÀÌ·ïÁø´Ù)
+/// ìŠ¤í‚¬ì„ ìŠ¤í°í•˜ëŠ” ì¶”ìƒí´ë˜ìŠ¤(ìµœì¢…ì ìœ¼ë¡œ ìˆ˜ì¹˜ ê³„ì‚°ì€ ì—¬ê¸°ì„œ ì´ë¤„ì§„ë‹¤)
 /// </summary>
 public abstract class SkillSpawner : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public abstract class SkillSpawner : MonoBehaviour
     public AttackSkillData.SkillType skillType;
 
     /// <summary>
-    /// ½ºÆù ½ºÅ³ÀÇ ·¹º§
+    /// ìŠ¤í° ìŠ¤í‚¬ì˜ ë ˆë²¨
     /// </summary>
     int spawnerLevel = 0;
     public int SpawnerLevel
@@ -27,47 +27,47 @@ public abstract class SkillSpawner : MonoBehaviour
 
 
     /// <summary>
-    /// ½ºÅ³ ±âº» µ¥¹ÌÁö
+    /// ìŠ¤í‚¬ ê¸°ë³¸ ë°ë¯¸ì§€
     /// </summary>
     float skillDamage;
 
     /// <summary>
-    /// °­È­¿¡ ÀÇÇØ Ãß°¡µÉ ½ºÅ³ µ¥¹ÌÁö
+    /// ê°•í™”ì— ì˜í•´ ì¶”ê°€ë  ìŠ¤í‚¬ ë°ë¯¸ì§€
     /// </summary>
     protected float plusSkillDamage;
 
     /// <summary>
-    /// ÃÖÁ¾ ¹«±âÀÇ µ¥¹ÌÁö(±âº» µ¥¹ÌÁö + ÇÃ·¹ÀÌ¾î ÆĞ½Ãºê µ¥¹ÌÁö Áõ°¡ + Ãß°¡ °ø°İ·Â)
+    /// ìµœì¢… ë¬´ê¸°ì˜ ë°ë¯¸ì§€(ê¸°ë³¸ ë°ë¯¸ì§€ + í”Œë ˆì´ì–´ íŒ¨ì‹œë¸Œ ë°ë¯¸ì§€ ì¦ê°€ + ì¶”ê°€ ê³µê²©ë ¥)
     /// </summary>
     protected float finalDamage;
 
     /// <summary>
-    /// ½ºÅ³ ½ºÆù È½¼ö
+    /// ìŠ¤í‚¬ ìŠ¤í° íšŸìˆ˜
     /// </summary>
     protected int spawnCount = 1;
 
     /// <summary>
-    /// ÃÖÁ¾ ½ºÆù ¼Óµµ(Player ·¹º§°ú ½ºÆù ·¹º§¿¡ µû¶ó Áõ°¡)
+    /// ìµœì¢… ìŠ¤í° ì†ë„(Player ë ˆë²¨ê³¼ ìŠ¤í° ë ˆë²¨ì— ë”°ë¼ ì¦ê°€)
     /// </summary>
     protected float finalSpawnSpeed;
 
     /// <summary>
-    /// ½ºÆù¼Óµµ °¨¼Ò·®
+    /// ìŠ¤í°ì†ë„ ê°ì†ŒëŸ‰
     /// </summary>
     protected float decreaseSpawnSpeed;
 
     /// <summary>
-    /// ÃÖÁ¾ Åõ»çÃ¼ »ıÁ¸½Ã°£(ÇÃ·¹ÀÌ¾îÂÊ¿¡¼­ ¿µÇâ¹Ş´Â°Å ¾ø°í ½ºÆ÷³Ê ·¹º§¿¡ µû¶ó ´Ş¶óÁü)
+    /// ìµœì¢… íˆ¬ì‚¬ì²´ ìƒì¡´ì‹œê°„(í”Œë ˆì´ì–´ìª½ì—ì„œ ì˜í–¥ë°›ëŠ”ê±° ì—†ê³  ìŠ¤í¬ë„ˆ ë ˆë²¨ì— ë”°ë¼ ë‹¬ë¼ì§)
     /// </summary>
     protected float lifeTime;
 
     /// <summary>
-    /// Åõ»çÃ¼ Å©±â(°ø°İ¹üÀ§ Á¶Àı¿ë)
+    /// íˆ¬ì‚¬ì²´ í¬ê¸°(ê³µê²©ë²”ìœ„ ì¡°ì ˆìš©)
     /// </summary>
     protected float additionalScale;
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î
+    /// í”Œë ˆì´ì–´
     /// </summary>
     protected Player player;
 
@@ -95,44 +95,44 @@ public abstract class SkillSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// ·¹º§¿¡ µû¶ó °ø°İ·Â, °ø¼Ó, Åõ»çÃ¼ °ø°İ¹üÀ§¸¦ °áÁ¤ÇÏ´Â ÇÔ¼ö
+    /// ë ˆë²¨ì— ë”°ë¼ ê³µê²©ë ¥, ê³µì†, íˆ¬ì‚¬ì²´ ê³µê²©ë²”ìœ„ë¥¼ ê²°ì •í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public virtual void SetSpwanerLevel()
     {
-        Debug.Log($"{gameObject.name} ·¹º§ ¾÷ : {SpawnerLevel}");
+        Debug.Log($"{gameObject.name} ë ˆë²¨ ì—… : {SpawnerLevel}");
         switch (SpawnerLevel)
         {
             case 2:
-                // 1. °ø°İ·Â 10Ãß°¡
+                // 1. ê³µê²©ë ¥ 10ì¶”ê°€
                 IncreaseAttackDamage(10);
-                Debug.Log("°ø°İ·Â 10 Áõ°¡");
+                Debug.Log("ê³µê²©ë ¥ 10 ì¦ê°€");
                 break;
             case 3:
-                // 2. Åõ»çÃ¼ °³¼ö Áõ°¡
+                // 2. íˆ¬ì‚¬ì²´ ê°œìˆ˜ ì¦ê°€
                 IncreaseSpawnCount();
-                Debug.Log("Åõ»çÃ¼ °³¼ö Áõ°¡");
+                Debug.Log("íˆ¬ì‚¬ì²´ ê°œìˆ˜ ì¦ê°€");
                 break;
             case 4:
-                // 3. ÄğÅ¸ÀÓ °¨¼Ò
+                // 3. ì¿¨íƒ€ì„ ê°ì†Œ
                 DecreaseAttackSpeed(50);
-                Debug.Log("ÄğÅ¸ÀÓ °¨¼Ò");
+                Debug.Log("ì¿¨íƒ€ì„ ê°ì†Œ");
                 break;
             case 5:
-                // 4. °ø°İ·Â Áõ°¡
+                // 4. ê³µê²©ë ¥ ì¦ê°€
                 IncreaseAttackDamage(10);
-                Debug.Log("°ø°İ·Â Áõ°¡");
+                Debug.Log("ê³µê²©ë ¥ ì¦ê°€");
                 break;
             case 6:
-                // 5. Åõ»çÃ¼ Áõ°¡
+                // 5. íˆ¬ì‚¬ì²´ ì¦ê°€
                 IncreaseSpawnCount();
-                Debug.Log("Åõ»çÃ¼ Áõ°¡");
+                Debug.Log("íˆ¬ì‚¬ì²´ ì¦ê°€");
                 break;
             default:
                 break;
         }
     }  
 
-    // ÀÚµ¿°ø°İ ½ÃÀÛ ÇÔ¼öµé ==========================================
+    // ìë™ê³µê²© ì‹œì‘ í•¨ìˆ˜ë“¤ ==========================================
 
     public void StartSkillAttack()
     {
@@ -141,10 +141,10 @@ public abstract class SkillSpawner : MonoBehaviour
     }
     protected abstract IEnumerator StartAttack();
 
-    // ´Ü¼ø ¼öÄ¡ °è»ê ÇÔ¼öµé ===========================================
+    // ë‹¨ìˆœ ìˆ˜ì¹˜ ê³„ì‚° í•¨ìˆ˜ë“¤ ===========================================
 
     /// <summary>
-    /// ½ºÆù ·¹º§ Áõ°¡ ÇÔ¼ö
+    /// ìŠ¤í° ë ˆë²¨ ì¦ê°€ í•¨ìˆ˜
     /// </summary>
     public void IncreaseLevel()
     {
@@ -152,52 +152,52 @@ public abstract class SkillSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Åõ»çÃ¼ À¯Áö ½Ã°£ Áõ°¡
+    /// íˆ¬ì‚¬ì²´ ìœ ì§€ ì‹œê°„ ì¦ê°€
     /// </summary>
-    /// <param name="time">Áõ°¡·®</param>
+    /// <param name="time">ì¦ê°€ëŸ‰</param>
     public void IncreaseLifeTime(float time)
     {
         lifeTime += time;
     }
 
     /// <summary>
-    /// ½ºÆù È½¼ö Áõ°¡ ÇÔ¼ö
+    /// ìŠ¤í° íšŸìˆ˜ ì¦ê°€ í•¨ìˆ˜
     /// </summary>
-    /// <param name="count">Áõ°¡·®(±âº» 1)</param>
+    /// <param name="count">ì¦ê°€ëŸ‰(ê¸°ë³¸ 1)</param>
     public void IncreaseSpawnCount(int count = 1)
     {
         spawnCount += count;
     }
 
     /// <summary>
-    /// °ø°İ ¹üÀ§ Áõ°¡ ÇÔ¼ö
+    /// ê³µê²© ë²”ìœ„ ì¦ê°€ í•¨ìˆ˜
     /// </summary>
-    /// <param name="value">Áõ°¡·®(%ÀÔ·Â)</param>
+    /// <param name="value">ì¦ê°€ëŸ‰(%ì…ë ¥)</param>
     public void IncreaseAdditionalScale(float value)
     {
         additionalScale += value;
     }
 
     /// <summary>
-    /// °ø°İ·Â Áõ°¡ ÇÔ¼ö
+    /// ê³µê²©ë ¥ ì¦ê°€ í•¨ìˆ˜
     /// </summary>
-    /// <param name="value">%À¸·Î Áõ°¡</param>
+    /// <param name="value">%ìœ¼ë¡œ ì¦ê°€</param>
     public void IncreaseAttackDamage(float value)
     {
         plusSkillDamage += value;
     }
 
     /// <summary>
-    /// °ø°İ ¼Óµµ °¨¼Ò ÇÔ¼ö
+    /// ê³µê²© ì†ë„ ê°ì†Œ í•¨ìˆ˜
     /// </summary>
-    /// <param name="value">%À¸·Î °¨¼Ò</param>
+    /// <param name="value">%ìœ¼ë¡œ ê°ì†Œ</param>
     public void DecreaseAttackSpeed(float value)
     {
         decreaseSpawnSpeed += skillData.FireDelay * value * 0.01f;
     }
 
     /// <summary>
-    /// StartAttack¿¡¼­ ½ÃÀÛÇÒ¶§ Àû¿ëµÉ ÇÔ¼ö 
+    /// StartAttackì—ì„œ ì‹œì‘í• ë•Œ ì ìš©ë  í•¨ìˆ˜ 
     /// </summary>
     public void UpdateAttackSpeed()
     {
@@ -206,7 +206,7 @@ public abstract class SkillSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// StartAttack¿¡¼­ ½ÃÀÛÇÒ¶§ Àû¿ëµÉ ÇÔ¼ö 
+    /// StartAttackì—ì„œ ì‹œì‘í• ë•Œ ì ìš©ë  í•¨ìˆ˜ 
     /// </summary>
     public void UpdateAttackPower()
     {

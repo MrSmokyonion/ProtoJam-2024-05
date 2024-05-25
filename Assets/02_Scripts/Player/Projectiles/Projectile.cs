@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Åõ»çÃ¼ ¼Ó¼ºÀ» °¡Áö´Â Å¬·¡½º PooledObject¸¦ »ó¼Ó¹Ş´Â´Ù.
+/// íˆ¬ì‚¬ì²´ ì†ì„±ì„ ê°€ì§€ëŠ” í´ë˜ìŠ¤ PooledObjectë¥¼ ìƒì†ë°›ëŠ”ë‹¤.
 /// </summary>
 public class Projectile : PooledObject
 {
     /// <summary>
-    /// Àû¿¡°Ô ÁÖ´Â ÃÖÁ¾ µ¥¹ÌÁö
+    /// ì ì—ê²Œ ì£¼ëŠ” ìµœì¢… ë°ë¯¸ì§€
     /// </summary>
     protected float damage;
 
     /// <summary>
-    /// Åõ»çÃ¼ »ç¶óÁö´Â ½Ã°£
+    /// íˆ¬ì‚¬ì²´ ì‚¬ë¼ì§€ëŠ” ì‹œê°„
     /// </summary>
     protected float lifeTime;
 
     /// <summary>
-    /// °üÅëÈ½¼ö(0ÀÌ¸é °üÅë ¾ÈÇÔ)
+    /// ê´€í†µíšŸìˆ˜(0ì´ë©´ ê´€í†µ ì•ˆí•¨)
     /// </summary>
     private int penetration = 0;
     int currentPenetration = 0;
     
     /// <summary>
-    /// Åõ»çÃ¼ÀÇ ÇöÀç ¼Óµµ
+    /// íˆ¬ì‚¬ì²´ì˜ í˜„ì¬ ì†ë„
     /// </summary>
     protected float currentSpeed = 5.0f;
 
     /// <summary>
-    /// Åõ»çÃ¼ÀÇ ÀÌµ¿¹æÇâ(±âº» ¹æÇâ °´Ã¼ ±âÁØ ¿À¸¥ÂÊ)
+    /// íˆ¬ì‚¬ì²´ì˜ ì´ë™ë°©í–¥(ê¸°ë³¸ ë°©í–¥ ê°ì²´ ê¸°ì¤€ ì˜¤ë¥¸ìª½)
     /// </summary>
     protected Vector2 dir;
 
@@ -40,7 +40,7 @@ public class Projectile : PooledObject
     }
 
     /// <summary>
-    /// ½ºÆù µÉ¶§¸¶´Ù ½ÇÇàµÉ ÃÊ±âÈ­ ÇÔ¼ö
+    /// ìŠ¤í° ë ë•Œë§ˆë‹¤ ì‹¤í–‰ë  ì´ˆê¸°í™” í•¨ìˆ˜
     /// </summary>
     public virtual void OnInitialize(AttackSkillData data, float damage, float lifeTime)
     {
@@ -57,7 +57,7 @@ public class Projectile : PooledObject
     }
 
     /// <summary>
-    /// ÇÁ·¹ÀÓ¸¶´Ù ¿òÁ÷ÀÓÀ» Á¦¾îÇÏ´Â Update±¸¹®À» ÀÚ½ÄµéÀÌ ÆíÁıÇÒ¼ö ÀÖ°Ô Ãß»óÈ­ ½ÃÅ² ÇÔ¼ö
+    /// í”„ë ˆì„ë§ˆë‹¤ ì›€ì§ì„ì„ ì œì–´í•˜ëŠ” Updateêµ¬ë¬¸ì„ ìì‹ë“¤ì´ í¸ì§‘í• ìˆ˜ ìˆê²Œ ì¶”ìƒí™” ì‹œí‚¨ í•¨ìˆ˜
     /// </summary>
     /// <param name="time">fixedTime</param>
     protected virtual void OnMoveUpdate(float time)    {    }
@@ -66,7 +66,7 @@ public class Projectile : PooledObject
     {
         if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
         {
-            // enemy¿¡°Ô µ¥¹ÌÁö ÁÖ±â
+            // enemyì—ê²Œ ë°ë¯¸ì§€ ì£¼ê¸°
             enemy.OnHitted(damage);
             if (--currentPenetration < 0)
             {

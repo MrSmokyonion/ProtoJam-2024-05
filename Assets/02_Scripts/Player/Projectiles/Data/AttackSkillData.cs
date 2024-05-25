@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackSkillData : ScriptableObject
 {
     /// <summary>
-    /// ¿òÁ÷ÀÓ¹æ½ÄÀ» °áÁ¤ÇÏ´Â enum(Self¸é ¾Ë¾Æ¼­ ³¯¾Æ°¡°í, Player¸é Player±âÁØÀ¸·Î ¿òÁ÷ÀÎ´Ù)
+    /// ì›€ì§ì„ë°©ì‹ì„ ê²°ì •í•˜ëŠ” enum(Selfë©´ ì•Œì•„ì„œ ë‚ ì•„ê°€ê³ , Playerë©´ Playerê¸°ì¤€ìœ¼ë¡œ ì›€ì§ì¸ë‹¤)
     /// </summary>
     public enum Parent
     {
@@ -28,7 +28,7 @@ public class AttackSkillData : ScriptableObject
     public SkillType skillType;
 
     /// <summary>
-    /// °ø°İ·Â
+    /// ê³µê²©ë ¥
     /// </summary>
     [SerializeField] protected float damage = 10;
     public float Damage => damage;
@@ -37,32 +37,32 @@ public class AttackSkillData : ScriptableObject
     public float KnockbackPower => knockbackPower;
 
     /// <summary>
-    /// Åõ»çÃ¼ ¼Óµµ
+    /// íˆ¬ì‚¬ì²´ ì†ë„
     /// </summary>
     [SerializeField] protected float speed = 5.0f;
     public float Speed => speed;
 
     /// <summary>
-    /// ¿¬¼Ó ¹ß»ç ÁÖ±â
+    /// ì—°ì† ë°œì‚¬ ì£¼ê¸°
     /// </summary>
     [SerializeField] protected float fireRate = 0.1f;
     public float FireRate => fireRate;
 
     /// <summary>
-    /// ´ÙÀ½ ¹ß»ç±îÁö °É¸®´Â ½Ã°£
+    /// ë‹¤ìŒ ë°œì‚¬ê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„
     /// </summary>
     [SerializeField] protected float fireDelay = 2.0f;
     public float FireDelay => fireDelay;
 
     /// <summary>
-    /// Åõ»çÃ¼ »ıÁ¸ ½Ã°£
+    /// íˆ¬ì‚¬ì²´ ìƒì¡´ ì‹œê°„
     /// </summary>
     [SerializeField] protected float lifeTime = 5.0f;
     public float LifeTime => lifeTime;  
 
 
     /// <summary>
-    /// ½ºÅ³ Å¸ÀÔÀ» PoolObjectÅ¸ÀÔÀ¸·Î º¯È¯ÇÏ±â À§ÇÑ ÇÔ¼ö(ºñÈ¿À²ÀûÀÌ¹Ç·Î ³ªÁß¿¡ ¼öÁ¤ÇØ¾ßÇÔ)
+    /// ìŠ¤í‚¬ íƒ€ì…ì„ PoolObjectíƒ€ì…ìœ¼ë¡œ ë³€í™˜í•˜ê¸° ìœ„í•œ í•¨ìˆ˜(ë¹„íš¨ìœ¨ì ì´ë¯€ë¡œ ë‚˜ì¤‘ì— ìˆ˜ì •í•´ì•¼í•¨)
     /// </summary>
     /// <returns></returns>
     public PoolObjectType GetPoolType()

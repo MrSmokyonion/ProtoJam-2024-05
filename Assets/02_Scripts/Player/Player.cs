@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // +++ ½ºÅİ °ü·Ã +++ --------------------------------
-    [Header("Ã¼·Â ½ºÅİ")]
+    // +++ ìŠ¤í…Ÿ ê´€ë ¨ +++ --------------------------------
+    [Header("ì²´ë ¥ ìŠ¤í…Ÿ")]
 
-    // Ã¼·Â °ü·Ã ======================================
+    // ì²´ë ¥ ê´€ë ¨ ======================================
     /// <summary>
-    /// ÃÖ´ë Ã¼·Â
+    /// ìµœëŒ€ ì²´ë ¥
     /// </summary>
     [SerializeField] private float maxHp = 20.0f;
 
@@ -19,19 +19,19 @@ public class Player : MonoBehaviour
         set => maxHp = value;
     }
 
-    [Tooltip("ÃÖ´ë·Î Áõ°¡ÇÒ ¼öÀÖ´Â ÃÖ´ë Ã¼·Â·®")]
+    [Tooltip("ìµœëŒ€ë¡œ ì¦ê°€í•  ìˆ˜ìˆëŠ” ìµœëŒ€ ì²´ë ¥ëŸ‰")]
     /// <summary>
-    /// ÃÖ´ë·Î Áõ°¡ÇÒ ¼öÀÖ´Â ÃÖ´ë Ã¼·Â·®
+    /// ìµœëŒ€ë¡œ ì¦ê°€í•  ìˆ˜ìˆëŠ” ìµœëŒ€ ì²´ë ¥ëŸ‰
     /// </summary>
     [SerializeField] private float plusMaxHp = 40.0f;
 
     /// <summary>
-    /// ÇöÀç Ã¼·Â
+    /// í˜„ì¬ ì²´ë ¥
     /// </summary>
     [SerializeField] private float currentHp = 20.0f;
 
     /// <summary>
-    /// ÇöÀç Ã¼·Â °ü·Ã ÇÁ·ÎÆÛÆ¼
+    /// í˜„ì¬ ì²´ë ¥ ê´€ë ¨ í”„ë¡œí¼í‹°
     /// </summary>
     public float CurrentHp
     {
@@ -40,12 +40,12 @@ public class Player : MonoBehaviour
         {
             if (IsAlive)
             {
-                currentHp = Mathf.Min(value, MaxHp);        // ÃÖ´ë Ã¼·Â ÀÌ»óÀ¸·Î´Â ¾È°£´Ù.
+                currentHp = Mathf.Min(value, MaxHp);        // ìµœëŒ€ ì²´ë ¥ ì´ìƒìœ¼ë¡œëŠ” ì•ˆê°„ë‹¤.
 
                 if (currentHp <= 0)
                 {
                     currentHp = 0;
-                    OnDie();        // »ç¸Á
+                    OnDie();        // ì‚¬ë§
                 }
 
                 onHealthChange?.Invoke(currentHp, maxHp);
@@ -55,154 +55,154 @@ public class Player : MonoBehaviour
 
     public bool IsAlive => currentHp > 0;
 
-    // ¹æ¾î·Â °ü·Ã ==================================================================
+    // ë°©ì–´ë ¥ ê´€ë ¨ ==================================================================
 
-    //[Header("¹æ¾î·Â ½ºÅİ")]
+    //[Header("ë°©ì–´ë ¥ ìŠ¤í…Ÿ")]
     ///// <summary>
-    ///// ¹æ¾î·Â(¹Ş´Â ÇÇÇØ %À¸·Î °¨¼Ò)
+    ///// ë°©ì–´ë ¥(ë°›ëŠ” í”¼í•´ %ìœ¼ë¡œ ê°ì†Œ)
     ///// </summary>
     //[SerializeField] private int defence = 0;
 
-    //[Tooltip("ÃÖ´ë·Î Áõ°¡ÇÒ ¼ö ÀÖ´Â ÃÖ´ë ¹æ¾î·Â")]
+    //[Tooltip("ìµœëŒ€ë¡œ ì¦ê°€í•  ìˆ˜ ìˆëŠ” ìµœëŒ€ ë°©ì–´ë ¥")]
     ///// <summary>
-    ///// ÃÖ´ë·Î Áõ°¡ÇÒ ¼ö ÀÖ´Â ÃÖ´ë ¹æ¾î·Â
+    ///// ìµœëŒ€ë¡œ ì¦ê°€í•  ìˆ˜ ìˆëŠ” ìµœëŒ€ ë°©ì–´ë ¥
     ///// </summary>
     //[SerializeField] private int plusMaxDefence = 30;
 
 
-    // °ø°İ·Â °ü·Ã ============================================================
+    // ê³µê²©ë ¥ ê´€ë ¨ ============================================================
 
-    [Header("°ø°İ·Â ½ºÅİ")]
+    [Header("ê³µê²©ë ¥ ìŠ¤í…Ÿ")]
     /// <summary>
-    /// °ø°İ·Â Áõ°¡·®
+    /// ê³µê²©ë ¥ ì¦ê°€ëŸ‰
     /// </summary>
     [SerializeField] private int attackDamage = 0;
 
     /// <summary>
-    /// °ø°İ·Â Áõ°¡·® ÇÁ·ÎÆÛÆ¼(½ºÅ³ ½ºÆ÷³Ê¿¡¼­ °ø°İ·Â °è»êÇÒ ¶§ Á¢±ÙÇÑ´Ù)
+    /// ê³µê²©ë ¥ ì¦ê°€ëŸ‰ í”„ë¡œí¼í‹°(ìŠ¤í‚¬ ìŠ¤í¬ë„ˆì—ì„œ ê³µê²©ë ¥ ê³„ì‚°í•  ë•Œ ì ‘ê·¼í•œë‹¤)
     /// </summary>
     public int AttackDamage => attackDamage;
 
-    [Tooltip("ÃÖ´ë Áõ°¡ÇÒ ¼ö ÀÖ´Â °ø°İ·Â Áõ°¡·®(%°è»ê)")]
+    [Tooltip("ìµœëŒ€ ì¦ê°€í•  ìˆ˜ ìˆëŠ” ê³µê²©ë ¥ ì¦ê°€ëŸ‰(%ê³„ì‚°)")]
     /// <summary>
-    /// ÃÖ´ë Áõ°¡ÇÒ ¼ö ÀÖ´Â °ø°İ·Â Áõ°¡·®(%°è»ê)
+    /// ìµœëŒ€ ì¦ê°€í•  ìˆ˜ ìˆëŠ” ê³µê²©ë ¥ ì¦ê°€ëŸ‰(%ê³„ì‚°)
     /// </summary>
     [SerializeField] private int plusAttackMaxDamage = 100;
 
-    // ¿ù±Ş °ü·Ã(°æÇèÄ¡) ==================================================================
+    // ì›”ê¸‰ ê´€ë ¨(ê²½í—˜ì¹˜) ==================================================================
 
-    [Header("¿ù±Ş ½ºÅİ")]
+    [Header("ì›”ê¸‰ ìŠ¤í…Ÿ")]
 
     /// <summary>
-    /// Ãß°¡ ¿ù±Ş·ü
+    /// ì¶”ê°€ ì›”ê¸‰ë¥ 
     /// </summary>
     public int extraPaymentRate = 0;
 
     /// <summary>
-    /// Ãß°¡ ¿ù±Ş·üÀÇ ÃÖ´ë Áõ°¡·®
+    /// ì¶”ê°€ ì›”ê¸‰ë¥ ì˜ ìµœëŒ€ ì¦ê°€ëŸ‰
     /// </summary>
     [SerializeField] private int plusMaxExtraPlaymentRate = 30;
 
-    // Ã¼·Â Àç»ı·Â °ü·Ã ==================================================================
+    // ì²´ë ¥ ì¬ìƒë ¥ ê´€ë ¨ ==================================================================
 
-    [Header("Ã¼·Â Àç»ı·Â ½ºÅİ")]
+    [Header("ì²´ë ¥ ì¬ìƒë ¥ ìŠ¤í…Ÿ")]
     /// <summary>
-    /// ÃÊ´ç Ã¼·Â Àç»ı·Â
+    /// ì´ˆë‹¹ ì²´ë ¥ ì¬ìƒë ¥
     /// </summary>
     [SerializeField] private float regeneration = 0.0f;
 
     /// <summary>
-    /// ÃÖ´ë Áõ°¡ÇÒ ¼ö ÀÖ´Â Ã¼·Â Àç»ı·Â
+    /// ìµœëŒ€ ì¦ê°€í•  ìˆ˜ ìˆëŠ” ì²´ë ¥ ì¬ìƒë ¥
     /// </summary>
     [SerializeField] private float plusMaxRegeneration = 4;
 
     /// <summary>
-    /// Ã¼·Â È¸º¹ ÁÖ±â
+    /// ì²´ë ¥ íšŒë³µ ì£¼ê¸°
     /// </summary>
     public float regenerationCoolTime = 5.0f;
 
-    // ÀÌµ¿ °ü·Ã ==================================================================
+    // ì´ë™ ê´€ë ¨ ==================================================================
 
-    [Header("ÀÌµ¿ ½ºÅİ")]
+    [Header("ì´ë™ ìŠ¤í…Ÿ")]
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾îÀÇ ±âº» ÀÌµ¿ ¼Óµµ(º¯ÇÏÁö ¾Ê´Â °ª ¹× ±âº» ¼Óµµ Á¶Àı¿ëº¯¼ö)
+    /// í”Œë ˆì´ì–´ì˜ ê¸°ë³¸ ì´ë™ ì†ë„(ë³€í•˜ì§€ ì•ŠëŠ” ê°’ ë° ê¸°ë³¸ ì†ë„ ì¡°ì ˆìš©ë³€ìˆ˜)
     /// </summary>
     public float moveStaticSpeed = 10.0f;
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¼Óµµ
+    /// í”Œë ˆì´ì–´ì˜ ì´ë™ ì†ë„
     /// </summary>
     public float moveSpeed = 1.0f;
 
     /// <summary>
-    /// ÃÖ´ë Áõ°¡ÇÒ¼ö ÀÖ´Â ÀÌµ¿¼Óµµ Áõ°¡·®
+    /// ìµœëŒ€ ì¦ê°€í• ìˆ˜ ìˆëŠ” ì´ë™ì†ë„ ì¦ê°€ëŸ‰
     /// </summary>
     [SerializeField] private float plusMaxMoveSpeed = 2.0f;
 
-    // ÄğÅ¸ÀÓ °ü·Ã ==================================================================
+    // ì¿¨íƒ€ì„ ê´€ë ¨ ==================================================================
 
-    [Header("ÄğÅ¸ÀÓ ½ºÅİ")]
+    [Header("ì¿¨íƒ€ì„ ìŠ¤í…Ÿ")]
     
     /// <summary>
-    /// ½ºÅ³ ÄğÅ¸ÀÓ °¨¼Ò·®(%À¸·Î °è»êÇÑ´Ù)
+    /// ìŠ¤í‚¬ ì¿¨íƒ€ì„ ê°ì†ŒëŸ‰(%ìœ¼ë¡œ ê³„ì‚°í•œë‹¤)
     /// </summary>
     [SerializeField] private int skillCoolTime = 0;
     public float SkillCoolTimeRate => skillCoolTime;
 
     /// <summary>
-    /// ÃÖ´ë ÄğÅ¸ÀÓ °¨¼ÒÇÒ¼ö ÀÖ´Â Áõ°¡·®
+    /// ìµœëŒ€ ì¿¨íƒ€ì„ ê°ì†Œí• ìˆ˜ ìˆëŠ” ì¦ê°€ëŸ‰
     /// </summary>
     [SerializeField] private int plusMaxSkillCoolTime = 30;
 
-    // 0522 È¸ÀÇ¶§ »ç¶óÁø ½ºÅİµé
-    // È¸ÇÇ °ü·Ã ==================================================================
+    // 0522 íšŒì˜ë•Œ ì‚¬ë¼ì§„ ìŠ¤í…Ÿë“¤
+    // íšŒí”¼ ê´€ë ¨ ==================================================================
 
-    //[Header("È¸ÇÇ ½ºÅİ")]
+    //[Header("íšŒí”¼ ìŠ¤í…Ÿ")]
     ///// <summary>
-    ///// È¸ÇÇÀ²
+    ///// íšŒí”¼ìœ¨
     ///// </summary>
     //[SerializeField] private int dodgeRate = 0;
     ///// <summary>
-    ///// ÃÖ´ë Áõ°¡ÇÒ¼ö ÀÖ´Â È¸ÇÇÀ² Áõ°¡·®
+    ///// ìµœëŒ€ ì¦ê°€í• ìˆ˜ ìˆëŠ” íšŒí”¼ìœ¨ ì¦ê°€ëŸ‰
     ///// </summary>
     //[SerializeField] private int plusMaxDodgeRate = 20;
 
-    // °ø°İ ¼Óµµ °ü·Ã ==================================================================
+    // ê³µê²© ì†ë„ ê´€ë ¨ ==================================================================
 
-    //[Header("°ø°İ ¼Óµµ ½ºÅİ")]
+    //[Header("ê³µê²© ì†ë„ ìŠ¤í…Ÿ")]
     ///// <summary>
-    ///// °°Àº ´ë»ó¿¡°Ô ´ë¹ÌÁö¸¦ ÀÔÈ÷´Â ÃÖ¼Ò ½Ã°£(ÀÛÀ»¼ö·Ï »¡¶óÁü)
+    ///// ê°™ì€ ëŒ€ìƒì—ê²Œ ëŒ€ë¯¸ì§€ë¥¼ ì…íˆëŠ” ìµœì†Œ ì‹œê°„(ì‘ì„ìˆ˜ë¡ ë¹¨ë¼ì§)
     ///// </summary>
     //public float attackSpeed = 1.0f;
 
-    // ¼÷·Ãµµ °ü·Ã ==================================================================
+    // ìˆ™ë ¨ë„ ê´€ë ¨ ==================================================================
 
-    //[Header("¼÷·Ãµµ ½ºÅİ")]
+    //[Header("ìˆ™ë ¨ë„ ìŠ¤í…Ÿ")]
     ///// <summary>
-    ///// ¹è°ü °íÄ¡´Â ½Ã°£
+    ///// ë°°ê´€ ê³ ì¹˜ëŠ” ì‹œê°„
     ///// </summary>
     //public float FixingTime = 10.0f;
 
     ///// <summary>
-    ///// ¹è°ü °íÄ¡´Â ½Ã°£ÀÌ ÃÖ¼Ò·Î ÁÙ¾îµå´Â ¾ç
+    ///// ë°°ê´€ ê³ ì¹˜ëŠ” ì‹œê°„ì´ ìµœì†Œë¡œ ì¤„ì–´ë“œëŠ” ì–‘
     ///// </summary>
     //[SerializeField] private int plusMaxFixingTime = 5;
 
-    // °æÇèÄ¡ °ü·Ã ==================================================================
+    // ê²½í—˜ì¹˜ ê´€ë ¨ ==================================================================
 
-    [Header("Level °ü·Ã")]
+    [Header("Level ê´€ë ¨")]
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î ·¹º§
+    /// í”Œë ˆì´ì–´ ë ˆë²¨
     /// </summary>
     public int level = 1;
 
     /// <summary>
-    /// ÃÖ´ë ·¹º§(º¯ÇÏÁö ¾ÊÀ½)
+    /// ìµœëŒ€ ë ˆë²¨(ë³€í•˜ì§€ ì•ŠìŒ)
     /// </summary>
     public const int maxLevel = 15;
 
     /// <summary>
-    /// ÇöÀç °æÇèÄ¡
+    /// í˜„ì¬ ê²½í—˜ì¹˜
     /// </summary>
     public float currentEx = 0;
 
@@ -213,14 +213,14 @@ public class Player : MonoBehaviour
         {
             if (IsAlive)
             {
-                float ex = value - currentEx;       // ex´Â Ãß°¡µÇ´Â °æÇèÄ¡
+                float ex = value - currentEx;       // exëŠ” ì¶”ê°€ë˜ëŠ” ê²½í—˜ì¹˜
 
-                currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // °æÇèÄ¡ Ãß°¡ Áõ°¡·®
+                currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // ê²½í—˜ì¹˜ ì¶”ê°€ ì¦ê°€ëŸ‰
 
 
                 if (currentEx >= maxEx)
                 {
-                    // ·¹º§¾÷, current ÃÊ±âÈ­, max Áõ°¡
+                    // ë ˆë²¨ì—…, current ì´ˆê¸°í™”, max ì¦ê°€
 
                     onLevelChange?.Invoke(level);
                 }
@@ -230,22 +230,22 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// ÃÖ´ë °æÇèÄ¡(·¹º§¿¡ µû¶ó ¿ä±¸ ¼öÄ¡ ´Ş¶óÁü)
+    /// ìµœëŒ€ ê²½í—˜ì¹˜(ë ˆë²¨ì— ë”°ë¼ ìš”êµ¬ ìˆ˜ì¹˜ ë‹¬ë¼ì§)
     /// </summary>
     public float maxEx = 5.0f;
 
 
 
-    // ÀÌµ¿¹æÇâ °ü·Ã ==================================================================
+    // ì´ë™ë°©í–¥ ê´€ë ¨ ==================================================================
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¹æÇâ
+    /// í”Œë ˆì´ì–´ì˜ ì´ë™ ë°©í–¥
     /// </summary>
     Vector2 dir;
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ ÇâÇÏ°í ÀÖ´Â ¹æÇâ(8¹æÇâ, zeroÀÏ °æ¿ì´Â ¾ø´Ù)
-    /// Åõ»çÃ¼ »ı¼ºÇÒ¶§ ÁÖ·Î ÂüÁ¶ÇÔ
+    /// í”Œë ˆì´ì–´ê°€ í–¥í•˜ê³  ìˆëŠ” ë°©í–¥(8ë°©í–¥, zeroì¼ ê²½ìš°ëŠ” ì—†ë‹¤)
+    /// íˆ¬ì‚¬ì²´ ìƒì„±í• ë•Œ ì£¼ë¡œ ì°¸ì¡°í•¨
     /// </summary>
     Vector2 headDir = Vector2.right;
 
@@ -265,7 +265,7 @@ public class Player : MonoBehaviour
 
             if(dir.x != 0)
             {
-                // ¹æÇâ¿¡ µû¶ó Ä³¸¯ÅÍ ¹æÇâÀ» ¹Ù²Ù±â
+                // ë°©í–¥ì— ë”°ë¼ ìºë¦­í„° ë°©í–¥ì„ ë°”ê¾¸ê¸°
                 if(dir.x > 0)
                 {
                     
@@ -283,49 +283,49 @@ public class Player : MonoBehaviour
         }
     }
 
-    // +++½ºÅ³ °ü¸® °ü·Ã +++ -----------------------------------
+    // +++ìŠ¤í‚¬ ê´€ë¦¬ ê´€ë ¨ +++ -----------------------------------
 
-    // ½ºÅ³µéÀ» °ü¸®ÇÏ´Â µñ¼Å³Ê¸®
+    // ìŠ¤í‚¬ë“¤ì„ ê´€ë¦¬í•˜ëŠ” ë”•ì…”ë„ˆë¦¬
     Dictionary<AttackSkillData.SkillType, int> skillInventory;
 
 
-    // +++µ¨¸®°ÔÀÌÆ® °ü·Ã+++ ----------------------------------
+    // +++ë¸ë¦¬ê²Œì´íŠ¸ ê´€ë ¨+++ ----------------------------------
 
     /// <summary>
-    /// Ã¼·Â °ª ¹Ù²ğ¶§¸¶´Ù ºÒ¸®´Â µ¨¸®°ÔÀÌÆ®
+    /// ì²´ë ¥ ê°’ ë°”ë€”ë•Œë§ˆë‹¤ ë¶ˆë¦¬ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action<float, float> onHealthChange;
 
     /// <summary>
-    /// °æÇèÄ¡ °ª ¹Ù²ğ¶§¸¶´Ù ºÒ¸®´Â µ¨¸®°ÔÀÌÆ®
+    /// ê²½í—˜ì¹˜ ê°’ ë°”ë€”ë•Œë§ˆë‹¤ ë¶ˆë¦¬ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action<float, float> onExChange;
 
     /// <summary>
-    /// ·¹º§ °ª ¹Ù²ğ¶§¸¶´Ù ºÒ¸®´Â µ¨¸®°ÔÀÌÆ®
+    /// ë ˆë²¨ ê°’ ë°”ë€”ë•Œë§ˆë‹¤ ë¶ˆë¦¬ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action<int> onLevelChange;
 
 
-    // +++¾Ö´Ï¸ŞÀÌ¼Ç ÇØ½Ì ÀÚ·á+++ --------------------------------
+    // +++ì• ë‹ˆë©”ì´ì…˜ í•´ì‹± ìë£Œ+++ --------------------------------
 
     readonly int Hash_IsDead = Animator.StringToHash("IsDead");
     readonly int Hash_IsWalk = Animator.StringToHash("IsWalk");
     readonly int Hash_IsAttack = Animator.StringToHash("IsAttack");
 
-    // +++±âÅ¸ ÀÚ·á+++ --------------------------------
+    // +++ê¸°íƒ€ ìë£Œ+++ --------------------------------
 
     /// <summary>
-    /// °ø°İ Ãà
+    /// ê³µê²© ì¶•
     /// </summary>
     Transform attackAxie;
 
     /// <summary>
-    /// ±âº» °ø°İ À§Ä¡
+    /// ê¸°ë³¸ ê³µê²© ìœ„ì¹˜
     /// </summary>
     Transform attackArea;
 
-    // +++ ÄÄÆ÷³ÍÆ® °ü·Ã +++ -------------------------------------
+    // +++ ì»´í¬ë„ŒíŠ¸ ê´€ë ¨ +++ -------------------------------------
     Rigidbody2D rb;
     PlayerController playerController;
     Animator animator;
@@ -398,7 +398,7 @@ public class Player : MonoBehaviour
         if(skillInventory.ContainsKey(skillType))
         {
             spawner.IncreaseLevel();
-            skillInventory.Remove(spawner.skillType);       // µñ¼Å³Ê¸®´Â Å°°ª ¹Ù²Ü·Á¸é ´Ù½Ã ³Ö¾î¾ß ÇÑ´Ù
+            skillInventory.Remove(spawner.skillType);       // ë”•ì…”ë„ˆë¦¬ëŠ” í‚¤ê°’ ë°”ê¿€ë ¤ë©´ ë‹¤ì‹œ ë„£ì–´ì•¼ í•œë‹¤
             skillInventory.Add(spawner.skillType, spawner.SpawnerLevel);
         }
         else
@@ -433,7 +433,7 @@ public class Player : MonoBehaviour
     {
         if (level >= maxLevel)
         {
-            Debug.Log("ÀÌ¹Ì ÃÖ´ë ·¹º§ÀÔ´Ï´Ù.");
+            Debug.Log("ì´ë¯¸ ìµœëŒ€ ë ˆë²¨ì…ë‹ˆë‹¤.");
             return;
         }
         
@@ -479,7 +479,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾îÀÇ ¹Ù¶óº¸´Â ¹æÇâ¿¡ ´ëÇÑ °¢µµ¸¦ ±¸ÇÏ´Â ÇÔ¼ö
+    /// í”Œë ˆì´ì–´ì˜ ë°”ë¼ë³´ëŠ” ë°©í–¥ì— ëŒ€í•œ ê°ë„ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns></returns>
     public float GetFireAngle()
@@ -489,7 +489,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// »ç¸Á½Ã ½ÇÇàÇÏ´Â ÄÚµå
+    /// ì‚¬ë§ì‹œ ì‹¤í–‰í•˜ëŠ” ì½”ë“œ
     /// </summary>
     void OnDie()
     {
@@ -498,7 +498,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// PlayerPrefs¿¡¼­ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Â´Ù.
+    /// PlayerPrefsì—ì„œ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
     /// </summary>
     public void PlayerStateSetting()
     {
@@ -513,13 +513,13 @@ public class Player : MonoBehaviour
                 UpgradeState(type);
             }
         }
-        Debug.Log($"ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ ºÒ·¯¿À±â ¿Ï·á");
+        Debug.Log($"í”Œë ˆì´ì–´ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì™„ë£Œ");
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾îÀÇ ½ºÅİÀ» ¾÷±×·¹ÀÌµåÇÏ´Â ÇÔ¼ö
+    /// í”Œë ˆì´ì–´ì˜ ìŠ¤í…Ÿì„ ì—…ê·¸ë ˆì´ë“œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="type">¾÷±×·¹ÀÌµåÇÒ Å¸ÀÔ</param>
+    /// <param name="type">ì—…ê·¸ë ˆì´ë“œí•  íƒ€ì…</param>
     public void UpgradeState(ItemType type)
     {
         switch (type)
@@ -550,9 +550,9 @@ public class Player : MonoBehaviour
 
     
 
-    // ±âº»°ø°İ ±¸ÇöºÎºĞÀÌ¿´À¸³ª »ç¿ë ¾ÈÇÔ
+    // ê¸°ë³¸ê³µê²© êµ¬í˜„ë¶€ë¶„ì´ì˜€ìœ¼ë‚˜ ì‚¬ìš© ì•ˆí•¨
     ///// <summary>
-    ///// ÀÏÁ¤½Ã°£ °£°İÀ¸·Î ÀÚµ¿°ø°İÇÏ´Â ÄÚ·çÆ¾
+    ///// ì¼ì •ì‹œê°„ ê°„ê²©ìœ¼ë¡œ ìë™ê³µê²©í•˜ëŠ” ì½”ë£¨í‹´
     ///// </summary>
     ///// <returns></returns>
     //IEnumerator AutoAttack()
@@ -565,11 +565,11 @@ public class Player : MonoBehaviour
     //}
 
     ///// <summary>
-    ///// ±âº» °ø°İÇÏ±â(»ç½Ç °ø°İ Åõ»çÃ¼¸¦ ¼ÒÈ¯ÇÏ´Â ¹æ½Ä)
+    ///// ê¸°ë³¸ ê³µê²©í•˜ê¸°(ì‚¬ì‹¤ ê³µê²© íˆ¬ì‚¬ì²´ë¥¼ ì†Œí™˜í•˜ëŠ” ë°©ì‹)
     ///// </summary>
     //void Attack()
     //{
-    //    Debug.Log($"ÇÃ·¹ÀÌ¾î ÀÚµ¿ °ø°İ");
+    //    Debug.Log($"í”Œë ˆì´ì–´ ìë™ ê³µê²©");
     //    Factory.Ins.GetObject(PoolObjectType.PlayerAttack, attackArea.position);
     //}
 }

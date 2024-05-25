@@ -77,7 +77,7 @@ public class BrokenPipe : MonoBehaviour
         isCompleted = true;
         ui_repairGauge.gameObject.SetActive(false);
 
-        //¼ö¸® ¿Ï·á‰çÀ»¶§ ±×·¡ÇÈ ¿¬Ãâ
+        //ìˆ˜ë¦¬ ì™„ë£Œï¿½ç‘›ë»‘ï¿½ ê·¸ëž˜í”½ ì—°ì¶œ
 
 
         parents.RemovePipe(this);

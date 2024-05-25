@@ -35,15 +35,15 @@ public class ManHoleSpawner : SkillSpawner
         {
             // 0, 1
             // 0, -1
-            // 3¹æÇâ
+            // 3ë°©í–¥
 
             Vector3 spawnPosition = new Vector3();
             switch(i)
             {
-                case 0:     // Ã¹¹øÂ° ¼ÒÈ¯, Ç×»ó À§ÂÊ¿¡ ³ª¿Â´Ù
+                case 0:     // ì²«ë²ˆì§¸ ì†Œí™˜, í•­ìƒ ìœ„ìª½ì— ë‚˜ì˜¨ë‹¤
                     spawnPosition = new Vector3(0, 1);
                     break;
-                case 1:     // µÎ¹øÂ° ¼ÒÈ¯, spawnCount°¡ 2ÀÌ¸é ¾Æ·¡¼ÒÈ¯, 3ÀÌ¸é ´ë°¢¼± ¼ÒÈ¯ÀÌ´Ù
+                case 1:     // ë‘ë²ˆì§¸ ì†Œí™˜, spawnCountê°€ 2ì´ë©´ ì•„ë˜ì†Œí™˜, 3ì´ë©´ ëŒ€ê°ì„  ì†Œí™˜ì´ë‹¤
                     if (spawnCount < 3)
                     {
                         spawnPosition = new Vector3(0, -1, 0);
@@ -53,7 +53,7 @@ public class ManHoleSpawner : SkillSpawner
                         spawnPosition = new Vector3(0.71f, -0.71f, 0);
                     }
                     break;
-                case 2:     // ¼¼¹øÂ° ¼ÒÈ¯
+                case 2:     // ì„¸ë²ˆì§¸ ì†Œí™˜
                     spawnPosition = new Vector3(-0.71f, -0.71f, 0);
                     break;
                 default:

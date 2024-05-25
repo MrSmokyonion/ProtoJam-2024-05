@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class ItemSlotUIController : MonoBehaviour
 {
-    //ÇØ´ç UI°¡ °¡¸®Å°´Â ¾ÆÀÌÅÛ µ¥ÀÌÅÍ
+    //í•´ë‹¹ UIê°€ ê°€ë¦¬í‚¤ëŠ” ì•„ì´í…œ ë°ì´í„°
     [SerializeField] ItemType itemType;
 
-    //UI ÂüÁ¶ µ¥ÀÌÅÍ
+    //UI ì°¸ì¡° ë°ì´í„°
     [SerializeField] Image ui_itemImage;
     [SerializeField] TMP_Text ui_currentLevelText;
 
 
 
-    //½½·Ô ÃÊ±âÈ­
+    //ìŠ¬ë¡¯ ì´ˆê¸°í™”
     public void InitSlotUI(ItemInfo _itemInfo)
     {
         itemType = _itemInfo.Type;
@@ -23,17 +23,17 @@ public class ItemSlotUIController : MonoBehaviour
         ui_currentLevelText.text = "Lv" + _itemInfo.CurrentUpgradeLevel.ToString();
     }
 
-    //½½·Ô ¾÷µ¥ÀÌÆ®
+    //ìŠ¬ë¡¯ ì—…ë°ì´íŠ¸
     public void UpdateSlotUI(int _CurrentUpgradeLevel)
     {
         ui_currentLevelText.text = "Lv" + _CurrentUpgradeLevel.ToString();
     }
 
-    //½½·Ô Å¬¸¯ÇßÀ»¶§ ÀÛµ¿
+    //ìŠ¬ë¡¯ í´ë¦­í–ˆì„ë•Œ ì‘ë™
 
     public void OnClickSlot()
     {
-        //TODO : ¾ÆÀÌÅÛ °­Á¶ È¿°ú?
+        //TODO : ì•„ì´í…œ ê°•ì¡° íš¨ê³¼?
         UpdateItemDescriptionUI();
     }
 
@@ -42,7 +42,7 @@ public class ItemSlotUIController : MonoBehaviour
         transform.parent.GetComponent<ItemUpgradeUIController>().PrintItemInfo(itemType);
     }
 
-    //½½·Ô Æ÷Ä¿½Ì ÇØÁ¦‰çÀ» ¶§ ÀÛµ¿
+    //ìŠ¬ë¡¯ í¬ì»¤ì‹± í•´ì œï¿½ç‘›ï¿½ ë•Œ ì‘ë™
     public void OnExitFocusSlotButton()
     {
 

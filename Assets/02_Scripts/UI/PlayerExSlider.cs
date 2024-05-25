@@ -20,7 +20,7 @@ public class PlayerExSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ³ªÁß¿¡ GameManager·Î ¹Ù²Ş
+        // ë‚˜ì¤‘ì— GameManagerë¡œ ë°”ê¿ˆ
         GameManager.Ins.Player.onExChange += ChangeExValue;
         GameManager.Ins.Player.onLevelChange += ChageLevelValue;
 

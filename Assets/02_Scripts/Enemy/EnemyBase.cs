@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyBase : PooledObject
 {
-    [Header("Àû ½ºÅİ")]
+    [Header("ì  ìŠ¤í…Ÿ")]
     [SerializeField] protected float maxHp = 10.0f;
     [SerializeField] protected float currentHp;
     [SerializeField] protected float damage = 1;
@@ -36,7 +36,7 @@ public class EnemyBase : PooledObject
     }
 
     /// <summary>
-    /// Enemy°¡ »ç¸ÁÇÒ¶§ ºÒ¸®´Â µ¨¸®°ÔÀÌÆ®
+    /// Enemyê°€ ì‚¬ë§í• ë•Œ ë¶ˆë¦¬ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action onDie;
 
@@ -77,7 +77,7 @@ public class EnemyBase : PooledObject
     }
 
     /// <summary>
-    /// Ã¼·Â ½ºÅİÀ» °áÁ¤ÇÏ´Â ÇÔ¼ö(±âº»°ª 1ÀÌ¸ç ¹è¼ö·Î Áõ°¡ÇÔ ex) 1.2ÀÔ·Â½Ã 1.2¹è Ã¼·Â Áõ°¡)
+    /// ì²´ë ¥ ìŠ¤í…Ÿì„ ê²°ì •í•˜ëŠ” í•¨ìˆ˜(ê¸°ë³¸ê°’ 1ì´ë©° ë°°ìˆ˜ë¡œ ì¦ê°€í•¨ ex) 1.2ì…ë ¥ì‹œ 1.2ë°° ì²´ë ¥ ì¦ê°€)
     /// </summary>
     /// <param name="hp"></param>
     public void SettingState(float hpRate)
@@ -102,15 +102,15 @@ public class EnemyBase : PooledObject
 
     public void OnHitted(float damage)
     {
-        // Debug.Log($"{name} : ÇÃ·¹ÀÌ¾î¿¡°Ô {damage}¸¦ ¹Ş¾Ò´Ù!");
+        // Debug.Log($"{name} : í”Œë ˆì´ì–´ì—ê²Œ {damage}ë¥¼ ë°›ì•˜ë‹¤!");
         CurrentHp -= damage;
     }
 
     /// <summary>
-    /// ³Ë¹é °ø°İÀÌ Æ÷ÇÔµÈ °ø°İ
+    /// ë„‰ë°± ê³µê²©ì´ í¬í•¨ëœ ê³µê²©
     /// </summary>
-    /// <param name="damage">°ø°İ·Â</param>
-    /// <param name="knockback">³Ë¹é ¹æÇâ</param>
+    /// <param name="damage">ê³µê²©ë ¥</param>
+    /// <param name="knockback">ë„‰ë°± ë°©í–¥</param>
     public void OnHitted(float damage, Vector3 knockback)
     {
         OnHitted(damage);
@@ -128,12 +128,12 @@ public class EnemyBase : PooledObject
 
     protected virtual void Attack(Player player)
     {
-        // ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö ÁÖ±â
+        // í”Œë ˆì´ì–´ì—ê²Œ ë°ë¯¸ì§€ ì£¼ê¸°
         player.OnHitted(damage * 0.1f);
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î¿¡ ÀÇÇØ Á×¾úÀ» ¶§
+    /// í”Œë ˆì´ì–´ì— ì˜í•´ ì£½ì—ˆì„ ë•Œ
     /// </summary>
     protected virtual void OnDie()
     {

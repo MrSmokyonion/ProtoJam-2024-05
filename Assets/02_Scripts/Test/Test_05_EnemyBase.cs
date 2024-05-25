@@ -23,7 +23,7 @@ public class Test_05_EnemyBase : TestBase
 
     protected override void Test2(InputAction.CallbackContext context)
     {
-        GameObject temp = Factory.Ins.GetObject(enemyType, transform.position);           // À§Ä¡ ÁöÁ¤ÇØ¼­ ¼ÒÈ¯
+        GameObject temp = Factory.Ins.GetObject(enemyType, transform.position);           // ìœ„ì¹˜ ì§€ì •í•´ì„œ ì†Œí™˜
         
     }
 

@@ -31,7 +31,7 @@ public class Wrench : Projectile
 
 
     /// <summary>
-    /// Ã¹ ·£Ä¡ Ãæµ¹
+    /// ì²« ëœì¹˜ ì¶©ëŒ
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +42,7 @@ public class Wrench : Projectile
 
         //foreach (var enemy in containEnemy)
         //{
-        //    // Àûµé¿¡°Ô ´ë¹ÌÁö ÁÖ±â
+        //    // ì ë“¤ì—ê²Œ ëŒ€ë¯¸ì§€ ì£¼ê¸°
         //    enemy.OnHitted(damage, dir);
         //}
 
@@ -54,7 +54,7 @@ public class Wrench : Projectile
 
 
     /// <summary>
-    /// ·»Ä¡ ÆøÆÄ ¹üÀ§ ¾È¿¡ ÀÖ´Â Àûµé
+    /// ë Œì¹˜ í­íŒŒ ë²”ìœ„ ì•ˆì— ìˆëŠ” ì ë“¤
     /// </summary>
     /// <param name="collision"></param>
     protected override void OnTriggerEnter2D(Collider2D collision)

@@ -4,24 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾îÀÇ ÀÔ·Â¿¡ °ü·ÁÇÏ´Â Å¬·¡½º
+/// í”Œë ˆì´ì–´ì˜ ì…ë ¥ì— ê´€ë ¤í•˜ëŠ” í´ë˜ìŠ¤
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
     PlayerInputAction action;
 
     /// <summary>
-    /// ¹æÇâÅ° µ¨¸®°ÔÀÌÆ®
+    /// ë°©í–¥í‚¤ ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public Action<Vector2> onMove;
 
     /// <summary>
-    /// È®ÀÎÅ° µ¨¸®°ÔÀÌÆ®
+    /// í™•ì¸í‚¤ ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public Action onEnter;
 
     /// <summary>
-    /// Ãë¼ÒÅ° µ¨¸®°ÔÀÌÆ®
+    /// ì·¨ì†Œí‚¤ ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public Action onCancel;
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 result = context.ReadValue<Vector2>();
 
-        // À§ ÇÑÁÙÀÌ¶û °°Àº ÄÚµå, ¹öÆ° ¶¿¶§ ´Ù¸¥ Ãß°¡ ÀÛ¾÷ÇÏ¸é »ç¿ëÇÒ ¿¹Á¤
+        // ìœ„ í•œì¤„ì´ë‘ ê°™ì€ ì½”ë“œ, ë²„íŠ¼ ë—„ë•Œ ë‹¤ë¥¸ ì¶”ê°€ ì‘ì—…í•˜ë©´ ì‚¬ìš©í•  ì˜ˆì •
         //Vector2 result = Vector2.zero;
         //if (!context.canceled)
         //{

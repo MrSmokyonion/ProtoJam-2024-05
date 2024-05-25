@@ -4,18 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// ¿ÀºêÁ§Æ® Ç®¿¡ µé¾î°¥ ¿ÀºêÁ§Æ®µéÀÌ »ó¼Ó¹ŞÀ» Å¬·¡½º
+/// ì˜¤ë¸Œì íŠ¸ í’€ì— ë“¤ì–´ê°ˆ ì˜¤ë¸Œì íŠ¸ë“¤ì´ ìƒì†ë°›ì„ í´ë˜ìŠ¤
 /// </summary>
 public class PooledObject : MonoBehaviour
 {
     /// <summary>
-    /// ÀÌ °ÔÀÓ ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­ µÉ ¶§ ½ÇÇàµÇ´Â µ¨¸®°ÔÀÌÆ®
+    /// ì´ ê²Œì„ ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™” ë  ë•Œ ì‹¤í–‰ë˜ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action onDisable;
 
     protected virtual void OnEnable()
     {
-        transform.localPosition = Vector3.zero;                 // À§Ä¡¿Í È¸Àü ÃÊ±âÈ­
+        transform.localPosition = Vector3.zero;                 // ìœ„ì¹˜ì™€ íšŒì „ ì´ˆê¸°í™”
         transform.localRotation = Quaternion.identity;
 
     }
@@ -26,9 +26,9 @@ public class PooledObject : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÏÁ¤½Ã°£ ÈÄ ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    /// ì¼ì •ì‹œê°„ í›„ ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
     /// </summary>
-    /// <param name="delay">ºñÈ°¼ºÈ­ Áö¿¬½ÃÅ³ ½Ã°£</param>
+    /// <param name="delay">ë¹„í™œì„±í™” ì§€ì—°ì‹œí‚¬ ì‹œê°„</param>
     /// <returns></returns>
     protected virtual IEnumerator LifeOver(float delay = 0.0f)
     {

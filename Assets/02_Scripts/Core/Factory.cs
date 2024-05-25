@@ -5,15 +5,15 @@ using UnityEngine;
 
 public enum PoolObjectType : int
 {
-    PlayerAttack,       // ÇÃ·¹ÀÌ¾î ±âº» °ø°İ
+    PlayerAttack,       // í”Œë ˆì´ì–´ ê¸°ë³¸ ê³µê²©
 
-    EnemyPoop,               // ¶Ë
-    EnemyDuck,               // ¿À¸®
-    EnemyCrocodile,          // ¾Ç¾î
-    EnemyBullet,        // ¾Ç¾î ÃÑ¾Ë
+    EnemyPoop,               // ë˜¥
+    EnemyDuck,               // ì˜¤ë¦¬
+    EnemyCrocodile,          // ì•…ì–´
+    EnemyBullet,        // ì•…ì–´ ì´ì•Œ
 
 
-    PlungerAttack = 100,// ¶Õ¾î»½ °ø°İ
+    PlungerAttack = 100,// ëš«ì–´ë»¥ ê³µê²©
     ManHoleAttack,
     ShellAttack,
     WrenchAttack,
@@ -25,7 +25,7 @@ public enum PoolObjectType : int
 public class Factory : Singleton<Factory>
 {
     /// <summary>
-    /// poolµéÀ» °ü¸®ÇÏ´Â ¹è¿­
+    /// poolë“¤ì„ ê´€ë¦¬í•˜ëŠ” ë°°ì—´
     /// </summary>
     //ObjectPool<PooledObject>[] pools;
 
@@ -121,12 +121,12 @@ public class Factory : Singleton<Factory>
     }
 
     /// <summary>
-    /// ¿ÀºêÁ§Æ®¸¦ Ç®¿¡¼­ °¡Á®¿À¸é¼­ À§Ä¡¿Í °¢µµ¸¦ ¼³Á¤ÇÏ´Â ¿À¹ö·Îµù ÇÔ¼ö
+    /// ì˜¤ë¸Œì íŠ¸ë¥¼ í’€ì—ì„œ ê°€ì ¸ì˜¤ë©´ì„œ ìœ„ì¹˜ì™€ ê°ë„ë¥¼ ì„¤ì •í•˜ëŠ” ì˜¤ë²„ë¡œë”© í•¨ìˆ˜
     /// </summary>
-    /// <param name="type">»ı¼ºÇÒ ¿ÀºêÁ§Æ® Å¸ÀÔ</param>
-    /// <param name="position">»ı¼ºÇÒ À§Ä¡(¿ùµå)</param>
-    /// <param name="angle">È¸Àü ½ÃÅ³ °¢µµ</param>
-    /// <returns>»ı¼ºÇÑ ¿ÀºêÁ§Æ®</returns>
+    /// <param name="type">ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ íƒ€ì…</param>
+    /// <param name="position">ìƒì„±í•  ìœ„ì¹˜(ì›”ë“œ)</param>
+    /// <param name="angle">íšŒì „ ì‹œí‚¬ ê°ë„</param>
+    /// <returns>ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸</returns>
     public GameObject GetObject(PoolObjectType type, Vector3 position, float angle = 0.0f)
     {
         GameObject temp = GetObject(type);

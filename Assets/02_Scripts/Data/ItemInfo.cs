@@ -48,14 +48,14 @@ public class ItemInfo : ScriptableObject
 
 public enum ItemType
 {
-    // ¿©±â¼­ ºÎÅÍ ½ºÅ³
+    // ì—¬ê¸°ì„œ ë¶€í„° ìŠ¤í‚¬
     //Plunger = 0,
     //Manhole,
     //Wrench,
     //CoffeeCan,
     //TurtleShell,
     //TrafficCone,
-    // ¿©±â¼­ºÎÅÍ ½ºÅÝ
+    // ì—¬ê¸°ì„œë¶€í„° ìŠ¤í…Ÿ
     Health = 0,
     Damage,
     ExperienceRate,

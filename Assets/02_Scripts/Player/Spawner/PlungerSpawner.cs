@@ -6,7 +6,7 @@ public class PlungerSpawner : SkillSpawner
 {
     protected override IEnumerator StartAttack()
     {
-        spawnCount = 3;     // ¶Õ¾î»½Àº ±âº» 3°³ºÎÅÍ ½ÃÀÛ
+        spawnCount = 3;     // ëš«ì–´ë»¥ì€ ê¸°ë³¸ 3ê°œë¶€í„° ì‹œìž‘
 
         while(player.CurrentHp > 0)
         {

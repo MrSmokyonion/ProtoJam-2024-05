@@ -21,7 +21,7 @@ public class EnemyCrocodile : EnemyBase
         }
     }
 
-    [Header("»ç°Ý ½ºÅÝ")]
+    [Header("ì‚¬ê²© ìŠ¤í…Ÿ")]
     public float attackRange = 4.0f;
     public float fireCoolTime = 2.0f;    private float currentCoolTime = 0.0f;
 

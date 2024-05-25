@@ -82,3 +82,6 @@ crashlytics-build.properties
 
 # OS Generated
 .DS_Store
+
+# Jetbrains Rider
+/.idea/

@@ -6,49 +6,49 @@ using UnityEngine.SceneManagement;
 
 public class Singleton<T> : MonoBehaviour where T : Component
 {
-    // Å¬·¡½º ³»ÀÇ T Å¸ÀÔÀº ¸ğµÎ <T>·Î ´ëÃ¼
-    // ½Ì±ÛÅæÀÇ T´Â ÄÄÆ÷³ÍÆ® Å¸ÀÔ
+    // í´ë˜ìŠ¤ ë‚´ì˜ T íƒ€ì…ì€ ëª¨ë‘ <T>ë¡œ ëŒ€ì²´
+    // ì‹±ê¸€í†¤ì˜ TëŠ” ì»´í¬ë„ŒíŠ¸ íƒ€ì…
 
     /// <summary>
-    /// Ã¹ »ı¼ºÀÎÁö È®ÀÎÇÏ´Â º¯¼ö
+    /// ì²« ìƒì„±ì¸ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
     /// </summary>
     private bool initialized;
 
     /// <summary>
-    /// ÀÌ¹Ì Á¾·á Ã³¸®¿¡ µé¾î°¬´ÂÁö È®ÀÎÇÏ±â À§ÇÑ º¯¼ö
+    /// ì´ë¯¸ ì¢…ë£Œ ì²˜ë¦¬ì— ë“¤ì–´ê°”ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
     /// </summary>
     private static bool isShutDown = false;
 
     /// <summary>
-    /// ½Ì±ÛÅæÀÇ °´Ã¼
+    /// ì‹±ê¸€í†¤ì˜ ê°ì²´
     /// </summary>
     private static T instance;
 
     /// <summary>
-    /// ½Ì±ÛÅæÀÇ °´Ã¼¸¦ ÀĞ±â À§ÇÑ ÇÁ·ÎÆÛÆ¼ 
+    /// ì‹±ê¸€í†¤ì˜ ê°ì²´ë¥¼ ì½ê¸° ìœ„í•œ í”„ë¡œí¼í‹° 
     /// </summary>
     public static T Ins
     {
         get
         {
-            if (isShutDown)      // Á¾·á Ã³¸®¿¡ µé¾î°£ »óÈ²ÀÎÁö È®ÀÎ
+            if (isShutDown)      // ì¢…ë£Œ ì²˜ë¦¬ì— ë“¤ì–´ê°„ ìƒí™©ì¸ì§€ í™•ì¸
             {
-                Debug.LogWarning("½Ì±ÛÅæÀº ÀÌ¹Ì »èÁ¦µÇ¾úÀ½");
+                Debug.LogWarning("ì‹±ê¸€í†¤ì€ ì´ë¯¸ ì‚­ì œë˜ì—ˆìŒ");
                 return null;
             }
 
-            if (instance == null)    // instance°¡ ¾ø°í
+            if (instance == null)    // instanceê°€ ì—†ê³ 
             {
                 T singleton = FindObjectOfType<T>();
-                if (singleton == null)  // ¾À¿¡µµ ¾øÀ¸¸é »õ·Î ¿ÀºêÁ§Æ® »ı¼º
+                if (singleton == null)  // ì”¬ì—ë„ ì—†ìœ¼ë©´ ìƒˆë¡œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
                 {
                     GameObject obj = new GameObject();
                     obj.name = $"{typeof(T).Name} Singleton";
                     singleton = obj.AddComponent<T>();
                 }
 
-                instance = singleton;       // intance¸¦ Ã£¾Ò°Å³ª ¸¸µé¾îÁø °´Ã¼ ´ëÀÔ
-                DontDestroyOnLoad(instance.gameObject);     //¾ÀÀÌ ¾ø¾îÁ®µµ »èÁ¦ µÇÁö ¾Ê°Ô ¼³Á¤
+                instance = singleton;       // intanceë¥¼ ì°¾ì•˜ê±°ë‚˜ ë§Œë“¤ì–´ì§„ ê°ì²´ ëŒ€ì…
+                DontDestroyOnLoad(instance.gameObject);     //ì”¬ì´ ì—†ì–´ì ¸ë„ ì‚­ì œ ë˜ì§€ ì•Šê²Œ ì„¤ì •
             }
             return instance;
         }
@@ -56,16 +56,16 @@ public class Singleton<T> : MonoBehaviour where T : Component
 
     protected virtual void Awake()
     {
-        if (instance == null)  // ÀÚ±âÀÚ½ÅÀÌ »ı¼º‰ç´Âµ¥ instance°¡ ¾øÀ» ¶§
+        if (instance == null)  // ìê¸°ìì‹ ì´ ìƒì„±ï¿½æ¦®ì¨‰ï¿½ instanceê°€ ì—†ì„ ë•Œ
         {
-            // ¾À¿¡ ¹èÄ¡µÇ¾î ÀÖ´Â Ã¹¹øÂ° ½Ì±ÛÅæÀ» ÀÚ±â ÀÚ½ÅÀ¸·Î µî·Ï
-            // Singleton<T> ¿Í T¸¦ ±¸ºĞ ¸øÇÏ¹Ç·Î Ä³½ºÆÃ ½Ãµµ
+            // ì”¬ì— ë°°ì¹˜ë˜ì–´ ìˆëŠ” ì²«ë²ˆì§¸ ì‹±ê¸€í†¤ì„ ìê¸° ìì‹ ìœ¼ë¡œ ë“±ë¡
+            // Singleton<T> ì™€ Të¥¼ êµ¬ë¶„ ëª»í•˜ë¯€ë¡œ ìºìŠ¤íŒ… ì‹œë„
             instance = this as T;
             DontDestroyOnLoad(instance.gameObject);
         }
         else
         {
-            // instance°¡ ÀÖ´Âµ¥ ±×°Ô ÀÚ±â ÀÚ½ÅÀÌ ¾Æ´Ò ¶§
+            // instanceê°€ ìˆëŠ”ë° ê·¸ê²Œ ìê¸° ìì‹ ì´ ì•„ë‹ ë•Œ
             if (instance != this) Destroy(this.gameObject);
         }
     }
@@ -94,7 +94,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     }
 
     /// <summary>
-    /// ¾ÀÀÌ ½ÃÀÛÇÒ ¶§ ºÒ·¯Áú ÇÔ¼ö
+    /// ì”¬ì´ ì‹œì‘í•  ë•Œ ë¶ˆëŸ¬ì§ˆ í•¨ìˆ˜
     /// </summary>
     protected virtual void OnInitalize()
     {
@@ -102,7 +102,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     }
 
     /// <summary>
-    /// ½Ì±ÛÅæÀÌ ¸¸µé¾î Áú¶§ ´ÜÇÑ¹ø¸¸ È£ÃâµÉ ÇÔ¼ö
+    /// ì‹±ê¸€í†¤ì´ ë§Œë“¤ì–´ ì§ˆë•Œ ë‹¨í•œë²ˆë§Œ í˜¸ì¶œë  í•¨ìˆ˜
     /// </summary>
     protected virtual void OnPreInitalize()
     {

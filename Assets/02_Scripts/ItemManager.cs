@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ °¡Áö´Â ½Ì±ÛÅæ ¸Å´ÏÀú
+//ì•„ì´í…œ ë°ì´í„°ë¥¼ ê°€ì§€ëŠ” ì‹±ê¸€í†¤ ë§¤ë‹ˆì €
 public class ItemManager : Singleton<ItemManager>
 {
     /*
@@ -82,7 +82,7 @@ public class ItemManager : Singleton<ItemManager>
 
         if (money < cost)
         {
-            return false;   //µ· ºÎÁ·
+            return false;   //ëˆ ë¶€ì¡±
         }
 
         money -= cost;

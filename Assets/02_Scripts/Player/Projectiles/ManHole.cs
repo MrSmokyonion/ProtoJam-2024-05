@@ -6,12 +6,12 @@ using UnityEngine;
 public class ManHole : Projectile
 {
     /// <summary>
-    /// ¿ÀºêÁ§Æ®ÀÇ Ç®À» °áÁ¤ÇÔ(ÆÑÅä¸® ÇÏÀ§¿¡ ÀÖ´Â Ç®)
+    /// ì˜¤ë¸Œì íŠ¸ì˜ í’€ì„ ê²°ì •í•¨(íŒ©í† ë¦¬ í•˜ìœ„ì— ìˆëŠ” í’€)
     /// </summary>
     Transform pool = null;
 
     /// <summary>
-    /// ¿ÀºêÁ§Æ®ÀÇ Ç®Àº ÇÑ¹ø¸¸ ¼³Á¤µÊ
+    /// ì˜¤ë¸Œì íŠ¸ì˜ í’€ì€ í•œë²ˆë§Œ ì„¤ì •ë¨
     /// </summary>
     public Transform Pool
     {
@@ -27,7 +27,7 @@ public class ManHole : Projectile
     Transform target;
 
     /// <summary>
-    /// Ç®¿¡°Ô ¼ÒÈ¯ ³¡³µ´Ù°í ¾Ë¸®´Â µ¨¸®°ÔÀÌÆ®
+    /// í’€ì—ê²Œ ì†Œí™˜ ëë‚¬ë‹¤ê³  ì•Œë¦¬ëŠ” ë¸ë¦¬ê²Œì´íŠ¸
     /// </summary>
     public System.Action onDone;
 
