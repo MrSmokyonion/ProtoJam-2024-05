@@ -494,6 +494,7 @@ public class Player : MonoBehaviour
     void OnDie()
     {
         playerController.onMove = null;
+        Dir = Vector3.zero;
         animator.SetTrigger(Hash_IsDead);
     }
 

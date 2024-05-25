@@ -38,16 +38,19 @@ public class PipeSpawner : MonoBehaviour
 
     private List<BrokenPipe> brokenPipes;
 
-    private bool isOn;
-    
+    private bool isOn = false;
 
-    private void Start()
-    {
-        isOn = false;
-    }
+
+    public System.Action onFixedPipe;
+
+
+    //private void Start()
+    //{
+    //    isOn = false;
+    //}
 
     [ContextMenu("Start Spawn")]
-    private void StartSpawn()
+    public void StartSpawn()
     {
         StartSpawn(targetPipeCount, maxPipeCountAtSameTime, spawnTime);
     }
@@ -70,12 +73,13 @@ public class PipeSpawner : MonoBehaviour
 
     public void RemovePipe(BrokenPipe _target)
     {
+        onFixedPipe?.Invoke();
         brokenPipes.Remove(_target);
     }
 
     private IEnumerator OnStartSpawn()
     {
-        float _timer = 0f;
+        float _timer = spawnTime;
 
         while(true)
         {
@@ -90,7 +94,10 @@ public class PipeSpawner : MonoBehaviour
                 if(brokenPipes.Count >= maxPipeCountAtSameTime) { continue; }
 
                 _timer = 0f;
-                SpawnBrokenPipe();
+                for (int i = brokenPipes.Count; i < maxPipeCountAtSameTime; i++)
+                {
+                    SpawnBrokenPipe();
+                }
             }
         }
     }

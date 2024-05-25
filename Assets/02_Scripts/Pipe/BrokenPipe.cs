@@ -22,6 +22,24 @@ public class BrokenPipe : MonoBehaviour
     private bool isCompleted;
     private float timer;
 
+    //--------------
+    float spawnTime = 2.0f;
+
+    PoolObjectType SpawnEnemyType
+    {
+        get
+        {
+            if(GameManager.Ins.FixedPipeCount < 15)
+            {
+                return PoolObjectType.EnemyPoop;
+            }
+            else
+            {
+                return Random.value > 0.5f ? PoolObjectType.EnemyPoop : PoolObjectType.EnemyDuck;
+            }
+        }
+    }
+
     public void InitPipe(float _repairRange, float _repairTime, PipeSpawner _parents)
     {
         repairRange = _repairRange;
@@ -35,6 +53,13 @@ public class BrokenPipe : MonoBehaviour
         ui_repairGauge.maxValue = repairTime;
         ui_repairGauge.value = 0f;
         ui_repairGauge.gameObject.SetActive(false);
+
+        if(GameManager.Ins.FixedPipeCount > 35)
+        { 
+            StartCoroutine(SpawnCrocodileCoroutine());
+        }
+
+        StartCoroutine(SpawnCoroutine());
     }
 
 
@@ -84,6 +109,38 @@ public class BrokenPipe : MonoBehaviour
         Invoke("DestroySelf", 3f);
     }
 
+    IEnumerator SpawnCoroutine()
+    {
+        while (isCompleted != true)
+        {
+            yield return new WaitForSeconds(spawnTime);
+            SpawnEnemy(SpawnEnemyType);
+        }
+    }
+
+    IEnumerator SpawnCrocodileCoroutine()
+    {
+        while (isCompleted != true)
+        {
+            yield return new WaitForSeconds(spawnTime * 2);
+            SpawnEnemy(PoolObjectType.EnemyCrocodile);
+        }
+    }
+
+    void SpawnEnemy(PoolObjectType type)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject temp = Factory.Ins.GetObject(type, transform.position + (Vector3)Random.insideUnitCircle);
+            EnemyBase enemy = temp.GetComponent<EnemyBase>();
+            //enemy.SettingState() 여기서 스텟 설정
+        }
+    }
+
+
+
+
+
     private void DestroySelf()
     {
         Destroy(gameObject);
@@ -94,7 +151,8 @@ public class BrokenPipe : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(this.transform.position, repairRange);
+        //Gizmos.DrawSphere(this.transform.position, repairRange);
+        Gizmos.DrawWireSphere(this.transform.position, repairRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
