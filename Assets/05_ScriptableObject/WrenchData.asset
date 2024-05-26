@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: 0
   skillType: 3
-  damage: 5
-  knockbackPower: 100
+  damage: 200
+  knockbackPower: 150
   speed: 8
   fireRate: 0.5
   fireDelay: 5

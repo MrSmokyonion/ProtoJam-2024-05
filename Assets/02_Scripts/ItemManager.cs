@@ -78,6 +78,8 @@ public class ItemManager : Singleton<ItemManager>
     public bool UpgradeItem(ItemType _targetItem, out ItemInfo _item)
     {
         _item = GetItemData(_targetItem);
+        if(_item.CurrentUpgradeLevel >= _item.MaxUpgradeLevel) { return false; }
+
         int cost = _item.UpgradeCost[_item.CurrentUpgradeLevel];
 
         if (money < cost)
