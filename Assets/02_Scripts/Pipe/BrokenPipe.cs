@@ -24,13 +24,13 @@ public class BrokenPipe : MonoBehaviour
     private float timer;
 
     //--------------
-    float spawnTime = 2.0f;
+    public float spawnTime = 2.0f;
 
     PoolObjectType SpawnEnemyType
     {
         get
         {
-            if(GameManager.Ins.FixedPipeCount < 15)
+            if(GameManager.Ins.Player.level < 5)
             {
                 return PoolObjectType.EnemyPoop;
             }
@@ -56,7 +56,7 @@ public class BrokenPipe : MonoBehaviour
         ui_repairGauge.value = 0f;
         ui_repairGauge.gameObject.SetActive(false);
 
-        if(GameManager.Ins.FixedPipeCount > 35)
+        if(GameManager.Ins.Player.level > 10)
         { 
             StartCoroutine(SpawnCrocodileCoroutine());
         }

@@ -79,10 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3302b5742e843244925e005fa20bc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
+  maxHp: 220
   currentHp: 0
-  speed: 2
-  experience: 2
+  damage: 6
+  speed: 2.7
+  experience: 3
 --- !u!58 &9185394779338769312
 CircleCollider2D:
   m_ObjectHideFlags: 0

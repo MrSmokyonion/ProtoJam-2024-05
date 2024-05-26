@@ -20,7 +20,7 @@ public class Projectile : PooledObject
     /// <summary>
     /// 관통횟수(0이면 관통 안함)
     /// </summary>
-    private int penetration = 0;
+    protected int penetration = 0;
     int currentPenetration = 0;
     
     /// <summary>

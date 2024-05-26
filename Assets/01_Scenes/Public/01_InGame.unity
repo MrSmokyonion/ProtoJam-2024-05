@@ -257,53 +257,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21812244}
   m_CullTransparentMesh: 1
---- !u!1 &48394443
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 48394444}
-  - component: {fileID: 48394445}
-  m_Layer: 0
-  m_Name: EnemyBulletPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &48394444
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48394443}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1352640949}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &48394445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48394443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a2596f77475c547a1d3190b5d55b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origianlPrefab: {fileID: 2406132334298168767, guid: d8b6229c4ce3cc34ca336e263b31e01c,
-    type: 3}
-  poolSize: 64
 --- !u!1 &89385323
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,53 +877,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1 &558075609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 558075610}
-  - component: {fileID: 558075611}
-  m_Layer: 0
-  m_Name: EnemyCrocodilePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &558075610
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558075609}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1352640949}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &558075611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558075609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da141549f8d319489215a2d1d091c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origianlPrefab: {fileID: 2935251058658121292, guid: 90a902ccd9b743a46ae54d8b479feef5,
-    type: 3}
-  poolSize: 64
 --- !u!1 &575814938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,17 +953,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '123
+  m_text: '0
 
-    456
+    0
 
-    789
+    0
 
-    123
+    0
 
-    456
+    0
 
-    789'
+    0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c40ae78de4bfaf54784bf6ddb4d82abd, type: 2}
   m_sharedMaterial: {fileID: -3461772030123848392, guid: c40ae78de4bfaf54784bf6ddb4d82abd,
@@ -2344,53 +2250,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &1073432526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1073432527}
-  - component: {fileID: 1073432528}
-  m_Layer: 0
-  m_Name: EnemyDuckPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1073432527
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073432526}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1352640949}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1073432528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073432526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86855536e1f88614a8fcab17c6667226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origianlPrefab: {fileID: 8408059691861808803, guid: 75c247b1a07978344867879e491d64d9,
-    type: 3}
-  poolSize: 4
 --- !u!1 &1124818755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,53 +3027,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1301307149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1301307150}
-  - component: {fileID: 1301307151}
-  m_Layer: 0
-  m_Name: EnemyPoopPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1301307150
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301307149}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1352640949}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1301307151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301307149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5663dd3a9403864bb3e5dc258232501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origianlPrefab: {fileID: 4709795664169725016, guid: 4771c3c17f03cb0478ae744917d672d4,
-    type: 3}
-  poolSize: 4
 --- !u!1001 &1304610410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3443,12 +3255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348233530}
   m_CullTransparentMesh: 1
---- !u!4 &1352640949 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8728808290175777870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1428023574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6554,6 +6360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Factory
       objectReference: {fileID: 0}
+    - target: {fileID: 3883142085181814884, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
+        type: 3}
+      propertyPath: poolSize
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6604,25 +6415,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7696234774853887626, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
+        type: 3}
+      propertyPath: poolSize
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1301307150}
-    - targetCorrespondingSourceObject: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1073432527}
-    - targetCorrespondingSourceObject: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 558075610}
-    - targetCorrespondingSourceObject: {fileID: 4461286024011660543, guid: e0df407fcef771b48ac6a9c3ce94dfa6,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 48394444}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0df407fcef771b48ac6a9c3ce94dfa6, type: 3}
 --- !u!1660057539 &9223372036854775807

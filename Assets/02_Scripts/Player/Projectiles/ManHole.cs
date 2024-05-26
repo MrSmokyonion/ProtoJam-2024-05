@@ -56,4 +56,12 @@ public class ManHole : Projectile
         gameObject.SetActive(false);
     }
 
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<EnemyBase>(out EnemyBase enemy))
+        {
+            // enemy에게 데미지 주기
+            enemy.OnHitted(damage);
+        }
+    }
 }

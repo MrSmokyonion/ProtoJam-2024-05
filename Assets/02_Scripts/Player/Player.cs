@@ -213,6 +213,11 @@ public class Player : MonoBehaviour
         {
             if (IsAlive)
             {
+                if (level >= maxLevel)
+                {
+                    Debug.Log("이미 최대 레벨입니다.");
+                    return;
+                }
                 float ex = value - currentEx;       // ex는 추가되는 경험치
 
                 currentEx = currentEx + ex + (ex * extraPaymentRate) * 0.01f;      // 경험치 추가 증가량
@@ -221,7 +226,7 @@ public class Player : MonoBehaviour
                 if (currentEx >= maxEx)
                 {
                     // 레벨업, current 초기화, max 증가
-
+                    this.level++;
                     onLevelChange?.Invoke(level);
                 }
                 onExChange?.Invoke(currentEx, maxEx);
@@ -440,13 +445,9 @@ public class Player : MonoBehaviour
 
     void LevelUp(int level)
     {
-        if (level >= maxLevel)
-        {
-            Debug.Log("이미 최대 레벨입니다.");
-            return;
-        }
+
         
-        this.level++;
+        
 
         switch (level)
         {
@@ -483,6 +484,8 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
+
+        maxEx *= 2;
 
         CurrentEx = 0;
     }

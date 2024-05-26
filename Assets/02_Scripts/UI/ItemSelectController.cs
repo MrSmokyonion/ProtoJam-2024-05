@@ -66,14 +66,24 @@ public class ItemSelectController : MonoBehaviour
 
     public void OnSelectItem(string _skillType)
     {
+        AttackSkillData.SkillType _type;
         switch (_skillType)
         {
-            case "Plunger": GameManager.Ins.Player.AddSkill(AttackSkillData.SkillType.Plunger); break;
-            case "Manhole": GameManager.Ins.Player.AddSkill(AttackSkillData.SkillType.ManHole); break;
-            case "Wrench" : GameManager.Ins.Player.AddSkill(AttackSkillData.SkillType.Wrench); break;
+            case "Plunger": _type = AttackSkillData.SkillType.Plunger; break;
+            case "Manhole": _type = AttackSkillData.SkillType.ManHole; break;
+            case "Wrench" : _type = AttackSkillData.SkillType.Wrench; break;
             default:
-                break;
+                return;
         }
+
+        int _level = 0;
+        player.SkillInventory.TryGetValue(_type, out _level);
+        if (_level >= 5) 
+        {
+            return;
+        }
+
+        GameManager.Ins.Player.AddSkill(_type);
 
         GameManager.Ins.ResumeGame();
         HideUI();

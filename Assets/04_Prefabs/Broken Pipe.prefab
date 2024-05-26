@@ -5468,6 +5468,7 @@ MonoBehaviour:
   parents: {fileID: 0}
   repairRange: 2.5
   repairTime: 3
+  spawnTime: 5
 --- !u!50 &7223727908663146426
 Rigidbody2D:
   serializedVersion: 4

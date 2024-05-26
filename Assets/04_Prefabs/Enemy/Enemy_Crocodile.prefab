@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b46a44955e51ab46aeabc1b8675c731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 350
   currentHp: 0
+  damage: 10
   speed: 2
-  experience: 3
+  experience: 5
   attackRange: 8
   fireCoolTime: 2
 --- !u!58 &9160948750959879340
