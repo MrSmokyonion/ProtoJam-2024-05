@@ -87,7 +87,9 @@ public static class DataEditor
 
     public static void SaveMoney(int _value)
     {
-        PlayerPrefs.SetInt(key_Money, _value);
+        int _currentMoney = LoadMoney();
+
+        PlayerPrefs.SetInt(key_Money, _value + _currentMoney);
         Debug.Log("DataEditor : " + key_Money + " is Saved.");
     }
     

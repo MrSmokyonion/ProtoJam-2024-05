@@ -227,8 +227,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 31
+  m_fontSizeBase: 31
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  ui_itemImage: {fileID: 4043174722024259150}
+  ui_itemName: {fileID: 3017902753692775969}
   ui_currentLevelText: {fileID: 2525458976359473394}
 --- !u!1 &8012430865628918017
 GameObject:

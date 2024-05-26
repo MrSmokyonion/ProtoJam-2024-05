@@ -10,7 +10,7 @@ public class ItemSlotUIController : MonoBehaviour
     [SerializeField] ItemType itemType;
 
     //UI 참조 데이터
-    [SerializeField] Image ui_itemImage;
+    [SerializeField] TMP_Text ui_itemName;
     [SerializeField] TMP_Text ui_currentLevelText;
 
 
@@ -19,7 +19,7 @@ public class ItemSlotUIController : MonoBehaviour
     public void InitSlotUI(ItemInfo _itemInfo)
     {
         itemType = _itemInfo.Type;
-        //ui_itemImage.sprite = ;
+        ui_itemName.text = _itemInfo.Description;
         ui_currentLevelText.text = "Lv" + _itemInfo.CurrentUpgradeLevel.ToString();
     }
 

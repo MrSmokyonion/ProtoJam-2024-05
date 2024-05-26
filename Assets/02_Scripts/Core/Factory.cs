@@ -39,9 +39,9 @@ public class Factory : Singleton<Factory>
     EnemyCrocodilePool enemyCrocodilePool;
     EnemyBulletPool enemyBulletPool;
 
-    protected override void OnPreInitalize()
+    protected override void OnInitalize()
     {
-        base.OnPreInitalize();
+        base.OnInitalize();
 
         playerAttackPool = GetComponentInChildren<PlayerAttackPool>();
         plungerPool = GetComponentInChildren<PlungerPool>();
@@ -69,16 +69,6 @@ public class Factory : Singleton<Factory>
         //    System.Activator.CreateInstance(type);
         //    pools[i] = transform.GetChild(i).GetComponent<type>();
         //}
-    }
-
-    protected override void OnInitalize()
-    {
-        base.OnInitalize();
-
-    //    foreach(var pool in pools)
-    //    {
-    //        pool.Initialize();
-    //    }
     }
 
 

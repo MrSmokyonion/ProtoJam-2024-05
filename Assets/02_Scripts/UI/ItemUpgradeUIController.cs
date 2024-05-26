@@ -16,7 +16,7 @@ public class ItemUpgradeUIController : MonoBehaviour
 
     public void InitStoreUI()
     {
-        ui_CurrentMoneyText.text = ItemManager.Ins.Money.ToString();
+        ui_CurrentMoneyText.text = "Coin:" + ItemManager.Ins.Money.ToString();
         InitItemSlotActive(ItemManager.Ins.ItemInfoDatas);
     }
 

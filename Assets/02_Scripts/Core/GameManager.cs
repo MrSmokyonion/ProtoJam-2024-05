@@ -72,6 +72,11 @@ public class GameManager : Singleton<GameManager>
         private set { pipeSpawner = value; }
     }
 
+    private void Start()
+    {
+        StartGame();
+    }
+
     protected override void OnInitalize()
     {
         base.OnInitalize();
@@ -86,15 +91,49 @@ public class GameManager : Singleton<GameManager>
             if(pipeSpawner != null )
             {
                 pipeSpawner.onFixedPipe = () => FixedPipeCount++;
-
-                pipeSpawner.StartSpawn();       // 게임 시작
             }
         }
-
     }
 
-    public void ShowResultUI()
+    private void StartGame()
+    {
+        Player.OnInitialized();
+
+        Player.CurrentEx  = Player.maxEx;
+        pipeSpawner.StartSpawn();       // 게임 시작
+    }
+
+    public void EndGame()
+    {
+       DataEditor.SaveMoney(GetCoin);
+       ShowResultUI();
+    }
+
+    private void ShowResultUI()
     {
         resultUIController.InitResultValueToText(FixedPipeCount, spawnedPipeCount, GetCoin);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        /*
+        //플레이어 움직임 정지
+        Player.GetComponent<PlayerController>().enabled = false;
+        //플레이어 무적
+        Player.IsInvisible = true;
+        
+        //스킬 정지
+        
+        //몬스터 움직임 정지
+
+        //파이프스포너 일시정지
+        //파이프 몬스터소환 일시정지
+        */
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

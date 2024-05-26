@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         get => currentHp;
         set
         {
-            if (IsAlive)
+            if (IsAlive && !IsInvisible)
             {
                 currentHp = Mathf.Min(value, MaxHp);        // 최대 체력 이상으로는 안간다.
 
@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 플레이어 레벨
     /// </summary>
-    public int level = 1;
+    public int level = 0;
 
     /// <summary>
     /// 최대 레벨(변하지 않음)
@@ -287,6 +287,7 @@ public class Player : MonoBehaviour
 
     // 스킬들을 관리하는 딕셔너리
     Dictionary<AttackSkillData.SkillType, int> skillInventory;
+    public Dictionary<AttackSkillData.SkillType, int> SkillInventory => skillInventory;
 
 
     // +++델리게이트 관련+++ ----------------------------------
@@ -312,6 +313,14 @@ public class Player : MonoBehaviour
     readonly int Hash_IsDead = Animator.StringToHash("IsDead");
     readonly int Hash_IsWalk = Animator.StringToHash("IsWalk");
     readonly int Hash_IsAttack = Animator.StringToHash("IsAttack");
+
+    // +++플레이어 일시정지 자료+++ ----------------------------
+    bool isInvisible = false;
+    public bool IsInvisible
+    {
+        get { return isInvisible; }
+        set { isInvisible = value; }
+    }
 
     // +++기타 자료+++ --------------------------------
 
@@ -344,7 +353,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        OnInitialized();
+        //OnInitialized();
         // StartCoroutine(AutoAttack());
     }
 
@@ -353,7 +362,7 @@ public class Player : MonoBehaviour
         playerController.onMove = OnMove;
     }
 
-    private void OnInitialized()
+    public void OnInitialized()
     {
         onLevelChange += LevelUp;
 
@@ -496,7 +505,7 @@ public class Player : MonoBehaviour
         playerController.onMove = null;
         Dir = Vector3.zero;
         animator.SetTrigger(Hash_IsDead);
-        GameManager.Ins.ShowResultUI();
+        GameManager.Ins.EndGame();
     }
 
     /// <summary>
