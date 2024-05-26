@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("References")]
+    [SerializeField]
+    private ResultUIController resultUIController;
+
     Player player;
     public Player Player
     {
@@ -33,6 +37,26 @@ public class GameManager : Singleton<GameManager>
     }
 
     public System.Action<int> OnFixedPipeCount;
+
+    int spawnedPipeCount = 0;
+    public int SpawnedPipeCount
+    {
+        get => spawnedPipeCount;
+        set
+        {
+            spawnedPipeCount = value;
+        }
+    }
+
+    int getCoin;
+    public int GetCoin
+    {
+        get => getCoin;
+        set
+        {
+            getCoin = value;
+        }
+    }
 
     PipeSpawner pipeSpawner;
     public PipeSpawner PipeSpawner
@@ -67,5 +91,10 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
+    }
+
+    public void ShowResultUI()
+    {
+        resultUIController.InitResultValueToText(FixedPipeCount, spawnedPipeCount, GetCoin);
     }
 }

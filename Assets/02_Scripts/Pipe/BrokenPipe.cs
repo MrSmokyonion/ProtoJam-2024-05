@@ -104,9 +104,10 @@ public class BrokenPipe : MonoBehaviour
         isRepairing = false;
         isCompleted = true;
         ui_repairGauge.gameObject.SetActive(false);
+        GameManager.Ins.GetCoin += 50;
 
         //수리 완료�瑛뻑� 그래픽 연출
-
+        
 
         parents.RemovePipe(this);
         Invoke("DestroySelf", 3f);

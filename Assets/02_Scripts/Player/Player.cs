@@ -496,6 +496,7 @@ public class Player : MonoBehaviour
         playerController.onMove = null;
         Dir = Vector3.zero;
         animator.SetTrigger(Hash_IsDead);
+        GameManager.Ins.ShowResultUI();
     }
 
     /// <summary>

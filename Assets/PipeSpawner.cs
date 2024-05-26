@@ -111,6 +111,7 @@ public class PipeSpawner : MonoBehaviour
         _brokenPipe.InitPipe(pipeRepairRange, pipeRepairTime, this);
 
         brokenPipes.Add(_brokenPipe);
+        GameManager.Ins.SpawnedPipeCount++;
     }
 
     private Vector3 GetSpawnCoordinate()
