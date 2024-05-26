@@ -20,6 +20,7 @@ public class BrokenPipe : MonoBehaviour
 
     private bool isRepairing;
     private bool isCompleted;
+    private bool canSpawn;
     private float timer;
 
     //--------------
@@ -47,6 +48,7 @@ public class BrokenPipe : MonoBehaviour
         parents = _parents;
         isRepairing = false;
         isCompleted = false;
+        canSpawn = true;
         timer = 0f;
 
         GetComponent<CircleCollider2D>().radius = repairRange;
@@ -80,12 +82,13 @@ public class BrokenPipe : MonoBehaviour
 
     private void OnRepairing()
     {
-        if (!isRepairing) { return; }
+        if (!isRepairing) { canSpawn = true; return; }
 
         timer += Time.deltaTime;
         ui_repairGauge.value = timer;
+        canSpawn = false;
 
-        if(timer > repairTime)
+        if (timer > repairTime)
         {
             RepairFinish();
         }
@@ -114,6 +117,7 @@ public class BrokenPipe : MonoBehaviour
         while (isCompleted != true)
         {
             yield return new WaitForSeconds(spawnTime);
+            if(!canSpawn || isCompleted) { continue; }
             SpawnEnemy(SpawnEnemyType);
         }
     }
@@ -123,6 +127,7 @@ public class BrokenPipe : MonoBehaviour
         while (isCompleted != true)
         {
             yield return new WaitForSeconds(spawnTime * 2);
+            if (!canSpawn || isCompleted) { continue; }
             SpawnEnemy(PoolObjectType.EnemyCrocodile);
         }
     }
