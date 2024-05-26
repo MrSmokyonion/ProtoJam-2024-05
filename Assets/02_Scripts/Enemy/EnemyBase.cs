@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class EnemyBase : PooledObject
 {
-    [Header("적 스텟")]
-    [SerializeField] protected float maxHp = 10.0f;
+    [Header("적 스텟")] [SerializeField] protected float maxHp = 10.0f;
     [SerializeField] protected float currentHp;
     [SerializeField] protected float damage = 1;
+
     protected float CurrentHp
     {
         get => currentHp;
         set
         {
             currentHp = value;
-            if(!(currentHp > 0))
+            if (!(currentHp > 0))
             {
                 OnDie();
             }
@@ -26,13 +26,11 @@ public class EnemyBase : PooledObject
     public int experience;
 
     protected Vector2 dir;
+
     protected virtual Vector2 Dir
     {
         get => dir;
-        set
-        {
-            dir = value;
-        }
+        set { dir = value; }
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class EnemyBase : PooledObject
 
     protected virtual void OnInitalized()
     {
-        if(player == null)
+        if (player == null)
         {
             player = GameManager.Ins.Player;
         }
@@ -74,6 +72,7 @@ public class EnemyBase : PooledObject
         CurrentHp = maxHp;
         gameObject.layer = 7;
         col.enabled = true;
+        EnemyManager.Ins.RegisterEnemy(transform);
     }
 
     /// <summary>
@@ -92,7 +91,7 @@ public class EnemyBase : PooledObject
 
     protected virtual void OnMoveUpdate(float time)
     {
-        if(player != null && player.IsAlive && CurrentHp > 0)
+        if (player != null && player.IsAlive && CurrentHp > 0)
         {
             Dir = (player.transform.position - transform.position).normalized;
             transform.Translate(speed * time * Dir);
@@ -120,7 +119,7 @@ public class EnemyBase : PooledObject
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.TryGetComponent(out Player player))
+        if (collision.gameObject.TryGetComponent(out Player player))
         {
             Attack(player);
         }
@@ -141,6 +140,7 @@ public class EnemyBase : PooledObject
         Dir = Vector2.zero;
         col.enabled = false;
         player.CurrentEx += experience;
+        EnemyManager.Ins.RemoveEnemy(transform);
 
         StartCoroutine(LifeOver());
     }
@@ -151,5 +151,4 @@ public class EnemyBase : PooledObject
         yield return new WaitForSeconds(playTime - 0.1f);
         gameObject.SetActive(false);
     }
-
 }
