@@ -6329,6 +6329,21 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 739434399
       objectReference: {fileID: 0}
+    - target: {fileID: 4554835347535296836, guid: a804e0994944387459033a1b2246a00d,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554835347535296836, guid: a804e0994944387459033a1b2246a00d,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.1882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554835347535296836, guid: a804e0994944387459033a1b2246a00d,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.40784314
+      objectReference: {fileID: 0}
     - target: {fileID: 5791956120131180394, guid: a804e0994944387459033a1b2246a00d,
         type: 3}
       propertyPath: m_SortingLayer
