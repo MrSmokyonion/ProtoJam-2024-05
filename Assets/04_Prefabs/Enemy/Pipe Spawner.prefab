@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2954546521295389487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac9009e860a68f41b8c025d5568e318, type: 3}
+  m_Script: {fileID: 11500000, guid: 71c0c54f64ca29849bfca6eb2f7a4476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab_pipe: {fileID: 8021811588290756741, guid: 5899fdd86771ef34b8ed457dfae55362,
@@ -82,12 +82,12 @@ MonoBehaviour:
   spawnPoint_LeftBottom: {fileID: 3686351197560671375}
   spawnPoint_RightTop: {fileID: 4593773628425714501}
   debug_player: {fileID: 0}
-  spawnTime: 3
-  pipeRepairTime: 3
-  pipeRepairRange: 2.5
+  spawnTime: 20
+  pipeRepairTime: 10
+  pipeRepairRange: 5
   pipeDistanceOffset: 0
   maxPipeCountAtSameTime: 3
-  targetPipeCount: 10
+  targetPipeCount: 0
 --- !u!1 &7118385170251763001
 GameObject:
   m_ObjectHideFlags: 0

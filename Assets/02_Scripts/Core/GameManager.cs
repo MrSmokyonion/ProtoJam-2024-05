@@ -72,11 +72,6 @@ public class GameManager : Singleton<GameManager>
         private set { pipeSpawner = value; }
     }
 
-    private void Start()
-    {
-        StartGame();
-    }
-
     protected override void OnInitalize()
     {
         base.OnInitalize();
@@ -95,7 +90,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         Player.OnInitialized();
 
