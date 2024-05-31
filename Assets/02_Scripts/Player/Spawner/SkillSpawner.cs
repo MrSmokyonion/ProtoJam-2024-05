@@ -106,26 +106,31 @@ public abstract class SkillSpawner : MonoBehaviour
                 // 1. 공격력 10추가
                 IncreaseAttackDamage(10);
                 Debug.Log("공격력 10 증가");
+                TextSpawner.Ins.GetText(transform.position, "공격력 증가");
                 break;
             case 3:
                 // 2. 투사체 개수 증가
                 IncreaseSpawnCount();
                 Debug.Log("투사체 개수 증가");
+                TextSpawner.Ins.GetText(transform.position, "투사체 개수 증가");
                 break;
             case 4:
                 // 3. 쿨타임 감소
                 DecreaseAttackSpeed(50);
                 Debug.Log("쿨타임 감소");
+                TextSpawner.Ins.GetText(transform.position, "쿨타임 감소");
                 break;
             case 5:
                 // 4. 공격력 증가
                 IncreaseAttackDamage(10);
                 Debug.Log("공격력 증가");
+                TextSpawner.Ins.GetText(transform.position, "공격력 증가");
                 break;
             case 6:
                 // 5. 투사체 증가
                 IncreaseSpawnCount();
                 Debug.Log("투사체 증가");
+                TextSpawner.Ins.GetText(transform.position, "투사체 증가");
                 break;
             default:
                 break;
@@ -210,7 +215,7 @@ public abstract class SkillSpawner : MonoBehaviour
     /// </summary>
     public void UpdateAttackPower()
     {
-        finalDamage = skillData.Damage + (skillData.Damage * player.AttackDamage) + plusSkillDamage;
+        finalDamage = skillData.Damage + (skillData.Damage * player.AttackDamage * 0.01f) + plusSkillDamage;
     }
 
 
