@@ -63,7 +63,7 @@ public class ManHoleSpawner : SkillSpawner
             GameObject temp = Factory.Ins.GetObject(skillData.GetPoolType(), player.transform.position + spawnPosition * distance, 0);
             ManHole manHole = temp.GetComponent<ManHole>();
             manHole.OnInitialize(skillData, finalDamage, lifeTime);
-            manHole.transform.SetParent(transform);
+            
             if (i == 0)
             {
                 projectileDone = false;

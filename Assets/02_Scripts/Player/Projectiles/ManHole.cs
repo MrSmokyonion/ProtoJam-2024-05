@@ -2,32 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManHole : Projectile
 {
-    /// <summary>
-    /// 오브젝트의 풀을 결정함(팩토리 하위에 있는 풀)
-    /// </summary>
-    Transform pool = null;
-
-    /// <summary>
-    /// 오브젝트의 풀은 한번만 설정됨
-    /// </summary>
-    public Transform Pool
-    {
-        set
-        {
-            if (pool == null)
-            {
-                pool = value;
-            }
-        }
-    }
 
     Transform target;
 
     /// <summary>
-    /// 풀에게 소환 끝났다고 알리는 델리게이트
+    /// 스포너에게 디스폰 되었다고 알리는 델리게이트(끝난 기점으로 쿨타임 진행)
     /// </summary>
     public System.Action onDone;
 
@@ -49,7 +32,6 @@ public class ManHole : Projectile
     {
         yield return new WaitForSeconds(delay);
         
-        transform.SetParent(pool);
         onDone?.Invoke();
         onDone = null;
 
@@ -63,5 +45,8 @@ public class ManHole : Projectile
             // enemy에게 데미지 주기
             enemy.OnHitted(damage);
         }
+
+        
     }
+
 }
