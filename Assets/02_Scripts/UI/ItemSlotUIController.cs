@@ -39,7 +39,7 @@ public class ItemSlotUIController : MonoBehaviour
 
     public void UpdateItemDescriptionUI()
     {
-        transform.parent.GetComponent<ItemUpgradeUIController>().PrintItemInfo(itemType);
+        transform.parent.GetComponent<ItemUpgradeUIController>().PrintItemInfo(itemType, this);
     }
 
     //슬롯 포커싱 해제�瑛� 때 작동

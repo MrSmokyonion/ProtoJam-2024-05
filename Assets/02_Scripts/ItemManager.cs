@@ -88,7 +88,7 @@ public class ItemManager : Singleton<ItemManager>
         }
 
         money -= cost;
-        _item.CurrentUpgradeLevel++;
+        _item.CurrentUpgradeLevel += 1;
         DataEditor.SaveItemCurrentUpgrade(_targetItem, _item.CurrentUpgradeLevel);
         DataEditor.SaveMoney(money);
         return true;

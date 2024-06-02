@@ -25,9 +25,11 @@ public class PlungerSpawner : SkillSpawner
             {
                 var targetPosition = targetTransform.position;
                 SpawnPlunger(targetPosition);
+                SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_PLUNGER_THROW);
                 yield return new WaitForSeconds(skillData.FireRate);
             }
 
+            GameManager.Ins.DoSkillCoolDownUI(AttackSkillData.SkillType.Plunger, finalSpawnSpeed);
             yield return new WaitForSeconds(finalSpawnSpeed);
         }
     }

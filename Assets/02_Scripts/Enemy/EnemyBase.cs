@@ -103,6 +103,7 @@ public class EnemyBase : PooledObject
     {
         // Debug.Log($"{name} : 플레이어에게 {damage}를 받았다!");
         CurrentHp -= damage;
+        SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_ENEMY_HIT);
     }
 
     /// <summary>

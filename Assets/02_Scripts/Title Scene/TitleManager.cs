@@ -12,16 +12,19 @@ public class TitleManager : MonoBehaviour
     {
         titleCanvas.gameObject.SetActive(false);
         coinCanvas.gameObject.SetActive(true);
+        SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_UI_BUTTON);
     }
 
     public void TitleUIOpen()
     {
         coinCanvas.gameObject.SetActive(false);
         titleCanvas.gameObject.SetActive(true);
+        SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_UI_BUTTON);
     }
 
     public void LoadIngame()
     {
+        SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_UI_BUTTON);
         SceneManager.LoadScene(1);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CoolDownSlider : MonoBehaviour
 {
-    Slider ui_Slider;
+    [SerializeField] Slider ui_Slider;
 
     private float maxTime;
     private bool pauseTrigger;
@@ -16,16 +16,22 @@ public class CoolDownSlider : MonoBehaviour
         ui_Slider = GetComponent<Slider>();
     }
 
-    public void Initialize(int _maxValue)
+    public void Initialize(float _maxValue)
     {
         ui_Slider.maxValue = maxTime = _maxValue;
         ui_Slider.value = 0;
         pauseTrigger = false;
+        StartCoolDown();
     }
 
+    Coroutine _co;
     public void StartCoolDown()
     {
-        StartCoroutine(CoolDownTimer());
+        if(_co != null)
+        {
+            StopCoroutine(_co);
+        }
+        _co = StartCoroutine(CoolDownTimer());
     }
 
     public void PauseCoolDown()
@@ -56,6 +62,7 @@ public class CoolDownSlider : MonoBehaviour
             }
 
             _timer += Time.deltaTime;
+            ui_Slider.value = _timer;
             if( _timer > maxTime) 
             {
                 FinishCoolDown();

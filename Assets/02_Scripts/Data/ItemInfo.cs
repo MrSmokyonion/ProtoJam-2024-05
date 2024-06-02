@@ -37,6 +37,10 @@ public class ItemInfo : ScriptableObject
             {
                 currentUpgradeLevel = 0;
             }
+            else
+            {
+                currentUpgradeLevel = value;
+            }
         }
     }
 

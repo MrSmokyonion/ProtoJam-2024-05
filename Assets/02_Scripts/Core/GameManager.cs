@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     [Header("References")]
     [SerializeField]
     private ResultUIController resultUIController;
+    [SerializeField] private UI_SkillCoolDownController skillCoolDownUIController;
 
     Player player;
     public Player Player
@@ -130,5 +131,10 @@ public class GameManager : Singleton<GameManager>
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    public void DoSkillCoolDownUI(AttackSkillData.SkillType _skillType, float _maxTime)
+    {
+        skillCoolDownUIController.SetSkillCoolDownUI(_skillType, _maxTime);
     }
 }

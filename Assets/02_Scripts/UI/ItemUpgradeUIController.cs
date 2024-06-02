@@ -32,9 +32,9 @@ public class ItemUpgradeUIController : MonoBehaviour
         PrintItemInfo(_itemInfos[0].Type);
     }
 
-    public void PrintItemInfo(ItemType _type)
+    public void PrintItemInfo(ItemType _type, ItemSlotUIController _caller)
     {
         ItemInfo itemInfo = ItemManager.Ins.GetItemData(_type);
-        itemDescriptionUI.PrintItemInfo(itemInfo);
+        itemDescriptionUI.PrintItemInfo(itemInfo, _caller);
     }
 }

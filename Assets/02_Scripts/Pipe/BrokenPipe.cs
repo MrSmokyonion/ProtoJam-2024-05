@@ -78,6 +78,7 @@ public class BrokenPipe : MonoBehaviour
         {
             ui_repairGauge.gameObject.SetActive(true);
         }
+        SoundManager.instance.PlaySFXLoop(SoundManager.SOUND_LIST.SFX_PIPE_FIXING);
     }
 
     private void OnRepairing()
@@ -96,6 +97,7 @@ public class BrokenPipe : MonoBehaviour
 
     private void RepairPause()
     {
+        SoundManager.instance.StopSFXLoop(SoundManager.SOUND_LIST.SFX_PIPE_FIXING);
         isRepairing = false;
     }
 
@@ -106,8 +108,9 @@ public class BrokenPipe : MonoBehaviour
         ui_repairGauge.gameObject.SetActive(false);
         GameManager.Ins.GetCoin += 50;
 
+        SoundManager.instance.StopSFXLoop(SoundManager.SOUND_LIST.SFX_PIPE_FIXING);
         //수리 완료�瑛뻑� 그래픽 연출
-        
+
 
         parents.RemovePipe(this);
         Invoke("DestroySelf", 3f);
@@ -140,6 +143,7 @@ public class BrokenPipe : MonoBehaviour
             GameObject temp = Factory.Ins.GetObject(type, transform.position + (Vector3)Random.insideUnitCircle);
             EnemyBase enemy = temp.GetComponent<EnemyBase>();
             //enemy.SettingState() 여기서 스텟 설정
+            SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_ENEMY_SPAWN, 0.05f);
         }
     }
 

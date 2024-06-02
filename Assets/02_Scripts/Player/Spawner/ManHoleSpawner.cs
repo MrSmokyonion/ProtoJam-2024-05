@@ -23,8 +23,9 @@ public class ManHoleSpawner : SkillSpawner
             //}
             yield return new WaitUntil(() => projectileDone);
 
-            
 
+
+            GameManager.Ins.DoSkillCoolDownUI(AttackSkillData.SkillType.ManHole, finalSpawnSpeed);
             yield return new WaitForSeconds(finalSpawnSpeed);
         }
     }
