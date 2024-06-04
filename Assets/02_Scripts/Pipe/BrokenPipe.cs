@@ -56,7 +56,7 @@ public class BrokenPipe : MonoBehaviour
         ui_repairGauge.value = 0f;
         ui_repairGauge.gameObject.SetActive(false);
 
-        if(GameManager.Ins.Player.level > 10)
+        if(GameManager.Ins.Player.level > 5)
         { 
             StartCoroutine(SpawnCrocodileCoroutine());
         }

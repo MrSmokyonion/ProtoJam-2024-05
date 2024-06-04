@@ -29,10 +29,13 @@ public class ItemManager : Singleton<ItemManager>
     private int money;
     public int Money => money;
 
-    private void Start()
+
+    protected override void OnInitalize()
     {
+        base.OnInitalize();
         InitItemInfo();
     }
+
 
     private void InitItemInfo()
     {

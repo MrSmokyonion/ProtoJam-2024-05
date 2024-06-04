@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class ItemUpgradeUIController : MonoBehaviour
 {
@@ -27,9 +28,8 @@ public class ItemUpgradeUIController : MonoBehaviour
             GameObject _gameObject = Instantiate(itemSlotPrefab, transform);
             ItemSlotUIController controller = _gameObject.GetComponent<ItemSlotUIController>();
             controller.InitSlotUI(_itemInfos[i]);
+            if (i == 0) PrintItemInfo(_itemInfos[0].Type, controller);
         }
-
-        // PrintItemInfo(_itemInfos[0].Type);
     }
 
     public void PrintItemInfo(ItemType _type, ItemSlotUIController _caller)
