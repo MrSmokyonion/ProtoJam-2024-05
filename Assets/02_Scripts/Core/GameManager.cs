@@ -88,6 +88,9 @@ public class GameManager : Singleton<GameManager>
             {
                 pipeSpawner.onFixedPipe = () => FixedPipeCount++;
             }
+
+            resultUIController = FindAnyObjectByType<ResultUIController>();
+            skillCoolDownUIController = FindAnyObjectByType<UI_SkillCoolDownController>();
         }
     }
 

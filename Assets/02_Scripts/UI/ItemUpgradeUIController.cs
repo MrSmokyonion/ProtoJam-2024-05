@@ -29,7 +29,7 @@ public class ItemUpgradeUIController : MonoBehaviour
             controller.InitSlotUI(_itemInfos[i]);
         }
 
-        PrintItemInfo(_itemInfos[0].Type);
+        // PrintItemInfo(_itemInfos[0].Type);
     }
 
     public void PrintItemInfo(ItemType _type, ItemSlotUIController _caller)
