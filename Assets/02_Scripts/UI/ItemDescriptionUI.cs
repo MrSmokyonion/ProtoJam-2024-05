@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class ItemDescriptionUI : MonoBehaviour
 {
@@ -12,6 +12,20 @@ public class ItemDescriptionUI : MonoBehaviour
     [SerializeField] private TMP_Text ui_descriptionText;
     [SerializeField] private TMP_Text ui_maxLevelText;
     [SerializeField] private TMP_Text ui_costText;
+
+    ItemUpgradeUIController upgradeUI;
+    ItemUpgradeUIController UpgradeUI
+    {
+        get
+        {
+            if (upgradeUI == null)
+            {
+                upgradeUI = FindAnyObjectByType<ItemUpgradeUIController>();
+            }
+            return upgradeUI;
+        }
+    }
+
 
     public void PrintItemInfo(ItemInfo _info, ItemSlotUIController _caller = null)
     {
@@ -26,8 +40,10 @@ public class ItemDescriptionUI : MonoBehaviour
         {
             ui_costText.text = _info.UpgradeCost[_info.CurrentUpgradeLevel].ToString();
         }
-        
-        if( _caller != null )   //진짜 이렇게 코드짜면 안되는데..
+
+        _caller = UpgradeUI.itemSlots[(int)_info.Type];
+
+        if ( _caller != null )   //진짜 이렇게 코드짜면 안되는데..
         {
             _caller.UpdateSlotUI(_info.CurrentUpgradeLevel);
         }
@@ -44,6 +60,7 @@ public class ItemDescriptionUI : MonoBehaviour
         if(result)
         {
             PrintItemInfo(_info);
+            upgradeUI.RefreshCoinUI();
         }
         else
         {

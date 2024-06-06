@@ -25,6 +25,7 @@ public static class DataEditor
     public static void DeleteAllData()
     {
         PlayerPrefs.DeleteAll();
+        Debug.LogWarning($"플레이어의 저장 데이터를 삭제했습니다.");
     }
 
     public static void SaveItemCurrentUpgrade(ItemType _type, int _curUpgrade)
