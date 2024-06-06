@@ -89,8 +89,23 @@ public class ItemSelectController : MonoBehaviour
         HideUI();
     }
 
+    void SetPlayerState()
+    {
+        string log = $"";
+
+        log += $"{player.MaxHp - player.extraMaxHp} + {player.extraMaxHp}\n";
+        log += $"{player.AttackDamage}%\n";
+        log += $"{player.extraPaymentRate}%\n";
+        log += $"5초당 {player.Regenration}%\n";
+        log += $"{player.moveSpeed}배\n";
+        log += $"{player.SkillCoolTimeRate}%\n";
+
+        ui_PlayerStatusValueText.text = log;
+    }
+
     private void ShowUI()
     {
+        SetPlayerState();
         container.SetActive(true);
     }
 

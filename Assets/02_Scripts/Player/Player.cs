@@ -9,21 +9,27 @@ public class Player : MonoBehaviour
 
     // 체력 관련 ======================================
     /// <summary>
-    /// 최대 체력
+    /// 기본 최대 체력
     /// </summary>
-    [SerializeField] private float maxHp = 20.0f;
+    [SerializeField] private const float maxHp = 20.0f;
 
     public float MaxHp
     {
-        get => maxHp;
-        set => maxHp = value;
+        get => maxHp + extraMaxHp;
+        // set => maxHp = value;
     }
+
+    /// <summary>
+    /// 체력 증가량
+    /// </summary>
+    public float extraMaxHp = 0;
 
     [Tooltip("최대로 증가할 수있는 최대 체력량")]
     /// <summary>
     /// 최대로 증가할 수있는 최대 체력량
     /// </summary>
     [SerializeField] private float plusMaxHp = 40.0f;
+    
 
     /// <summary>
     /// 현재 체력
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
                     OnDie();        // 사망
                 }
 
-                onHealthChange?.Invoke(currentHp, maxHp);
+                onHealthChange?.Invoke(currentHp, MaxHp);
             }
         }
     }
@@ -110,6 +116,7 @@ public class Player : MonoBehaviour
     /// 초당 체력 재생력
     /// </summary>
     [SerializeField] private float regeneration = 0.0f;
+    public float Regenration => regeneration;   
 
     /// <summary>
     /// 최대 증가할 수 있는 체력 재생력
@@ -516,18 +523,23 @@ public class Player : MonoBehaviour
     /// </summary>
     public void PlayerStateSetting()
     {
-        int count = System.Enum.GetValues(typeof(ItemType)).Length;
+        int count = System.Enum.GetValues(typeof(ItemType)).Length;         // 불러올 value개수
+
+        string log = $"플레이어 데이터 불러오기 완료\n";
+
         for (int i = 0;  i < count; i++) 
         {
             ItemType type = (ItemType)i;
             int currentUpgrade = DataEditor.LoadItemCurrentUpgrade(type);
+
+            log += $"{type.ToString()} : {currentUpgrade}단계 \n";
 
             for(int j = 0; j < currentUpgrade; j++)
             {
                 UpgradeState(type);
             }
         }
-        Debug.Log($"플레이어 데이터 불러오기 완료");
+        Debug.Log($"{log}");
     }
 
     /// <summary>
@@ -539,7 +551,7 @@ public class Player : MonoBehaviour
         switch (type)
         {
             case ItemType.Health:
-                MaxHp += plusMaxHp * 0.1f;
+                extraMaxHp += plusMaxHp * 0.1f;
                 CurrentHp += plusMaxHp * 0.1f;
                 break;
             case ItemType.Damage:
