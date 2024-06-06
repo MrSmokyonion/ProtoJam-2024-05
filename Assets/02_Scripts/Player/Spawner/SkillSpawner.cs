@@ -206,7 +206,7 @@ public abstract class SkillSpawner : MonoBehaviour
     /// </summary>
     public void UpdateAttackSpeed()
     {
-        finalSpawnSpeed = skillData.FireDelay - ((skillData.FireDelay * player.SkillCoolTimeRate) + decreaseSpawnSpeed);
+        finalSpawnSpeed = skillData.FireDelay - ((skillData.FireDelay * (player.SkillCoolTimeRate * 0.01f)) + decreaseSpawnSpeed);
         
     }
 
