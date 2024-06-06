@@ -17,7 +17,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     /// <summary>
     /// 이미 종료 처리에 들어갔는지 확인하기 위한 변수
     /// </summary>
-    private static bool isShutDown = false;
+    public static bool isShutDown = false;
 
     /// <summary>
     /// 싱글톤의 객체

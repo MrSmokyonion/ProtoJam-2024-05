@@ -22,6 +22,7 @@ public class PooledObject : MonoBehaviour
 
     protected virtual void OnDisable()
     {
+        if (Singleton<Factory>.isShutDown) return;
         onDisable?.Invoke();
     }
 

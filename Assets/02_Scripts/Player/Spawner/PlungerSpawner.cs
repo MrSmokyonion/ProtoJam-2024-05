@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlungerSpawner : SkillSpawner
@@ -17,13 +18,15 @@ public class PlungerSpawner : SkillSpawner
             UpdateAttackSpeed();
 
             var targets = EnemyManager.Ins.IterateEnemyTransforms()
-                .OrderBy(t => Vector2.SqrMagnitude((Vector2) t.position - (Vector2) transform.position))
+                .OrderBy(t => Vector2.SqrMagnitude((Vector2)t.position - (Vector2)transform.position))
                 .Take(spawnCount);
             _cache.Clear();
             _cache.AddRange(targets);
+            
             foreach (var targetTransform in _cache)
             {
                 var targetPosition = targetTransform.position;
+                
                 SpawnPlunger(targetPosition);
                 SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_PLUNGER_THROW);
                 yield return new WaitForSeconds(skillData.FireRate);

@@ -132,6 +132,15 @@ public class EnemyBase : PooledObject
         player.OnHitted(damage * 0.1f);
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (EnemyManager.Ins != null)
+        {
+            EnemyManager.Ins.RemoveEnemy(transform);
+        }
+    }
+
     /// <summary>
     /// 플레이어에 의해 죽었을 때
     /// </summary>
@@ -141,7 +150,7 @@ public class EnemyBase : PooledObject
         Dir = Vector2.zero;
         col.enabled = false;
         player.CurrentEx += experience;
-        EnemyManager.Ins.RemoveEnemy(transform);
+
 
         StartCoroutine(LifeOver());
     }
