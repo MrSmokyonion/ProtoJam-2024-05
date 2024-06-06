@@ -27,4 +27,13 @@ public class TitleManager : MonoBehaviour
         SoundManager.instance.PlaySFX(SoundManager.SOUND_LIST.SFX_UI_BUTTON);
         SceneManager.LoadScene(1);
     }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
